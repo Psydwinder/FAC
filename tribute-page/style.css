@@ -33,6 +33,15 @@ header {
   margin: 0 1rem;
 }
 
+.header__progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #ed1c24;
+  height: 2px;
+  width: 100%;
+}
+
 .header__title {
   text-transform: uppercase;
   letter-spacing: 2px;

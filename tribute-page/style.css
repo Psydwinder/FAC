@@ -39,7 +39,7 @@ header {
   left: 0;
   background-color: #ed1c24;
   height: 2px;
-  width: 100%;
+  width: 0%;
 }
 
 .header__title {
@@ -58,6 +58,7 @@ header {
 }
 
 img {
+  pointer-events: none;
   box-sizing: border-box;
   height: auto;
   max-width: 100%;

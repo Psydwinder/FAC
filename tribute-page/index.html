@@ -14,8 +14,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./reset.css" />
-    <link rel="stylesheet" href="./style.css" />
+    <link type="text/css" href="./reset.css" />
+    <link rel="stylesheet" type="text/css" href="./style.css" />
     <title>Hokusai Tribute</title>
   </head>
   <body>
@@ -28,6 +28,20 @@
         alt="japan flag"
         draggable="false"
       />
+      <nav>
+        <input type="checkbox" class="nav__checkbox" />
+        <div class="nav__icon">
+          <span class="nav__icon--top"></span>
+          <span class="nav__icon--mid"></span>
+          <span class="nav__icon--bot"></span>
+        </div>
+        <ul class="nav__items">
+          <li class="nav__item"><a href="#intro">Intro</a></li>
+          <li class="nav__item"><a href="#early-life">Early Life</a></li>
+          <li class="nav__item"><a href="#late-life">Late Life</a></li>
+          <li class="nav__item"><a href="#gallery">Gallery</a></li>
+        </ul>
+      </nav>
     </header>
 
     <!-- <section class="gallery">
@@ -87,6 +101,6 @@
         </p>
       </section>
     </main>
-    <!-- <script type="module" src="./index.js" /> -->
+    <script type="module" src="./index.js" />
   </body>
 </html>

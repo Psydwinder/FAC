@@ -13,7 +13,6 @@
 
 html {
   scroll-behavior: smooth;
-  transition: all 1s ease-in-out;
 }
 
 body {
@@ -202,4 +201,28 @@ hr {
   height: 1px;
   border: none;
   background-color: rgba(255, 0, 0, 0.4);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar:hover {
+  box-sizing: border-box;
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 0, 0, 0.5);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 0, 0, 0.7);
 }

@@ -131,14 +131,14 @@ h1 {
   transform: rotate(45deg) translateY(1px);
 }
 
-.nav__checkbox:checked ~ .nav__items {
+.nav__checkbox:checked ~ .nav__list {
   transition: 0.2s all linear;
   right: 0;
   z-index: 1;
   opacity: 0.98;
 }
 
-.nav__items {
+.nav__list {
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -261,7 +261,7 @@ li a {
     display: none;
   }
 
-  .nav__items {
+  .nav__list {
     position: relative;
     margin-bottom: 0.5rem;
     flex-direction: row;
@@ -288,13 +288,13 @@ li a {
   }
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 920px) {
   section {
     flex-direction: row;
     justify-content: center;
   }
 
-  .nav__items {
+  .nav__list {
     position: fixed;
     left: 50%;
     width: 100%;

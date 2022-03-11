@@ -235,8 +235,23 @@ p {
   margin: 2rem auto;
 }
 
-li a {
+.external-links__list a:link {
   color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+}
+
+.external-links__list a::before {
+  display: inline-block;
+  content: "";
+  margin-bottom: 0.35rem;
+  margin-right: 0.5rem;
+  height: 1px;
+  width: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.external-links__list a:visited {
+  color: rgb(241, 107, 107);
 }
 
 /*  1920×1080 (8.89%)
@@ -246,7 +261,7 @@ li a {
     360×640 (7.28%)
     375×667 (3.75%) */
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 777px) {
   header {
     display: flex;
     justify-content: center;

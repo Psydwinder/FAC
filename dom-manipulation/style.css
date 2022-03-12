@@ -1,0 +1,43 @@
+:root {
+  --primary-color: #f5f0e1;
+  --secondary-color: #1e3d59;
+  --tertiary-color: #ff6e40;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: var(--primary-color);
+}
+
+.codename {
+  background-color: var(--secondary-color);
+  height: 25rem;
+  width: 25rem;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px black;
+}
+
+.codename__input {
+  border: 2px var(--secondary-color) solid;
+  height: 3rem;
+  font-size: 1.5rem;
+  background-color: transparent;
+  padding: 1rem 1.5rem;
+  border-radius: 4rem;
+  caret-color: var(--secondary-color);
+  transition: 0.3s all ease-in-out;
+  color: white;
+}
+
+.codename__input:focus {
+  outline: none;
+}
+
+.valid {
+  border-color: green;
+  background-color: white;
+}

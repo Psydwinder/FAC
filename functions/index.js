@@ -33,7 +33,7 @@ const exercises = {
 
 function displayTestResult(testGroup, test) {
   console.groupCollapsed(
-    "%c  %c" + `${testGroup} - ${test.result}`,
+    "%c  %c" + `${test.result} - ${testGroup}`,
     "background-color: " +
       (test.result === "Failed" ? "red" : "green") +
       "; margin-right: 10px; border-radius: 50%;",

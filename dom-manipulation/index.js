@@ -1,11 +1,18 @@
 // DOM Containers
+const codenameSection = document.querySelector(".codename");
 const buttonEl = document.querySelector(".codename__button");
 const inputEl = document.querySelector(".codename__input");
 let inputValue = inputEl.value;
 
 // Event Listeners
+inputEl.focus();
+codenameSection.addEventListener("click", handleSectionClick);
 inputEl.addEventListener("input", handleInputUpdate);
 buttonEl.addEventListener("click", startValidation);
+
+function handleSectionClick({ currentTarget }) {
+  currentTarget.classList.add("active");
+}
 
 function handleInputUpdate({ target }) {
   inputValue = target.value;

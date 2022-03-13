@@ -4,47 +4,67 @@ const buttonEl = document.querySelector(".codename__button");
 const inputEl = document.querySelector(".codename__input");
 let inputValue = inputEl.value;
 
+// Validation
+const checkLength = (str) => str.length > 5;
+const hasLowerUppercase = (str) => /(?=.*[a-z])(?=.*[A-Z]).*/g.test(str);
+const hasNumbers = (str) => (str.match(/[0-9]/g) || []).length >= 2;
+const validations = {
+  "Is at least 6 characters long": false,
+  "Has at least one lowercase and uppercase letter": false,
+  "Has at least two numbers": false,
+};
+let isCodenameValid = false;
+
+function startValidation() {
+  validations["Is at least 6 characters long"] = checkLength(inputValue);
+  validations["Has at least one lowercase and uppercase letter"] =
+    hasLowerUppercase(inputValue);
+  validations["Has at least two numbers"] = hasNumbers(inputValue);
+
+  validateCodename() ? applyStyling(true) : applyStyling(false);
+  displayConditions();
+}
+
+function validateCodename() {
+  let tempBoolean = true;
+  for (let validation in validations) {
+    if (validations[validation] === false) {
+      tempBoolean = false;
+    }
+  }
+  return tempBoolean;
+}
+
+function applyStyling(boolean) {
+  if (boolean) inputEl.classList.add("valid");
+  else inputEl.classList.remove("valid");
+}
+
+function displayConditions() {
+  console.log("hi");
+  const codenameList = document.querySelector("ul");
+  codenameList.innerHTML = "";
+
+  for (let validation in validations) {
+    if (validations[validation] === false) {
+      const li = document.createElement("li");
+      li.innerText = validation;
+      codenameList.appendChild(li);
+    }
+  }
+}
+
 // Event Listeners
-inputEl.focus();
 codenameSection.addEventListener("click", handleSectionClick);
 inputEl.addEventListener("input", handleInputUpdate);
-buttonEl.addEventListener("click", startValidation);
+// buttonEl.addEventListener("click", startValidation);
 
 function handleSectionClick({ currentTarget }) {
   currentTarget.classList.add("active");
+  inputEl.focus();
 }
 
 function handleInputUpdate({ target }) {
   inputValue = target.value;
   startValidation();
-}
-
-// Validation
-const checkLength = (str) => str.length > 5;
-const hasLowerUppercase = (str) => /(?=.*[a-z])(?=.*[A-Z]).*/g.test(str);
-const hasNumbers = (str) => (str.match(/[0-9]/g) || []).length >= 2;
-let isCodenameValid = false;
-
-function startValidation() {
-  if (validateCodename()) {
-    applyStyling(true);
-  } else {
-    applyStyling(false);
-  }
-}
-
-function validateCodename() {
-  const validations = [
-    checkLength(inputValue),
-    hasLowerUppercase(inputValue),
-    hasNumbers(inputValue),
-  ];
-
-  return validations.every((validation) => validation === true);
-}
-
-function applyStyling(boolean) {
-  console.log(boolean);
-  if (boolean) inputEl.classList.add("valid");
-  else inputEl.classList.remove("valid");
 }

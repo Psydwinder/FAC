@@ -9,10 +9,15 @@
     <title>DOM Manipulation</title>
   </head>
   <body>
+    <header><h1>Codename Validator</h1></header>
     <section class="codename">
-      <input type="text" class="codename__input" placeholder="Codename" />
-      <label class="codename__label" for="codename__input" />
-      <button class="codename__button">Validate Codenome</button>
+      <div class="codename__icon"></div>
+      <div class="codename__input-wrapper">
+        <input type="text" class="codename__input" placeholder="Codename" />
+        <label class="codename__label" for="codename__input" />
+      </div>
+      <ul class="codename__requirements-list"></ul>
+      <!-- <button class="codename__button">Validate Codenome</button> -->
     </section>
     <script type="module" src="index.js"></script>
   </body>

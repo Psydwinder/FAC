@@ -1,9 +1,9 @@
 :root {
   --primary-color: #ffefef;
   --secondary-color: linear-gradient(90deg, #92a9bd, 70%, #ffcbcb);
-  --tertiary-color: #ffcbcb;
+  --tertiary-color: #11324d;
   --codename-input-border: 2px solid;
-  --codename-section-width: 4rem;
+  --codename-section-width: 15rem;
 }
 
 body {
@@ -20,6 +20,7 @@ body {
 
 h1 {
   position: absolute;
+  text-align: center;
   top: 3rem;
   left: 50%;
   width: 100%;
@@ -39,8 +40,8 @@ h1 {
   justify-content: center;
   height: var(--codename-section-width);
   width: var(--codename-section-width);
-  background: #92a9bd;
-  border-radius: 50%;
+  background: var(--secondary-color);
+  border-radius: 20px;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.8);
   opacity: 1;
   animation: codename-shake 2s linear infinite;
@@ -104,6 +105,7 @@ h1 {
 .active {
   display: flex;
   height: 70vw;
+  min-height: 15rem;
   max-height: 25rem;
   width: 70vw;
   max-width: 25rem;
@@ -113,7 +115,6 @@ h1 {
   transition: all 0.5s linear;
   animation: none;
   cursor: default;
-  opacity: 0.7;
 }
 
 .active * {
@@ -123,10 +124,11 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 4rem;
 }
 
 .active .codename__input {
-  width: 50%;
+  width: 60%;
   height: fit-content;
   padding: 5% 8%;
   border-radius: 4rem;
@@ -136,29 +138,65 @@ h1 {
   opacity: 1;
 }
 
-.active .codename__label {
-  background-color: #765ceb;
+.codename__label {
+  margin-left: 1rem;
   height: 2px;
   width: 15px;
-  margin: 1rem;
   transition: 0.5s all ease-in-out;
 }
 
+.codename__label::before,
+.codename__label::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  height: 2px;
+  width: 15px;
+  background-color: var(--tertiary-color);
+  transition: all 0.2s linear;
+  border-radius: 20%;
+}
+
+.codename__label::before {
+  transform: translate(-50%) rotate(45deg);
+  background-color: var(--tertiary-color);
+}
+
+.codename__label::after {
+  transform: translate(-50%) rotate(-45deg);
+}
+
 .codename__requirements-list {
+  width: 90%;
+  min-height: 4rem;
+  user-select: none;
+  list-style: circle;
 }
 
 li {
-  font-size: 0.8rem;
   width: 100%;
-  margin: 0;
-  color: red;
-  text-align: start !important;
+  font-size: 0.8rem;
+  color: var(--tertiary-color);
 }
 
+/* Valid */
 .valid {
-  border: 2px solid rgb(0, 109, 128) !important;
-  background-color: white;
-  transition: none;
+}
+
+.valid .codename__input {
+  border: 2px solid rgb(0, 109, 128);
+}
+
+.valid .codename__label::before {
+  width: 8px;
+  background-color: blue;
+  transform: translate(-80%, 100%) rotate(45deg);
+}
+
+.valid .codename__label::after {
+  width: 15px;
+  background-color: blue;
+  transform: translate(-20%, -20%) rotate(-45deg);
 }
 
 @keyframes codename-shake {

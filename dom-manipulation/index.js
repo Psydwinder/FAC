@@ -13,7 +13,6 @@ const validations = {
   "Has at least one lowercase and uppercase letter": false,
   "Has at least two numbers": false,
 };
-let isCodenameValid = false;
 
 function startValidation() {
   validations["Is at least 6 characters long"] = checkLength(inputValue);
@@ -36,8 +35,8 @@ function validateCodename() {
 }
 
 function applyStyling(boolean) {
-  if (boolean) inputEl.classList.add("valid");
-  else inputEl.classList.remove("valid");
+  if (boolean) codenameSection.classList.add("valid");
+  else codenameSection.classList.remove("valid");
 }
 
 function displayConditions() {

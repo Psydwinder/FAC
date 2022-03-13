@@ -2,6 +2,7 @@
 const codenameSection = document.querySelector(".codename");
 const buttonEl = document.querySelector(".codename__button");
 const inputEl = document.querySelector(".codename__input");
+const labelEl = document.querySelector(".codename__label");
 let inputValue = inputEl.value;
 
 // Validation
@@ -35,8 +36,13 @@ function validateCodename() {
 }
 
 function applyStyling(boolean) {
-  if (boolean) codenameSection.classList.add("valid");
-  else codenameSection.classList.remove("valid");
+  inputValue.length > 0
+    ? (labelEl.style = "opacity: 1")
+    : (labelEl.style = "opacity: 0");
+
+  boolean
+    ? codenameSection.classList.add("valid")
+    : codenameSection.classList.remove("valid");
 }
 
 function displayConditions() {

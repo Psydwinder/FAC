@@ -1,61 +1,70 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald|Roboto);
+
 :root {
-  --terminal-background-color: #292d3e;
+  --primary-color: #d5eafc;
+  --secondary-color: #fafafe;
+  --text-color: rgb(81, 90, 110);
 }
+
 body {
-  background-color: var(--terminal-background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  height: 100vh;
+  font-family: Roboto, sans-serif;
+  background-color: var(--primary-color);
+  color: var(--text-color);
 }
 
-.terminal__prefix {
-  font-size: 0.8rem;
-  margin-top: 0.2rem;
-  user-select: none;
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 90vw;
+  min-height: 300px;
+  max-height: 400px;
+  max-width: 350px;
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.array__label {
   position: absolute;
-  color: white;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.1s linear;
 }
 
-.terminal__prefix::before,
-.terminal__prefix::after,
-.terminal__branch::before,
-.terminal__branch::after {
-  display: inline-block;
+.array__label.focused {
+  top: -5px;
+  font-size: 0.8rem;
 }
 
-.terminal__prefix::before {
-  content: "➜";
-  margin-right: 0.5rem;
+.array__input {
+  height: 2rem;
+  border: 0;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.terminal__prefix::after {
-  content: "✗";
-}
-
-.terminal__branch::before {
-  content: "(";
-}
-
-.terminal__branch::after {
-  content: ")";
-}
-
-.terminal__textarea {
-  width: 100%;
-  min-height: 8px;
-  max-height: 100px;
-  border: none;
-  resize: none;
-  overflow: hidden;
-  background-color: var(--terminal-background-color);
-  /* background-color: white; */
-  /* color: black; */
-  color: white;
-  text-indent: 10rem;
-}
-
-.terminal__textarea:focus {
+.array__input:focus {
   outline: none;
+  border-color: var(--text-color);
 }
 
-.terminal__input--hide {
-  opacity: 0;
-  transition: all 0.5s linear;
+.radio-btns {
+  display: flex;
+  flex-direction: row;
+}
+
+.radio-btns .input-wrapper {
+  margin: 1rem;
 }

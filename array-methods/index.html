@@ -9,17 +9,24 @@
     <title>Array Methods</title>
   </head>
   <body>
-    <section class="terminal">
-      <div class="terminal__input">
-        <div class="terminal__prefix">
-          <span class="terminal__folder">FAC</span>
-          <span class="terminal__git">git:</span>
-          <span class="terminal__branch">master</span>
-        </div>
-        <textarea class="terminal__textarea" placeholder="click here">
-        </textarea>
+    <main>
+      <div class="input-wrapper">
+        <label for="array-input" class="array__label">Array</label>
+        <input type="text" id="array-input" class="array__input" />
       </div>
-    </section>
+      <div class="radio-btns">
+        <div class="input-wrapper">
+          <label for="filter">Filter</label>
+          <input type="radio" name="function" id="filter" value="filter" />
+        </div>
+        <div class="input-wrapper">
+          <label for="reduce">Reduce</label>
+          <input type="radio" name="function" id="reduce" value="reduce" />
+        </div>
+      </div>
+      <button>Run</button>
+      <section></section>
+    </main>
     <script type="module" src="./index.js"></script>
   </body>
 </html>

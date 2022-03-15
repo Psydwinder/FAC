@@ -17,6 +17,9 @@ function clearInput() {
 }
 
 function numOnlyArr() {
-  return (arrayInputEl.value.match(/[0-9]+/g) || []).map((num) => Number(num));
+  console.log();
+  return (arrayInputEl.value.replace(/\s/g, "").match(/[0-9]+/g) || []).map(
+    (num) => Number(num)
+  );
 }
 export { numOnlyArr, clearInput };

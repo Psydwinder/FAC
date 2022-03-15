@@ -1,20 +1,17 @@
 import { numOnlyArr, clearInput } from "./scripts/ArrayInput.js";
-import {
-  selectedFunction,
-  filterDivisibleByTwo,
-  sumOfArray,
-} from "./scripts/FilterOrReduce.js";
+import { selectedFunction, filter, reduce } from "./scripts/FilterOrReduce.js";
 
 // DOM containers
 const buttonEl = document.querySelector("button");
+const outputDiv = document.querySelector(".function-output");
 
 // Event Listeners
 buttonEl.addEventListener("click", runSelectedFunction);
 
 function runSelectedFunction() {
   const cleanArr = numOnlyArr();
-  selectedFunction === "filter"
-    ? filterDivisibleByTwo(cleanArr)
-    : sumOfArray(cleanArr);
+  if (cleanArr.length === 0) return;
+  outputDiv.innerText =
+    selectedFunction === "filter" ? `[${filter(cleanArr)}]` : reduce(cleanArr);
   clearInput();
 }

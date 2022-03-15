@@ -10,18 +10,24 @@
   </head>
   <body>
     <main>
-      <div class="input-wrapper">
+      <h1>Array Methods</h1>
+      <div class="function-output"></div>
+      <div class="input__wrapper">
         <label for="array-input" class="array__label">Array</label>
         <input type="text" id="array-input" class="array__input" />
       </div>
-      <div class="radio-btns">
-        <div class="input-wrapper">
-          <label for="filter">Filter</label>
-          <input type="radio" name="function" id="filter" value="filter" />
+      <div class="radio-div">
+        <div class="input__wrapper" data-function="filter">
+          <label for="filter" class="input__label"
+            >Filter
+            <input type="radio" name="function" id="filter" checked />
+          </label>
         </div>
-        <div class="input-wrapper">
-          <label for="reduce">Reduce</label>
-          <input type="radio" name="function" id="reduce" value="reduce" />
+        <div class="input__wrapper" data-function="reduce">
+          <label for="reduce" class="input__label"
+            >Reduce
+            <input type="radio" name="function" id="reduce" />
+          </label>
         </div>
       </div>
       <button>Run</button>

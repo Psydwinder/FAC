@@ -182,8 +182,6 @@ header ~ hr {
   cursor: default;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
-.gallery__img--focused {
-}
 
 /* Product */
 .product {
@@ -349,8 +347,5 @@ header ~ hr {
     flex-direction: column;
     flex-wrap: wrap-reverse;
     height: 50rem;
-  }
-
-  .gallery__bigger-img {
   }
 }

@@ -1,0 +1,249 @@
+@import url("https://fonts.googleapis.com/css?family=Pontano+Sans");
+
+:root {
+  --body-bg-color: rgb(255, 255, 255);
+  --button-bg-color: rgb(62, 62, 63);
+  --button-overlay-color: rgb(131, 131, 131);
+  --text-color: rgb(167, 167, 167);
+  --pastel-blue: rgb(167, 199, 231);
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Pontano Sans", sans-serif;
+  font-size: 1.6rem;
+  width: 95%;
+  margin: auto;
+  user-select: none;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+hr {
+  width: 100%;
+  height: 0.1rem;
+  border: none;
+  margin: 3rem 0;
+  background-color: var(--text-color);
+  opacity: 0.3;
+}
+
+header ~ hr {
+  margin: 0;
+}
+
+.header__title {
+  font-size: 2rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.nav__icon {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.nav__icon * {
+  display: block;
+  margin: 0.2rem;
+  height: 0.2rem;
+  width: 1.68rem;
+  border-radius: 1rem;
+  background-color: var(--button-bg-color);
+  transform-origin: right;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  z-index: 1;
+}
+
+.nav__icon--mid {
+  height: 0.2rem;
+  width: 50%;
+  margin-left: auto;
+}
+
+.nav__list {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  left: 0;
+  top: 5rem;
+  max-height: 0;
+  padding-left: 0;
+  margin: 0;
+  width: 100%;
+  list-style: none;
+  background-color: var(--body-bg-color);
+  z-index: 1;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav__item {
+  margin: 0;
+  font-size: 1.8rem;
+  width: fit-content;
+  opacity: 0.6;
+  margin: 1rem;
+}
+
+.nav__item:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+/* Active Nav */
+.nav--active .nav__icon--top {
+  transform: rotate(-45deg);
+}
+.nav--active .nav__icon--mid {
+  transform: translateX(-50%);
+  opacity: 0;
+}
+.nav--active .nav__icon--bot {
+  transform: rotate(45deg);
+}
+
+.nav--active .nav__list {
+  max-height: 18rem;
+  top: 5rem;
+  height: 18rem;
+}
+
+/* Main */
+.history {
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.history__item {
+  text-transform: uppercase;
+  margin: 1rem;
+  font-size: 1.3rem;
+  font-weight: 100;
+  letter-spacing: 0.15rem;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.history__item--highlighted {
+  opacity: 1;
+  cursor: default;
+}
+
+.history__item:hover {
+  opacity: 1;
+}
+
+.history span {
+  display: inline-bock;
+  background-color: var(--text-color);
+  height: 0.1rem;
+  width: 1rem;
+  transform: rotate(-75deg);
+}
+
+/* Gallery */
+.gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.gallery__img {
+  width: 100%;
+  margin: 0.5rem;
+  transition: all 0.2s linear;
+}
+
+.gallery__img:hover {
+  transform: scale(1.01);
+  cursor: default;
+}
+.gallery__img--focused {
+}
+
+/* Product */
+.product {
+  position: relative;
+  margin: auto;
+  width: 95%;
+}
+
+.product__name {
+  text-transform: capitalize;
+}
+
+.product__price {
+  margin-top: -1rem;
+  font-size: 2.5rem;
+}
+
+.product__discount {
+  text-decoration: line-through;
+  margin-right: 2rem;
+  opacity: 0.5;
+}
+
+.product__description {
+  width: 90%;
+  font-size: 1.7rem;
+  opacity: 0.6;
+  letter-spacing: 0.1rem;
+  line-height: 2.4rem;
+  text-align: left;
+}
+
+.product__button {
+  position: relative;
+  margin-top: 2rem;
+  padding: 1.5rem 3rem;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  letter-spacing: 0.15rem;
+  border: none;
+  color: #fff;
+  background-color: var(--button-bg-color);
+  transition: all 0.2s linear;
+  cursor: pointer;
+}
+.product__button::after {
+  display: inline-block;
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 48px;
+  transition: all 0.2s ease-in-out;
+  background-color: var(--button-overlay-color);
+  opacity: 0.1;
+}
+
+.product__button:hover::after {
+  width: 159.483px;
+}
+
+/* Recommended */
+
+.recommended__title {
+  padding-left: 2rem;
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: 0.1rem;
+  opacity: 0.8;
+}

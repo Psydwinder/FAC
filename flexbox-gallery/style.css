@@ -3,7 +3,7 @@
 :root {
   --body-bg-color: rgb(255, 255, 255);
   --button-bg-color: rgb(62, 62, 63);
-  --button-overlay-color: rgb(131, 131, 131);
+  --button-overlay-color: rgb(150, 149, 149);
   --text-color: rgb(167, 167, 167);
   --pastel-blue: rgb(167, 199, 231);
   font-size: 62.5%;
@@ -159,20 +159,28 @@ header ~ hr {
 
 /* Gallery */
 .gallery {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
+
+.gallery__bigger-img {
+  display: none;
+}
+
 .gallery__img {
   width: 100%;
+  max-width: 50rem;
   margin: 0.5rem;
-  transition: all 0.2s linear;
+  transition: all 0.1s linear;
 }
 
 .gallery__img:hover {
   transform: scale(1.01);
   cursor: default;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 .gallery__img--focused {
 }
@@ -195,6 +203,7 @@ header ~ hr {
 
 .product__discount {
   text-decoration: line-through;
+  font-size: 2rem;
   margin-right: 2rem;
   opacity: 0.5;
 }
@@ -240,10 +249,108 @@ header ~ hr {
 
 /* Recommended */
 
+.recommended {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.recommended__item {
+  box-sizing: border-box;
+  border: none;
+  padding: 2rem 2rem;
+  cursor: pointer;
+}
+
+.recommended__item:hover {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
 .recommended__title {
   padding-left: 2rem;
   font-size: 3rem;
   font-weight: 300;
   letter-spacing: 0.1rem;
   opacity: 0.8;
+}
+
+.recommended__img {
+  width: 100%;
+  max-width: 50rem;
+  max-height: 50rem;
+}
+
+.recommended__name {
+  font-weight: 300;
+  margin: 1rem 0;
+}
+
+.recommended__price {
+  margin: 0;
+  font-size: 1.8rem;
+  opacity: 0.7;
+}
+
+@media screen and (min-width: 768px) {
+  .nav__icon {
+    display: none;
+  }
+
+  .nav__list {
+    position: relative;
+    flex-direction: row;
+    top: 0;
+    max-height: fit-content;
+  }
+
+  .product {
+    flex-direction: row;
+    display: flex;
+  }
+
+  .gallery {
+    flex-direction: row;
+    margin-right: 3rem;
+  }
+
+  .gallery__bigger-img {
+    display: block;
+    height: 40rem;
+    max-width: 40rem;
+    transition: all 0.2s linear;
+  }
+
+  .gallery__img {
+    width: 12rem;
+    min-height: 12rem;
+  }
+
+  .recommended__list {
+    display: flex;
+  }
+
+  .recommended__item {
+    height: fit-content;
+    margin: 0 0.5rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .gallery__bigger-img {
+    height: 50rem;
+    max-width: 50rem;
+  }
+}
+
+@media screen and (min-width: 1150px) {
+  .gallery {
+    margin-left: 15%;
+    flex-direction: column;
+    flex-wrap: wrap-reverse;
+    height: 50rem;
+  }
+
+  .gallery__bigger-img {
+  }
 }

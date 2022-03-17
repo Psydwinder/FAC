@@ -14,8 +14,8 @@ class Sphere {
     this.x = 0;
     this.y = Math.random() * 200 - 100 + window.innerHeight / 2;
     this.upOrDown = Math.random();
-    this.ySpeed = Math.random() / 5;
-    this.xSpeed = Math.random() / 3;
+    this.yMovement = Math.random() / 5;
+    this.xMovement = Math.random() / 3;
     this.size = Math.random() * 1.5 + 1;
   }
 
@@ -27,17 +27,20 @@ class Sphere {
     ctx.closePath();
   }
   move() {
-    this.x += this.xSpeed;
-    this.y += this.upOrDown < 0.5 ? -this.ySpeed : +this.ySpeed;
+    this.x += this.xMovement;
+    this.y += this.upOrDown < 0.5 ? -this.yMovement : +this.yMovement;
   }
 }
 
-createSphere();
-
 function drawBackground() {
   adjustCanvasSize();
+  drawSpheres();
+}
+
+function drawSpheres() {
+  // For loop used instead of array method to improve performance
   for (
-    let currentSphere = 0, spheresLength = spheres.length;
+    let currentSphere = 0, spheresLength = spheres.length; // cache length for performance
     currentSphere < spheresLength;
     currentSphere++
   ) {
@@ -52,14 +55,14 @@ function createSphere() {
 
 function cleanupSpheres() {
   spheres = spheres.filter((sphere) => {
-    if (sphere.x <= window.screen.width && sphere.y <= window.screen.height)
-      return sphere;
+    const { x, y } = sphere;
+    if (x <= window.screen.width && y <= window.screen.height) return sphere;
   });
 }
 
 function adjustCanvasSize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.width = window.screen.width;
+  canvas.height = window.screen.height;
 }
 
 export { adjustCanvasSize };

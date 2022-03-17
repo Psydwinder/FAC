@@ -119,7 +119,7 @@ header * {
   min-width: 30rem;
   width: 60%;
   height: 100%;
-  opacity: 0.8;
+  opacity: 1;
 }
 
 .nav__item {
@@ -146,17 +146,63 @@ header * {
 
 main {
   height: 100%;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-h1 {
+.intro {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(-50%);
+  margin: 0;
+  user-select: none;
+}
+
+.intro__title {
+  font-size: 3.2rem;
   text-transform: capitalize;
+}
+
+.intro__subtitle {
+  padding-top: 1rem;
+  font-weight: 100;
+  font-size: 2rem;
+  width: 90%;
+}
+
+.intro__buttons-wrapper {
+  margin-top: 3rem;
+}
+
+.intro__buton {
+  height: 3.5rem;
+  width: 45%;
+  margin: 0.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.748);
+  border-radius: 2px;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 300;
+  letter-spacing: 0.2rem;
+  color: rgba(255, 255, 255, 0.748);
+  background-color: transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.intro__buton:hover {
+  background-color: rgba(255, 255, 255, 0.748);
+  font-weight: 400;
+  color: var(--bg-color);
+  cursor: pointer;
 }
 
 canvas {
   position: fixed;
   top: 0;
-  background: linear-gradient(90deg, 70%, #12082e, rgba(0, 0, 0, 0.4));
+  background: linear-gradient(90deg, #12082e 70%, rgba(0, 0, 0, 0.21));
+  /* filter: blur(1px); */
   z-index: -1;
 }

@@ -3,8 +3,9 @@ const ctx = canvas.getContext("2d");
 
 window.addEventListener("resize", adjustCanvasSize);
 
-const backgroundExecution = setInterval(drawBackground, 7);
-const sphereCreation = setInterval(createSphere, 1000);
+const backgroundDrawSpeed = 10;
+const backgroundExecution = setInterval(drawBackground, backgroundDrawSpeed);
+const sphereCreation = setInterval(createSphere, 500);
 
 let spheres = [];
 class Sphere {
@@ -29,6 +30,9 @@ class Sphere {
     this.y += this.randomY > 0.5 ? -this.ySpeed : +this.ySpeed;
   }
 }
+
+createSphere();
+console.log(spheres);
 
 function drawBackground() {
   adjustCanvasSize();

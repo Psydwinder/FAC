@@ -6,6 +6,7 @@ window.addEventListener("resize", adjustCanvasSize);
 const backgroundDrawSpeed = 10;
 const backgroundExecution = setInterval(drawBackground, backgroundDrawSpeed);
 const sphereCreation = setInterval(createSphere, 500);
+const sphereCleanup = setInterval(cleanupSpheres, 10000);
 
 let spheres = [];
 class Sphere {
@@ -32,20 +33,28 @@ class Sphere {
 }
 
 createSphere();
-console.log(spheres.length);
 
 function drawBackground() {
   adjustCanvasSize();
-  spheres = spheres.filter((sphere) => {
-    sphere.draw();
-    sphere.move();
-    if (sphere.x <= window.screen.width && sphere.y <= window.screen.height)
-      return sphere;
-  });
+  for (
+    let currentSphere = 0, spheresLength = spheres.length;
+    currentSphere < spheresLength;
+    currentSphere++
+  ) {
+    spheres[currentSphere].draw();
+    spheres[currentSphere].move();
+  }
 }
 
 function createSphere() {
   spheres.push(new Sphere());
+}
+
+function cleanupSpheres() {
+  spheres = spheres.filter((sphere) => {
+    if (sphere.x <= window.screen.width && sphere.y <= window.screen.height)
+      return sphere;
+  });
 }
 
 function adjustCanvasSize() {

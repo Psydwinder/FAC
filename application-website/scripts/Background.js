@@ -12,7 +12,7 @@ class Sphere {
   constructor() {
     this.x = 0;
     this.y = Math.random() * 200 - 100 + window.innerHeight / 2;
-    this.randomY = Math.random();
+    this.upOrDown = Math.random();
     this.ySpeed = Math.random() / 5;
     this.xSpeed = Math.random() / 3;
     this.size = Math.random() * 1.5 + 1;
@@ -27,12 +27,12 @@ class Sphere {
   }
   move() {
     this.x += this.xSpeed;
-    this.y += this.randomY > 0.5 ? -this.ySpeed : +this.ySpeed;
+    this.y += this.upOrDown < 0.5 ? -this.ySpeed : +this.ySpeed;
   }
 }
 
 createSphere();
-console.log(spheres);
+console.log(spheres.length);
 
 function drawBackground() {
   adjustCanvasSize();

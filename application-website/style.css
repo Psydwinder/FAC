@@ -63,6 +63,7 @@ header * {
   width: fit-content;
   cursor: pointer;
   opacity: 0.7;
+  margin-right: 0;
   z-index: 3;
 }
 
@@ -142,6 +143,11 @@ header * {
 .nav__item:hover::after {
   background-color: white;
   width: 100%;
+}
+
+.nav__item span {
+  text-decoration: line-through;
+  font-size: 2rem;
 }
 
 main {

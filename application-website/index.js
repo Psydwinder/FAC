@@ -1,3 +1,4 @@
-import * as Background from "./scripts/Background.js";
+import { adjustCanvasSize } from "./scripts/Background.js";
+import "./scripts/Nav.js";
 
-Background.drawBackground();
+adjustCanvasSize();

@@ -9,16 +9,17 @@
 }
 
 :root {
+  --bg-color: #12082e;
+  --light-bg-color: #1d1535;
+  --text-color: #372860;
   font-size: 62.5%;
 }
+
 * {
   margin: 0;
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
   background-color: #12082e;
   margin: 0;
@@ -29,9 +30,130 @@ body {
   letter-spacing: 0.2rem;
 }
 
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+header * {
+  margin: 1rem;
+}
+
+.header__logo {
+  font-size: 3rem;
+  user-select: none;
+}
+
+.nav__icon {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  cursor: pointer;
+  opacity: 0.7;
+  z-index: 3;
+}
+
+.nav__icon * {
+  display: block;
+  margin: 0.3rem;
+  height: 0.3rem;
+  width: 2.5rem;
+  border-radius: 1rem;
+  background-color: white;
+  transform-origin: right;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav__icon--mid {
+  width: 50%;
+  margin-left: auto;
+}
+
+.nav--active .nav__icon--top {
+  transform: rotate(-45deg);
+}
+.nav--active .nav__icon--mid {
+  transform: translateX(-50%);
+  opacity: 0;
+}
+.nav--active .nav__icon--bot {
+  transform: rotate(45deg);
+}
+
+.nav__list {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  right: -100%;
+  top: 0;
+  width: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transition: all 0.2s ease-in-out;
+  background-color: var(--light-bg-color);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  z-index: 2;
+}
+
+.nav--active .nav__list {
+  right: 0;
+  min-width: 30rem;
+  width: 60%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.nav__item {
+  font-size: 3rem;
+  height: 3.1rem;
+}
+
+.nav__item:hover {
+  cursor: pointer;
+}
+
+.nav__item::after {
+  content: "";
+  display: block;
+  height: 0.1rem;
+  width: 0;
+  transition: all 0.2s linear;
+}
+
+.nav__item:hover::after {
+  background-color: white;
+  width: 100%;
+}
+
+main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 h1 {
   text-transform: capitalize;
 }
+
 canvas {
   position: fixed;
   top: 0;

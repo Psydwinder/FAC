@@ -12,7 +12,7 @@ let spheres = [];
 class Sphere {
   constructor() {
     this.x = 0;
-    this.y = Math.random() * 200 - 100 + window.innerHeight / 2;
+    this.y = Math.random() * 50 + window.innerHeight / 2;
     this.upOrDown = Math.random();
     this.yMovement = Math.random() / 5;
     this.xMovement = Math.random() / 3;

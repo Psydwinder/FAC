@@ -1,0 +1,40 @@
+@font-face {
+  font-family: futuraBook;
+  src: url(./fonts/FuturaPTBook.otf);
+}
+
+@font-face {
+  font-family: futuraLight;
+  src: url(./fonts/FuturaPTLight.otf);
+}
+
+:root {
+  font-size: 62.5%;
+}
+* {
+  margin: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #12082e;
+  margin: 0;
+  font-size: 1.6rem;
+  font-family: futuraLight, Arial, Helvetica, sans-serif;
+  overflow: hidden;
+  color: white;
+  letter-spacing: 0.2rem;
+}
+
+h1 {
+  text-transform: capitalize;
+}
+canvas {
+  position: fixed;
+  top: 0;
+  background: linear-gradient(90deg, 70%, #12082e, rgba(0, 0, 0, 0.4));
+  z-index: -1;
+}

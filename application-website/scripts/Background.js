@@ -13,9 +13,9 @@ class Sphere {
   constructor() {
     this.x = 0;
     this.y = Math.random() * 50 + window.innerHeight / 2;
-    this.upOrDown = Math.random();
     this.yMovement = Math.random() / 5;
     this.xMovement = Math.random() / 3;
+    this.upOrDown = Math.random() < 0.5 ? -this.yMovement : +this.yMovement;
     this.size = Math.random() * 1.5 + 1;
   }
 
@@ -28,7 +28,7 @@ class Sphere {
   }
   move() {
     this.x += this.xMovement;
-    this.y += this.upOrDown < 0.5 ? -this.yMovement : +this.yMovement;
+    this.y += this.upOrDown;
   }
 }
 
@@ -56,7 +56,8 @@ function createSphere() {
 function cleanupSpheres() {
   spheres = spheres.filter((sphere) => {
     const { x, y } = sphere;
-    if (x <= window.screen.width && y <= window.screen.height) return sphere;
+    if (x <= window.screen.width && y <= window.screen.height && y >= 0)
+      return sphere;
   });
 }
 

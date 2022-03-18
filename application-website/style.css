@@ -10,7 +10,7 @@
 
 :root {
   --bg-color: #12082e;
-  --light-bg-color: #1d1535;
+  --light-bg-color: #161027;
   --text-color: #372860;
   font-size: 62.5%;
 }
@@ -20,12 +20,13 @@
 }
 
 body {
-  height: 100vh;
   background-color: #12082e;
   margin: 0;
+  min-width: 30rem;
+
   font-size: 1.6rem;
   font-family: futuraLight, Arial, Helvetica, sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
   color: white;
   letter-spacing: 0.2rem;
 }
@@ -151,7 +152,6 @@ header * {
 }
 
 main {
-  height: 100%;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -160,11 +160,20 @@ main {
 }
 
 .intro {
+  margin-top: 22vh;
+  margin-bottom: 29vh;
+  min-height: 47rem;
+}
+.intro__content {
   display: flex;
   flex-direction: column;
-  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.21);
+  padding: 2rem 1rem;
+  border-radius: 10px;
+
   margin: 0;
   user-select: none;
+  text-align: center;
 }
 
 .intro__title {
@@ -176,17 +185,19 @@ main {
   padding-top: 1rem;
   font-weight: 100;
   font-size: 2rem;
-  width: 90%;
 }
 
 .intro__buttons-wrapper {
+  display: flex;
+  justify-content: center;
   margin-top: 3rem;
 }
 
 .intro__buton {
-  height: 3.5rem;
+  display: block;
+  padding: 1rem 0;
   width: 45%;
-  margin: 0.2rem;
+  margin: 0.8rem;
   border: 1px solid rgba(255, 255, 255, 0.748);
   border-radius: 2px;
   text-transform: uppercase;
@@ -208,6 +219,7 @@ main {
 canvas {
   position: absolute;
   top: 0;
+  min-height: 477px;
   background: linear-gradient(90deg, #12082e 70%, rgba(0, 0, 0, 0.21));
   z-index: -1;
 }

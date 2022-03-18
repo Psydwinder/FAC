@@ -56,14 +56,14 @@ function createSphere() {
 function cleanupSpheres() {
   spheres = spheres.filter((sphere) => {
     const { x, y } = sphere;
-    if (x <= window.screen.width && y <= window.screen.height && y >= 0)
+    if (x <= window.innerWidth && y <= window.innerHeight && y >= 0)
       return sphere;
   });
 }
 
 function adjustCanvasSize() {
-  canvas.width = window.screen.width;
-  canvas.height = window.screen.height;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight < 450 ? 450 : window.innerHeight;
 }
 
 export { adjustCanvasSize };

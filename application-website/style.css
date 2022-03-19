@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap");
 
 @font-face {
   font-family: futuraBook;
@@ -12,9 +13,9 @@
 
 :root {
   --dark-bg-color: #08021a;
-  --bg-color: #130a2b;
+  --bg-color: #070313;
   --light-bg-color: #161027;
-  --text-color: rgba(255, 255, 255, 0.748);
+  --text-color: rgba(255, 255, 255, 0.9);
   font-size: 62.5%;
 }
 
@@ -167,7 +168,7 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: "Inter", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .content {
@@ -182,23 +183,22 @@ main {
 .intro__content {
   display: flex;
   flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.21);
+  background-color: rgba(0, 0, 0, 0.4);
   padding: 2rem 1rem;
   border-radius: 10px;
-
   margin: 0;
   user-select: none;
   text-align: center;
 }
 
 .intro__title {
-  font-size: 3.2rem;
+  font-size: 3.4rem;
   text-transform: capitalize;
 }
 
 .intro__subtitle {
   padding-top: 1rem;
-  font-weight: 100;
+  font-weight: 600;
   font-size: 2rem;
 }
 
@@ -253,7 +253,7 @@ main {
 
 .section__paragraph {
   letter-spacing: 0.2rem;
-  font-weight: 400;
+  font-weight: 300;
   color: #8892b0;
 }
 

@@ -22,7 +22,7 @@ class Sphere {
   draw() {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fillStyle = "#3f2b7a";
+    ctx.fillStyle = "#4d3c82";
     ctx.fill();
     ctx.closePath();
   }

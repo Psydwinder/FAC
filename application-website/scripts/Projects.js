@@ -66,8 +66,8 @@ function createProject(props) {
         <ul class='project__list'>
         ${tags.map((tag) => `<li class='project__item'>${tag}</li>`).join("")}
         </ul>
-        <a  class='project__demo'  href=${liveDemo}>demoIcon</a>
-        <a class='project__source' href=${sourceCode}>sourceIcon</a>
+        <a  class='project__demo'  href=${liveDemo}></a>
+        <a class='project__source' href=${sourceCode}><img src='./media/github.png' alt='github icon'/></a>
   `;
   projectSubSection.append(newProjectDiv);
 }

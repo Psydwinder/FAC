@@ -318,8 +318,10 @@ main {
 
 #preview-img {
   position: absolute;
-  height: 70vw;
-  width: 80vw;
+  height: 50vh;
+  width: auto;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 5px black;
 }
 
 .project__name {
@@ -355,6 +357,24 @@ main {
   margin: 1rem;
   font-family: monospace;
   font-size: 1.2rem;
+}
+
+.project__source {
+  margin: 1rem;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+}
+
+.project__source:hover {
+  cursor: pointer;
+  filter: invert(1);
+  background-color: black;
+  border: black 1px solid;
+}
+
+.project__source img {
+  width: 2.8rem;
 }
 
 canvas {

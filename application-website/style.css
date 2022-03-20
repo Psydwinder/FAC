@@ -13,7 +13,7 @@
 
 :root {
   --dark-bg-color: #08021a;
-  --bg-color: #070313;
+  --bg-color: #130a2b;
   --light-bg-color: #161027;
   --text-color: rgba(255, 255, 255, 0.9);
   font-size: 62.5%;
@@ -146,7 +146,6 @@ header * {
 
 .nav__item:hover {
   cursor: pointer;
-  color: #58e5ff;
 }
 
 .nav__item::after {
@@ -158,7 +157,7 @@ header * {
 }
 
 .nav__item:hover::after {
-  background-color: #58e5ff;
+  background-color: white;
   width: 100%;
 }
 
@@ -252,9 +251,9 @@ main {
 }
 
 .section__paragraph {
-  letter-spacing: 0.2rem;
+  letter-spacing: 0.1rem;
   font-weight: 300;
-  color: #8892b0;
+  color: #c4cbdd;
 }
 
 .section__paragraph span {
@@ -283,6 +282,79 @@ main {
   width: 0.4rem;
   border: 1px solid #58e5ff;
   transform: rotate(45deg);
+}
+
+.project {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 30rem;
+  width: 35rem;
+  margin: 2rem 0;
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+
+.project__preview {
+  position: absolute;
+  right: 3rem;
+  top: 4rem;
+  border: 1px solid white;
+  border-radius: 20rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+  transition: all 0.2s linear;
+}
+
+.project__preview:hover {
+  background-color: white;
+  color: black;
+}
+
+#preview-img {
+  position: absolute;
+  height: 70vw;
+  width: 80vw;
+}
+
+.project__name {
+  margin: 2rem 0.8rem;
+  font-size: 2rem;
+}
+
+.project__description {
+  margin: 3rem 0.8rem;
+  font-size: 1.4rem;
+  letter-spacing: 0.1rem;
+  line-height: 2rem;
+  color: #c4cbdd;
+}
+
+.project__image {
+  display: none;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.05;
+}
+
+.project__list {
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  list-style: none;
+}
+
+.project__item {
+  margin: 1rem;
+  font-family: monospace;
+  font-size: 1.2rem;
 }
 
 canvas {

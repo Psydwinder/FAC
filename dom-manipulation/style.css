@@ -19,12 +19,8 @@ body {
 }
 
 h1 {
-  position: absolute;
   text-align: center;
-  top: 3rem;
-  left: 50%;
-  width: 100%;
-  transform: translateX(-50%);
+  padding-bottom: 3rem;
   width: fit-content;
   font-weight: 300;
   color: #657f94;
@@ -46,8 +42,6 @@ h1 {
   opacity: 1;
   animation: codename-shake 2s linear infinite;
   z-index: 1;
-}
-.codename:hover {
 }
 
 .codename * {
@@ -71,35 +65,6 @@ h1 {
 .codename__input:focus {
   outline: none;
 }
-
-/* 
-.codename__icon {
-  display: block;
-  background-color: white;
-  height: 1rem;
-  width: 2px;
-  animation: codename-icon-blink 1s infinite;
-}
-
-.codename__icon::before,
-.codename__icon::after {
-  position: absolute;
-  content: "";
-  left: 50%;
-  transform: translateX(-50%);
-  display: inline-block;
-  background-color: white;
-  height: 2px;
-  width: 6px;
-} 
-
- .codename__icon::before {
-  top: 1.4rem;
-}
-
-.codename__icon::after {
-  bottom: 1.4rem;
-} */
 
 /* Active */
 .active {

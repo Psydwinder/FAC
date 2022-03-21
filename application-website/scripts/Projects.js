@@ -23,7 +23,7 @@ const projects = [
     liveDemo: "https://dogwishx.github.io/FAC/array-methods/index.html",
     sourceCode: "https://github.com/DogwishX/FAC/tree/main/array-methods",
     subSection: "honorable-mention",
-    img: "./media/flexbox-gallery.png",
+    img: "./media/array-methods.png",
     description: `This page was created to meet another requirement from the FAC pre-application prompts. It makes use of basic DOM manipulation - triggered by click and hover events - to run array methods.`,
     tags: ["HTML", "CSS", "JavaScript"],
   },
@@ -32,7 +32,9 @@ const projects = [
     liveDemo: "https://dogwishx.github.io/FAC/dom-manipulation/index.html",
     sourceCode: "https://github.com/DogwishX/FAC/tree/main/dom-manipulation",
     subSection: "honorable-mention",
-    img: "./media/flexbox-gallery.png",
+    img: "./media/codename-validator.png",
+    description:
+      "A simple Codename Validator with visual feedback whenever the requirements for the codenmae are met.",
     tags: ["HTML", "CSS", "JavaScript"],
   },
   {
@@ -40,12 +42,22 @@ const projects = [
     liveDemo: "https://dogwishx.github.io/FAC/functions/index.html",
     sourceCode: "https://github.com/DogwishX/FAC/tree/main/functions",
     subSection: "honorable-mention",
-    img: "./media/flexbox-gallery.png",
+    img: "./media/functions.png",
+    description:
+      "With this console-only project I decided to have fun by creating a mini-test environment with visual feedback whenever it passes or fails a test",
+    tags: ["HTML", "CSS", "JavaScript"],
+  },
+  {
+    name: "Functions",
+    liveDemo: "https://dogwishx.github.io/FAC/functions/index.html",
+    sourceCode: "https://github.com/DogwishX/FAC/tree/main/functions",
+    subSection: "honorable-mention",
+    img: "./media/functions.png",
+    description:
+      "With this console-only project I decided to have fun by creating a mini-test environment with visual feedback whenever it passes or fails a test",
     tags: ["HTML", "CSS", "JavaScript"],
   },
 ];
-
-displayProjects();
 
 function displayProjects() {
   projects.forEach((project) => createProject(project));
@@ -53,12 +65,16 @@ function displayProjects() {
 }
 
 function createProject(props) {
-  const { name, liveDemo, sourceCode, subSection, description, img, tags } =
-    props;
-  const projectSubSection = document.querySelector(`.${subSection}`);
+  const projectSubSection = document.querySelector(`.${props.subSection}`);
   const newProjectDiv = document.createElement("div");
   newProjectDiv.classList.add("project");
-  newProjectDiv.innerHTML = `
+  newProjectDiv.innerHTML = generateInnerHTML(props);
+  projectSubSection.append(newProjectDiv);
+}
+
+function generateInnerHTML(props) {
+  const { name, liveDemo, sourceCode, description, img, tags } = props;
+  return `
         <div class='project__preview' data-preview=${img}>Preview</div>
         <a class='project__name' target='_blank' href=${liveDemo}>${name}</a>
         <p class='project__description'>${description}</p>
@@ -71,9 +87,7 @@ function createProject(props) {
           <a  class='project__demo' target='_blank'  href=${liveDemo}><img src='./media/new-window.png' alt='new window icon'/></a>
         </div>
   `;
-  projectSubSection.append(newProjectDiv);
 }
-
 function handleProjectPreviews() {
   const previewButtons = document.querySelectorAll(".project__preview");
   previewButtons.forEach((button) => {
@@ -107,3 +121,5 @@ function deletePreview() {
   const previewImg = document.querySelector("#preview-img");
   if (previewImg) previewImg.remove();
 }
+
+export { displayProjects };

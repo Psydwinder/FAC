@@ -1,5 +1,6 @@
-import { adjustCanvasSize } from "./scripts/Background.js";
 import "./scripts/Nav.js";
-import "./scripts/Projects.js";
+import { adjustCanvasSize } from "./scripts/Background.js";
+import { displayProjects } from "./scripts/Projects.js";
 
 adjustCanvasSize();
+displayProjects();

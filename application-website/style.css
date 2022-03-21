@@ -15,10 +15,12 @@
 /* Add responsiveness */
 /* Add animation on scroll */
 /* Add Nav menu animation */
+/* Add Loader*/
+/* Sort projects by curriculum order */
 
 :root {
   --dark-bg-color: #08021a;
-  --bg-color: #130a2b;
+  --bg-color: #070214;
   --light-bg-color: #161027;
   --text-color: rgba(255, 255, 255, 0.9);
   --highlight: #9097f3f1;
@@ -30,7 +32,7 @@
 }
 
 html {
-  scrollbar-color: #58e6ff52 var(--bg-color);
+  scrollbar-color: #58e6ff52 var(--dark-bg-color);
   scroll-behavior: smooth;
 }
 
@@ -161,7 +163,6 @@ header * {
 }
 
 .nav__item::after,
-.project__name::after,
 .project__description a::after {
   content: "";
   display: block;
@@ -171,7 +172,6 @@ header * {
 }
 
 .nav__item:hover::after,
-.project__name:hover::after,
 .project__description a:hover::after {
   background-color: white;
   width: 100%;
@@ -275,7 +275,7 @@ main {
 
 .section__paragraph {
   letter-spacing: 0.1rem;
-  width: 90%;
+  width: 100%;
   margin: auto;
   font-weight: 300;
   color: #c4cbdd;
@@ -311,6 +311,11 @@ main {
   transform: rotate(45deg);
 }
 
+#projects {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
 .project {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -320,11 +325,8 @@ main {
     "links . . .";
   margin: 1.8rem 0;
   align-items: end;
-  justify-items: center;
-  width: 90%;
   height: 30rem;
-  margin: 2rem auto;
-  padding: 2.5rem 1rem;
+  padding: 2.5rem 3rem;
   border-radius: 0.5rem;
   background-color: rgba(0, 0, 0, 0.5);
   transition: all 0.2s linear;
@@ -333,24 +335,6 @@ main {
 .project:hover {
   transform: scale(1.01);
   background-color: rgba(0, 0, 0, 0.8);
-}
-
-.project__preview {
-  grid-area: preview;
-  align-self: end;
-  justify-self: start;
-  border: 1px solid white;
-  border-radius: 20rem;
-  padding: 0.5rem 1rem;
-  font-size: 1.3rem;
-  letter-spacing: 0.1rem;
-  cursor: pointer;
-  transition: all 0.2s linear;
-}
-
-.project__preview:hover {
-  background-color: var(--text-color);
-  color: black;
 }
 
 #preview-img {
@@ -365,14 +349,32 @@ main {
 
 .project__name {
   grid-area: name;
-  align-self: end;
-  justify-self: start;
   font-size: 2rem;
-  color: var(--highlight);
-  margin-left: 1.7rem;
+  color: white;
+  transition: all 0.2s linear;
 }
 
-.project__name:hover::after,
+.project__preview {
+  grid-area: preview;
+  max-width: fit-content;
+  padding: 0.5rem 1rem;
+  border: 1px solid white;
+  border-radius: 20rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.1rem;
+  transition: all 0.2s linear;
+  cursor: pointer;
+}
+
+.project__preview:hover {
+  background-color: var(--text-color);
+  color: black;
+}
+
+.project__name:hover {
+  color: var(--highlight);
+}
+
 .project__description a:hover::after {
   background-color: var(--highlight);
 }
@@ -380,7 +382,6 @@ main {
 .project__description {
   grid-area: desc;
   width: 90%;
-  margin-top: 2rem;
   font-size: 1.4rem;
   letter-spacing: 0.1rem;
   line-height: 2rem;
@@ -404,7 +405,6 @@ main {
 .project__list {
   grid-area: tag;
   justify-self: start;
-  margin-left: 1rem;
   padding: 0;
   display: flex;
   justify-content: flex-start;
@@ -412,7 +412,7 @@ main {
 }
 
 .project__item {
-  margin: 1rem;
+  margin-right: 1rem;
   font-family: monospace;
   font-size: 1.2rem;
 }
@@ -428,7 +428,6 @@ main {
   height: 2.75rem;
   width: 2.8rem;
   border: black 1px solid;
-  margin-right: 1rem;
 }
 
 .project__source:hover {
@@ -474,4 +473,10 @@ canvas {
   left: 0;
   background-color: var(--bg-color);
   z-index: -1;
+}
+
+/* Responsiveness */
+@media screen and (min-width: 320px) {
+  .project__name {
+  }
 }

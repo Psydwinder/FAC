@@ -285,23 +285,25 @@ main {
 }
 
 .project {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  background-size: cover;
-  background-color: rgba(0, 0, 0, 0.5);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  grid-template-areas:
+    "name name . preview" "desc desc desc desc" "tag tag tag tag"
+    "git live . .";
+  align-items: end;
+  justify-items: center;
+  width: 100%;
   height: 30rem;
-  width: 35rem;
   margin: 2rem 0;
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
 }
-
 .project__preview {
-  position: absolute;
-  right: 3rem;
-  top: 4rem;
+  grid-area: preview;
+  align-self: end;
+  justify-self: start;
   border: 1px solid white;
   border-radius: 20rem;
   padding: 0.5rem 1rem;
@@ -325,12 +327,16 @@ main {
 }
 
 .project__name {
-  margin: 2rem 0.8rem;
   font-size: 2rem;
+  grid-area: name;
+  align-self: end;
+  justify-self: center;
 }
 
 .project__description {
-  margin: 3rem 0.8rem;
+  grid-area: desc;
+  width: 90%;
+  margin-top: 2rem;
   font-size: 1.4rem;
   letter-spacing: 0.1rem;
   line-height: 2rem;
@@ -347,6 +353,7 @@ main {
 }
 
 .project__list {
+  grid-area: tag;
   padding: 0;
   display: flex;
   justify-content: flex-start;
@@ -360,6 +367,7 @@ main {
 }
 
 .project__source {
+  grid-area: git;
   margin: 1rem;
   width: 2.8rem;
   height: 2.8rem;
@@ -377,6 +385,9 @@ main {
   width: 2.8rem;
 }
 
+.project__demo {
+  grid-area: live;
+}
 canvas {
   position: fixed;
   top: 0;

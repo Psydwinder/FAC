@@ -20,7 +20,7 @@
 
 :root {
   --dark-bg-color: #08021a;
-  --bg-color: #070214;
+  --bg-color: #31294665;
   --light-bg-color: #161027;
   --text-color: rgba(255, 255, 255, 0.9);
   --highlight: #9097f3f1;
@@ -311,9 +311,11 @@ main {
   transform: rotate(45deg);
 }
 
-#projects {
+#projects > div {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(28rem, 1fr));
+  justify-items: center;
+  grid-gap: 2rem;
 }
 
 .project {
@@ -323,7 +325,6 @@ main {
   grid-template-areas:
     " name name name preview" "desc desc desc desc" "tag tag tag tag"
     "links . . .";
-  margin: 1.8rem 0;
   align-items: end;
   height: 30rem;
   padding: 2.5rem 3rem;
@@ -333,7 +334,7 @@ main {
 }
 
 .project:hover {
-  transform: scale(1.01);
+  transform: scale(1.01) translateY(-2%);
   background-color: rgba(0, 0, 0, 0.8);
 }
 
@@ -341,7 +342,7 @@ main {
   position: absolute;
   height: auto;
   width: auto;
-  max-width: 90vw;
+  max-width: 35rem;
   max-height: 60vh;
   border-radius: 1rem;
   box-shadow: 2px 2px 5px black;
@@ -349,9 +350,16 @@ main {
 
 .project__name {
   grid-area: name;
+  height: 3rem;
+  max-height: 3rem;
+  margin-right: 0.5rem;
   font-size: 2rem;
   color: white;
   transition: all 0.2s linear;
+}
+
+.project__name:hover {
+  color: var(--highlight);
 }
 
 .project__preview {
@@ -371,10 +379,6 @@ main {
   color: black;
 }
 
-.project__name:hover {
-  color: var(--highlight);
-}
-
 .project__description a:hover::after {
   background-color: var(--highlight);
 }
@@ -382,6 +386,7 @@ main {
 .project__description {
   grid-area: desc;
   width: 90%;
+  max-height: 3rem;
   font-size: 1.4rem;
   letter-spacing: 0.1rem;
   line-height: 2rem;
@@ -404,6 +409,7 @@ main {
 
 .project__list {
   grid-area: tag;
+  margin-top: 8rem;
   justify-self: start;
   padding: 0;
   display: flex;
@@ -425,6 +431,7 @@ main {
 
 .project__source {
   border-radius: 50%;
+  margin-right: 1rem;
   height: 2.75rem;
   width: 2.8rem;
   border: black 1px solid;
@@ -476,7 +483,17 @@ canvas {
 }
 
 /* Responsiveness */
-@media screen and (min-width: 320px) {
-  .project__name {
+@media screen and (min-width: 768px) {
+  .content section {
+    padding: 2rem;
+  }
+
+  .section__paragraph {
+    text-align: center;
+  }
+
+  .about__list {
+    flex-direction: row;
+    justify-content: space-around;
   }
 }

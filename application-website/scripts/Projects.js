@@ -24,17 +24,17 @@ const projects = [
     sourceCode: "https://github.com/DogwishX/FAC/tree/main/array-methods",
     subSection: "FAC",
     img: "./media/array-methods.png",
-    description: `This page was created to meet another requirement from the FAC pre-application prompts. It makes use of basic DOM manipulation - triggered by click and hover events - to run array methods.`,
+    description: `This project makes use of basic DOM manipulation - triggered by click and hover events - to run array methods.`,
     tags: ["HTML", "CSS", "JavaScript"],
   },
   {
-    name: "Codename Validator",
+    name: "DOM Manipulation",
     liveDemo: "https://dogwishx.github.io/FAC/dom-manipulation/index.html",
     sourceCode: "https://github.com/DogwishX/FAC/tree/main/dom-manipulation",
     subSection: "FAC",
     img: "./media/codename-validator.png",
     description:
-      "A simple Codename Validator with visual feedback whenever the requirements for the codenmae are met.",
+      "A simple Codename Validator with visual feedback whenever the requirements for the codename are met.",
     tags: ["HTML", "CSS", "JavaScript"],
   },
   {

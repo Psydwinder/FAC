@@ -44,6 +44,7 @@ body {
   color: var(--text-color);
   letter-spacing: 0.2rem;
   user-select: none;
+  overflow-x: hidden;
 }
 
 a {

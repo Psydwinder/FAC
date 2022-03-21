@@ -77,24 +77,30 @@ function createProject(props) {
 function handleProjectPreviews() {
   const previewButtons = document.querySelectorAll(".project__preview");
   previewButtons.forEach((button) => {
-    button.addEventListener("mousemove", createPreview);
+    button.addEventListener("mousemove", handlePreview);
     button.addEventListener("mouseout", deletePreview);
   });
 }
 
-function createPreview({ currentTarget, pageY, pageX }) {
-  const previewImg = document.querySelector("#preview-img");
-  if (previewImg) previewImg.remove();
+function handlePreview({ currentTarget, pageY, pageX }) {
+  deletePreview();
+  createPreview(currentTarget);
+  positionPreview(currentTarget, pageY, pageX);
+}
+
+function createPreview(currentTarget) {
   const newPreviewImg = document.createElement("img");
   newPreviewImg.id = "preview-img";
   newPreviewImg.src = currentTarget.dataset.preview;
   document.querySelector("body").append(newPreviewImg);
+}
 
-  const newPreviewImgWidth = document.querySelector("#preview-img").width;
-  newPreviewImg.style = `top: ${pageY + 15}px; left: ${
-    pageX - newPreviewImgWidth + currentTarget.clientWidth
-  }px`;
-  console.log(newPreviewImgWidth, currentTarget.clientWidth);
+function positionPreview(currentTarget, pageY, pageX) {
+  const newPreviewImg = document.querySelector("#preview-img");
+  newPreviewImg.style = `
+    top: ${pageY + 15}px; 
+    left: ${pageX - newPreviewImg.width + currentTarget.clientWidth}px;
+  `;
 }
 
 function deletePreview() {

@@ -1,9 +1,9 @@
 const projects = [
   {
-    name: "Product Page",
+    name: "Flexbox Gallery",
     liveDemo: "https://dogwishx.github.io/FAC/flexbox-gallery/index.html",
     sourceCode: "https://github.com/DogwishX/FAC/tree/main/flexbox-gallery",
-    subSection: "featured",
+    subSection: "FAC",
 
     img: "./media/flexbox-gallery.png",
     description: `A minimal product page for a fictional shop, created specifically to demonstrate the use of <span class='code'>display: flex</span> and <span class='code'>flex-wrap</span>. All images were taken from <a href='https://unsplash.com/'>Unsplash</a>.`,
@@ -13,7 +13,7 @@ const projects = [
     name: "Tribute Page",
     liveDemo: "https://dogwishx.github.io/FAC/tribute-page/index.html",
     sourceCode: "https://github.com/DogwishX/FAC/tree/main/tribute-page",
-    subSection: "featured",
+    subSection: "FAC",
     img: "./media/hokusai.png",
     description: `Made in honor of Hokusai, a prominent japanese artist of the Edo period. A sticky point with this project was creating a nav menu, without the use of Javascript`,
     tags: ["HTML", "CSS"],
@@ -22,7 +22,7 @@ const projects = [
     name: "Array Methods",
     liveDemo: "https://dogwishx.github.io/FAC/array-methods/index.html",
     sourceCode: "https://github.com/DogwishX/FAC/tree/main/array-methods",
-    subSection: "honorable-mention",
+    subSection: "FAC",
     img: "./media/array-methods.png",
     description: `This page was created to meet another requirement from the FAC pre-application prompts. It makes use of basic DOM manipulation - triggered by click and hover events - to run array methods.`,
     tags: ["HTML", "CSS", "JavaScript"],
@@ -31,7 +31,7 @@ const projects = [
     name: "Codename Validator",
     liveDemo: "https://dogwishx.github.io/FAC/dom-manipulation/index.html",
     sourceCode: "https://github.com/DogwishX/FAC/tree/main/dom-manipulation",
-    subSection: "honorable-mention",
+    subSection: "FAC",
     img: "./media/codename-validator.png",
     description:
       "A simple Codename Validator with visual feedback whenever the requirements for the codenmae are met.",
@@ -41,17 +41,7 @@ const projects = [
     name: "Functions",
     liveDemo: "https://dogwishx.github.io/FAC/functions/index.html",
     sourceCode: "https://github.com/DogwishX/FAC/tree/main/functions",
-    subSection: "honorable-mention",
-    img: "./media/functions.png",
-    description:
-      "With this console-only project I decided to have fun by creating a mini-test environment with visual feedback whenever it passes or fails a test",
-    tags: ["HTML", "CSS", "JavaScript"],
-  },
-  {
-    name: "Functions",
-    liveDemo: "https://dogwishx.github.io/FAC/functions/index.html",
-    sourceCode: "https://github.com/DogwishX/FAC/tree/main/functions",
-    subSection: "honorable-mention",
+    subSection: "FAC",
     img: "./media/functions.png",
     description:
       "With this console-only project I decided to have fun by creating a mini-test environment with visual feedback whenever it passes or fails a test",

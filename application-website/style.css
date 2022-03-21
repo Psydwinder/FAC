@@ -12,10 +12,9 @@
 }
 
 /* TODO  */
-/* Make GIFs */
-/* Finish adding details to projects Obj */
-/* Add Contact Me */
 /* Add responsiveness */
+/* Add animation on scroll */
+/* Add Nav menu animation */
 
 :root {
   --dark-bg-color: #08021a;
@@ -448,6 +447,25 @@ main {
 
 .project__demo:hover {
   transform: scale(1.1);
+}
+
+footer {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+}
+
+footer * {
+  height: 2rem;
+  margin: 0.5rem;
+}
+
+.freecodecamp-icon img {
+  filter: invert(1);
+  height: 2.2rem;
 }
 
 canvas {

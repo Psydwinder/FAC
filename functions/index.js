@@ -25,7 +25,7 @@ const exercises = {
   "Add Two Numbers": new Test("addTwoNumbers(4, 6)", 10),
   "Add and Multiply": new Test("addAndMultiply(2,3,4,5)", 45),
   "Check Larger": new Test("checkLarger(44,33)", 44),
-  "Sum of Elements": new Test("addArrNums([4, 5, 6, 7, 8, 9])", 309),
+  "Sum of Elements": new Test("addArrNums([4, 5, 6, 7, 8, 9])", 39),
   "Squaring a Number": new Test("squareNum(16)", 256),
   "Odd or Even": new Test("isOddOrEven(131)", "Odd"),
   "Sum of Positive": new Test("sumPositive([1, 3, 5, 3, 2, -1])", 14),

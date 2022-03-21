@@ -16,6 +16,7 @@
   --bg-color: #130a2b;
   --light-bg-color: #161027;
   --text-color: rgba(255, 255, 255, 0.9);
+  --highlight: #9097f3f1;
   font-size: 62.5%;
 }
 
@@ -25,19 +26,24 @@
 
 html {
   scrollbar-color: #58e6ff52 var(--bg-color);
+  scroll-behavior: smooth;
 }
 
 body {
   background-color: var(--dark-bg-color);
   margin: 0;
-  min-width: 30rem;
-  width: 90%;
+  width: 95%;
   margin: auto;
   font-size: 1.6rem;
-  overflow-x: hidden;
   color: var(--text-color);
   letter-spacing: 0.2rem;
   user-select: none;
+}
+
+a {
+  display: inline;
+  text-decoration: none;
+  color: var(--text-color);
 }
 
 .overlay {
@@ -91,7 +97,7 @@ header * {
 
 .nav--active .nav__icon {
   position: fixed;
-  right: 5%;
+  right: 2.5%;
 }
 
 .nav__icon--mid {
@@ -148,7 +154,9 @@ header * {
   cursor: pointer;
 }
 
-.nav__item::after {
+.nav__item::after,
+.project__name::after,
+.project__description a::after {
   content: "";
   display: block;
   height: 0.1rem;
@@ -156,7 +164,9 @@ header * {
   transition: all 0.2s linear;
 }
 
-.nav__item:hover::after {
+.nav__item:hover::after,
+.project__name:hover::after,
+.project__description a:hover::after {
   background-color: white;
   width: 100%;
 }
@@ -170,8 +180,11 @@ main {
   font-family: "Roboto", sans-serif;
 }
 
-.content {
-  background-color: rgba(0, 0, 0, 0.05);
+.content section {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  margin: 4rem 0;
+  width: 90vw;
 }
 
 #intro {
@@ -207,12 +220,12 @@ main {
   margin-top: 3rem;
 }
 
-.intro__buton {
+.intro__button {
   display: block;
   padding: 1rem 0;
   width: 45%;
   margin: 0.8rem;
-  border: 1px solid #58e6ff25;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 2px;
   text-transform: uppercase;
   text-decoration: none;
@@ -224,11 +237,15 @@ main {
   transition: all 0.2s ease-in-out;
 }
 
-.intro__buton:hover {
+.intro__button:hover {
   background-color: var(--bg-color);
   font-weight: 900;
-  color: #58e5ff;
+  color: white;
   cursor: pointer;
+}
+
+.intro__button::after {
+  display: none;
 }
 
 .section__title {
@@ -258,7 +275,7 @@ main {
 
 .section__paragraph span {
   display: inline;
-  color: #58e5ff;
+  color: var(--highlight);
 }
 
 .about__list {
@@ -280,7 +297,7 @@ main {
   margin-bottom: 0.2rem;
   height: 0.4rem;
   width: 0.4rem;
-  border: 1px solid #58e5ff;
+  border: 1px solid var(--highlight);
   transform: rotate(45deg);
 }
 
@@ -289,17 +306,24 @@ main {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
   grid-template-areas:
-    "name name . preview" "desc desc desc desc" "tag tag tag tag"
-    "git live . .";
+    "name name name preview" "desc desc desc desc" "tag tag tag tag"
+    "links . . .";
+  margin: 1.8rem 0;
   align-items: end;
   justify-items: center;
-  width: 100%;
+  width: 90%;
   height: 30rem;
-  margin: 2rem 0;
-  padding: 1rem;
+  margin: 2rem auto;
+  padding: 2.5rem 1rem;
   border-radius: 0.5rem;
   background-color: rgba(0, 0, 0, 0.5);
+  transition: all 0.2s linear;
 }
+
+.project:hover {
+  transform: scale(1.01);
+}
+
 .project__preview {
   grid-area: preview;
   align-self: end;
@@ -314,23 +338,31 @@ main {
 }
 
 .project__preview:hover {
-  background-color: white;
+  background-color: var(--text-color);
   color: black;
 }
 
 #preview-img {
   position: absolute;
-  height: 50vh;
-  width: auto;
+  height: auto;
+  width: 80vw;
+  max-height: 60vh;
   border-radius: 1rem;
   box-shadow: 2px 2px 5px black;
 }
 
 .project__name {
-  font-size: 2rem;
   grid-area: name;
   align-self: end;
-  justify-self: center;
+  justify-self: start;
+  font-size: 2rem;
+  color: var(--highlight);
+  margin-left: 1.7rem;
+}
+
+.project__name:hover::after,
+.project__description a:hover::after {
+  background-color: var(--highlight);
 }
 
 .project__description {
@@ -341,6 +373,11 @@ main {
   letter-spacing: 0.1rem;
   line-height: 2rem;
   color: #c4cbdd;
+}
+
+.project__description a {
+  display: inline-block;
+  color: var(--highlight);
 }
 
 .project__image {
@@ -354,6 +391,8 @@ main {
 
 .project__list {
   grid-area: tag;
+  justify-self: start;
+  margin-left: 1rem;
   padding: 0;
   display: flex;
   justify-content: flex-start;
@@ -366,19 +405,24 @@ main {
   font-size: 1.2rem;
 }
 
+.project__links {
+  grid-area: links;
+  display: flex;
+  flex-direction: row;
+}
+
 .project__source {
-  grid-area: git;
-  margin: 1rem;
-  width: 2.8rem;
-  height: 2.8rem;
   border-radius: 50%;
+  height: 2.75rem;
+  width: 2.8rem;
+  border: black 1px solid;
+  margin-right: 1rem;
 }
 
 .project__source:hover {
   cursor: pointer;
   filter: invert(1);
   background-color: black;
-  border: black 1px solid;
 }
 
 .project__source img {
@@ -386,8 +430,14 @@ main {
 }
 
 .project__demo {
+  grid-area: git;
+  justify-self: start;
+  height: 2.8rem;
+  width: 2.8rem;
+  background-color: white;
   grid-area: live;
 }
+
 canvas {
   position: fixed;
   top: 0;

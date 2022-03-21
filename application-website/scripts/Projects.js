@@ -60,14 +60,16 @@ function createProject(props) {
   newProjectDiv.classList.add("project");
   newProjectDiv.innerHTML = `
         <div class='project__preview' data-preview=${img}>Preview</div>
-        <h4 class='project__name'>${name}</h4>
+        <a class='project__name' target='_blank' href=${liveDemo}>${name}</a>
         <p class='project__description'>${description}</p>
         <img class='project__image' src=${img} />
         <ul class='project__list'>
         ${tags.map((tag) => `<li class='project__item'>${tag}</li>`).join("")}
         </ul>
-        <a  class='project__demo'  href=${liveDemo}></a>
-        <a class='project__source' href=${sourceCode}><img src='./media/github.png' alt='github icon'/></a>
+        <div class='project__links'>
+          <a class='project__source' target='_blank' href=${sourceCode}><img src='./media/github.png' alt='github icon'/></a>
+          <a  class='project__demo' target='_blank'  href=${liveDemo}></a>
+        </div>
   `;
   projectSubSection.append(newProjectDiv);
 }
@@ -86,8 +88,8 @@ function createPreview({ currentTarget, pageX, pageY }) {
   const newPreviewImg = document.createElement("img");
   newPreviewImg.id = "preview-img";
   newPreviewImg.src = currentTarget.dataset.preview;
-  newPreviewImg.style = `top: ${pageY + 10}px; left: ${
-    pageX - window.innerWidth / 1.5
+  newPreviewImg.style = `top: ${pageY + 15}px; left: ${
+    currentTarget.offsetLeft - currentTarget.width
   }px`;
   document.querySelector("body").append(newPreviewImg);
 }

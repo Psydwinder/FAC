@@ -6,7 +6,14 @@ const buttonEl = document.querySelector("button");
 const outputDiv = document.querySelector(".function-output");
 
 // Event Listeners
+window.addEventListener("keydown", handleKeydown);
 buttonEl.addEventListener("click", runSelectedFunction);
+
+function handleKeydown({ key }) {
+  key === "Enter" && runSelectedFunction();
+}
+
+function selectFilter() {}
 
 function runSelectedFunction() {
   const cleanArr = numOnlyArr();

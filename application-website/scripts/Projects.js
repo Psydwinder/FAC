@@ -15,7 +15,7 @@ const projects = [
     sourceCode: "https://github.com/DogwishX/FAC/tree/main/tribute-page",
     subSection: "featured",
     img: "./media/hokusai.png",
-    description: `A tribute page made in honor of Hokusai, a prominent japanese artist of the Edo period. A sticky point with this project was creating a nav menu, without the use of Javascript`,
+    description: `Made in honor of Hokusai, a prominent japanese artist of the Edo period. A sticky point with this project was creating a nav menu, without the use of Javascript`,
     tags: ["HTML", "CSS"],
   },
   {
@@ -68,7 +68,7 @@ function createProject(props) {
         </ul>
         <div class='project__links'>
           <a class='project__source' target='_blank' href=${sourceCode}><img src='./media/github.png' alt='github icon'/></a>
-          <a  class='project__demo' target='_blank'  href=${liveDemo}></a>
+          <a  class='project__demo' target='_blank'  href=${liveDemo}><img src='./media/new-window.png' alt='new window icon'/></a>
         </div>
   `;
   projectSubSection.append(newProjectDiv);

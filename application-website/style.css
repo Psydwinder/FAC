@@ -11,6 +11,12 @@
   src: url(./fonts/FuturaPTLight.otf);
 }
 
+/* TODO  */
+/* Make GIFs */
+/* Finish adding details to projects Obj */
+/* Add Contact Me */
+/* Add responsiveness */
+
 :root {
   --dark-bg-color: #08021a;
   --bg-color: #130a2b;
@@ -182,7 +188,7 @@ main {
 
 .content section {
   background-color: rgba(0, 0, 0, 0.3);
-  padding: 1rem;
+  padding: 2rem 1rem;
   margin: 4rem 0;
   width: 90vw;
 }
@@ -251,7 +257,7 @@ main {
 .section__title {
   max-height: 4rem;
   width: fit-content;
-  padding: 5rem 0;
+  padding: 3rem 0;
   font-weight: 400;
   margin: auto;
   color: var(--text-color);
@@ -269,6 +275,8 @@ main {
 
 .section__paragraph {
   letter-spacing: 0.1rem;
+  width: 90%;
+  margin: auto;
   font-weight: 300;
   color: #c4cbdd;
 }
@@ -280,7 +288,9 @@ main {
 
 .about__list {
   list-style: none;
-  padding: 1rem 0;
+  width: 90%;
+  margin: auto;
+  padding: 2rem 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -322,6 +332,7 @@ main {
 
 .project:hover {
   transform: scale(1.01);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .project__preview {
@@ -425,17 +436,16 @@ main {
   background-color: black;
 }
 
-.project__source img {
+.project__source img,
+.project__demo img {
   width: 2.8rem;
 }
-
 .project__demo {
-  grid-area: git;
-  justify-self: start;
-  height: 2.8rem;
-  width: 2.8rem;
-  background-color: white;
-  grid-area: live;
+  filter: invert(1);
+}
+
+.project__demo:hover {
+  transform: scale(1.1);
 }
 
 canvas {

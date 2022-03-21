@@ -316,7 +316,7 @@ main {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
   grid-template-areas:
-    "name name name preview" "desc desc desc desc" "tag tag tag tag"
+    " name name name preview" "desc desc desc desc" "tag tag tag tag"
     "links . . .";
   margin: 1.8rem 0;
   align-items: end;
@@ -356,7 +356,8 @@ main {
 #preview-img {
   position: absolute;
   height: auto;
-  width: 80vw;
+  width: auto;
+  max-width: 90vw;
   max-height: 60vh;
   border-radius: 1rem;
   box-shadow: 2px 2px 5px black;

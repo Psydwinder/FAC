@@ -82,16 +82,19 @@ function handleProjectPreviews() {
   });
 }
 
-function createPreview({ currentTarget, pageX, pageY }) {
+function createPreview({ currentTarget, pageY, pageX }) {
   const previewImg = document.querySelector("#preview-img");
   if (previewImg) previewImg.remove();
   const newPreviewImg = document.createElement("img");
   newPreviewImg.id = "preview-img";
   newPreviewImg.src = currentTarget.dataset.preview;
-  newPreviewImg.style = `top: ${pageY + 15}px; left: ${
-    currentTarget.offsetLeft - currentTarget.width
-  }px`;
   document.querySelector("body").append(newPreviewImg);
+
+  const newPreviewImgWidth = document.querySelector("#preview-img").width;
+  newPreviewImg.style = `top: ${pageY + 15}px; left: ${
+    pageX - newPreviewImgWidth + currentTarget.clientWidth
+  }px`;
+  console.log(newPreviewImgWidth, currentTarget.clientWidth);
 }
 
 function deletePreview() {

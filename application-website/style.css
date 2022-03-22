@@ -378,6 +378,8 @@ section.reveal {
   font-size: 1.3rem;
   letter-spacing: 0.1rem;
   transition: all 0.2s linear;
+  background-color: transparent;
+  color: white;
   cursor: pointer;
 }
 

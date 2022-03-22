@@ -51,8 +51,8 @@ const projects = [
     liveDemo: "https://dogwishx.github.io/FAC/application-website/index.html",
     sourceCode: "https://github.com/DogwishX/FAC/tree/main/application-website",
     subSection: "FAC",
-    img: "./media/flexbox-gallery.png",
-    description: `lmao`,
+    img: "./media/application-website.png",
+    description: `Despite it's simplicity and lack of features, this was the most challenging to build. The canvas generating spheres varying in speed, size and direction proved to be harder than initially thought.`,
     tags: ["HTML", "CSS", "JavaScript"],
   },
 ];
@@ -73,16 +73,16 @@ function createProject(props) {
 function generateInnerHTML(props) {
   const { name, liveDemo, sourceCode, description, img, tags } = props;
   return `
-        <div class='project__preview' data-preview=${img}>Preview</div>
-        <a class='project__name' target='_blank' href=${liveDemo}>${name}</a>
-        <p class='project__description'>${description}</p>
+        <button class='project__preview' data-preview=${img}>Preview</button>
+        <a   class='project__name' target='_blank' href=${liveDemo}>${name}</a>
+        <p   class='project__description'>${description}</p>
         <img class='project__image' src=${img} />
-        <ul class='project__list'>
+        <ul  class='project__list'>
         ${tags.map((tag) => `<li class='project__item'>${tag}</li>`).join("")}
         </ul>
         <div class='project__links'>
-          <a class='project__source' target='_blank' href=${sourceCode}><img src='./media/github.png' alt='github icon'/></a>
-          <a  class='project__demo' target='_blank'  href=${liveDemo}><img src='./media/new-window.png' alt='new window icon'/></a>
+          <a class='project__source' target='_blank'  href=${sourceCode}><img src='./media/github.png' alt='github icon'/></a>
+          <a class='project__demo'   target='_blank'  href=${liveDemo}><img src='./media/new-window.png' alt='new window icon'/></a>
         </div>
   `;
 }
@@ -110,7 +110,7 @@ function createPreview(currentTarget) {
 function positionPreview(currentTarget, pageY, pageX) {
   const newPreviewImg = document.querySelector("#preview-img");
   newPreviewImg.style = `
-    top: ${pageY + 15}px; 
+    top: ${pageY + 15}px;
     left: ${pageX - newPreviewImg.width + currentTarget.clientWidth}px;
   `;
 }

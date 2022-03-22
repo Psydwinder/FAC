@@ -5,14 +5,20 @@ const searchDiv = document.querySelector(".search");
 const input = document.querySelector(".search__input");
 
 searchDiv.addEventListener("mouseenter", toggleSearchBar);
-searchDiv.addEventListener("mouseleave", toggleSearchBar);
+searchDiv.addEventListener("mouseleave", handleMouseLeave);
 input.addEventListener("keyup", filterProjects);
 
 function toggleSearchBar({ currentTarget }) {
+  input.focus();
   if (input.value.length > 0)
     return currentTarget.classList.add("search--active");
 
   currentTarget.classList.toggle("search--active");
+}
+
+function handleMouseLeave(event) {
+  input.blur();
+  toggleSearchBar(event);
 }
 
 function filterProjects({ currentTarget }) {

@@ -327,19 +327,19 @@ section.reveal {
   width: 4rem;
   background-color: black;
   border-radius: 20rem;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.5s ease-in-out;
   cursor: pointer;
 }
 
 .search__input {
-  display: none;
   outline: none;
   border: none;
-  border-bottom: 1px solid white;
   color: white;
   font-size: 2rem;
   background-color: transparent;
+  transition: all 0.4s ease-in-out;
   width: 0%;
+  opacity: 0;
 }
 
 .search--active {
@@ -348,8 +348,9 @@ section.reveal {
 }
 
 .search--active .search__input {
-  display: block;
+  border-bottom: 1px solid white;
   width: 80%;
+  opacity: 1;
 }
 
 .search img {

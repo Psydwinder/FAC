@@ -9,14 +9,13 @@ window.addEventListener("resize", handleResize);
 function handleLoad() {
   const loaderDiv = document.querySelector(".loader");
   loaderDiv.classList.add("loaded");
+  adjustCanvasSize();
+  revealElementsOnScroll();
+  createListItems();
+  displayProjects();
 }
 
 function handleResize() {
   adjustCanvasSize();
   deactivateNavMenu();
 }
-
-adjustCanvasSize();
-revealElementsOnScroll();
-createListItems();
-displayProjects();

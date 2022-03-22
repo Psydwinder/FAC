@@ -318,7 +318,36 @@ section.reveal {
   transform: rotate(45deg);
 }
 
-#fac > div {
+.search {
+  margin: 4rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
+  width: 4rem;
+  background-color: black;
+  border-radius: 20rem;
+  transition: all 0.2s ease-in-out;
+
+  cursor: pointer;
+}
+
+.search__input {
+  display: none;
+}
+
+.search img {
+  filter: invert(1);
+  height: 2rem;
+  width: 2rem;
+}
+
+.search--active {
+  justify-content: flex-end;
+  width: 50vw;
+}
+
+.project__subsection {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(28rem, 1fr));
   justify-items: center;

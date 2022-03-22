@@ -1,3 +1,4 @@
+const searchDiv = document.querySelector(".search");
 const projects = [
   {
     name: "Tribute Page",
@@ -52,10 +53,16 @@ const projects = [
     sourceCode: "https://github.com/DogwishX/FAC/tree/main/application-website",
     subSection: "FAC",
     img: "./media/application-website.png",
-    description: `Despite it's simplicity and lack of features, this was the most challenging to build. The canvas generating spheres varying in speed, size and direction proved to be harder than initially thought.`,
+    description: `Despite its simplicity, this was the most challenging to build. The canvas generating spheres varying in speed, size and direction proved to be harder than initially thought.`,
     tags: ["HTML", "CSS", "JavaScript"],
   },
 ];
+
+searchDiv.addEventListener("click", expandBar);
+
+function expandBar({ currentTarget }) {
+  currentTarget.classList.toggle("search--active");
+}
 
 function displayProjects() {
   projects.forEach((project) => createProject(project));

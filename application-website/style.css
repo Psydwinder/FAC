@@ -328,12 +328,28 @@ section.reveal {
   background-color: black;
   border-radius: 20rem;
   transition: all 0.2s ease-in-out;
-
   cursor: pointer;
 }
 
 .search__input {
   display: none;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 2rem;
+  background-color: transparent;
+  width: 0%;
+}
+
+.search--active {
+  background-color: transparent;
+  max-width: 30rem;
+}
+
+.search--active .search__input {
+  display: block;
+  width: 80%;
 }
 
 .search img {

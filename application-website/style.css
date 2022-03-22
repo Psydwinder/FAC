@@ -12,11 +12,11 @@
 }
 
 /* TODO  */
-/* Add responsiveness */
 /* Add animation on scroll */
 /* Add Nav menu animation */
 /* Add Loader*/
 /* Sort projects by curriculum order */
+/* Show Nav on scroll up for a few seconds */
 
 :root {
   --dark-bg-color: #08021a;
@@ -311,7 +311,7 @@ main {
   transform: rotate(45deg);
 }
 
-#projects > div {
+#fac > div {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(28rem, 1fr));
   justify-items: center;
@@ -484,16 +484,56 @@ canvas {
 
 /* Responsiveness */
 @media screen and (min-width: 768px) {
+  .nav__icon {
+    display: none;
+  }
+
+  .nav__list {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: fit-content;
+    padding: 1.2rem;
+    flex-direction: row;
+    background-color: transparent;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    opacity: 1;
+  }
+
+  .nav__item {
+    font-size: 2.5rem;
+    margin: 0 2rem;
+  }
+
   .content section {
     padding: 2rem;
   }
 
-  .section__paragraph {
-    text-align: center;
+  #about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "title title" "paragraph techs";
+    grid-gap: 2rem;
+    flex-direction: row;
+  }
+
+  #about .section__title {
+    grid-area: title;
+  }
+
+  #about .section__paragraph {
+    grid-area: paragraph;
+    width: 90%;
+  }
+
+  .about__technologies {
+    grid-area: techs;
+    justify-self: end;
   }
 
   .about__list {
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
+    height: fit-content;
   }
 }

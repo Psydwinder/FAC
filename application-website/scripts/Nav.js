@@ -1,5 +1,5 @@
 const navIconDiv = document.querySelector(".nav__icon");
-const navItems = ["About", "Projects", `Paddy Cards`];
+const navItems = ["About", "FAC", "Other"];
 
 navIconDiv.addEventListener("click", toggleMenu);
 
@@ -15,8 +15,11 @@ function createListItems() {
 
   navItems.forEach((item) => {
     const li = document.createElement("li");
+    const anchor = document.createElement("a");
 
-    li.innerHTML = item;
+    anchor.innerHTML = item;
+    anchor.href = `#${item.toLowerCase()}`;
+    li.append(anchor);
     li.classList.add("nav__item");
     navList.append(li);
   });

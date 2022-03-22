@@ -12,8 +12,6 @@
 }
 
 /* TODO  */
-/* Add Loader*/
-/* Sort projects by curriculum order */
 /* Show Nav on scroll up for a few seconds */
 
 :root {
@@ -184,12 +182,12 @@ main {
 }
 
 section {
-  transform: translateY(8rem);
+  transform: translateY(10rem);
   opacity: 0;
 }
 
 section.reveal {
-  transform: translateY(0);
+  transform: translateY(2rem);
   transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
   opacity: 1;
 }
@@ -575,6 +573,7 @@ canvas {
 
   .about__technologies {
     grid-area: techs;
+    width: 80%;
     justify-self: end;
   }
 

@@ -23,11 +23,9 @@ function handleOverlay() {
 
 function createListItems() {
   const navList = document.querySelector(".nav__list");
-
   navItems.forEach((item) => {
     const li = document.createElement("li");
     const anchor = document.createElement("a");
-
     anchor.innerHTML = item;
     anchor.href = `#${item.toLowerCase()}`;
     li.append(anchor);
@@ -36,4 +34,12 @@ function createListItems() {
   });
 }
 
-export { createListItems };
+function deactivateNavMenu() {
+  const nav = document.querySelector("nav");
+  if (window.innerWidth >= 768 && nav.classList[0] === "nav--active") {
+    nav.classList.remove("nav--active");
+    handleOverlay();
+  }
+}
+
+export { createListItems, deactivateNavMenu };

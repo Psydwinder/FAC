@@ -1,8 +1,6 @@
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 
-window.addEventListener("resize", adjustCanvasSize);
-
 const backgroundDrawSpeed = 10;
 const backgroundExecution = setInterval(drawBackground, backgroundDrawSpeed);
 const sphereCreation = setInterval(createSphere, 500);

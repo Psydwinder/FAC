@@ -12,7 +12,6 @@
 }
 
 /* TODO  */
-/* Add Nav menu animation */
 /* Add Loader*/
 /* Sort projects by curriculum order */
 /* Show Nav on scroll up for a few seconds */
@@ -501,6 +500,22 @@ canvas {
   top: 0;
   left: 0;
   background-color: var(--bg-color);
+  z-index: -1;
+}
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #18112b;
+  transition: all 1s linear;
+  z-index: 10001;
+}
+
+.loader.loaded {
+  opacity: 0;
   z-index: -1;
 }
 

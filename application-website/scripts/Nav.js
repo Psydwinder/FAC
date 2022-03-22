@@ -1,5 +1,5 @@
 const navIconDiv = document.querySelector(".nav__icon");
-const navItems = ["About", "FAC", "Other"];
+const navItems = ["About Me", "FAC", "Other"];
 
 navIconDiv.addEventListener("click", toggleMenu);
 

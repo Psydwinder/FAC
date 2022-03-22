@@ -12,7 +12,6 @@
 }
 
 /* TODO  */
-/* Add animation on scroll */
 /* Add Nav menu animation */
 /* Add Loader*/
 /* Sort projects by curriculum order */
@@ -141,6 +140,17 @@ header * {
   opacity: 1;
 }
 
+.nav__external {
+  position: absolute;
+  bottom: 2rem;
+  order: 3;
+}
+
+.nav__external a img {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
 .nav__item {
   font-size: 3rem;
   height: 3.1rem;
@@ -223,6 +233,7 @@ section.reveal {
 .intro__buttons-wrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: 3rem;
 }
 
@@ -495,6 +506,10 @@ canvas {
 
 /* Responsiveness */
 @media screen and (min-width: 768px) {
+  .header__logo {
+    transform: translateY(25%);
+  }
+
   .nav__icon {
     display: none;
   }
@@ -511,6 +526,13 @@ canvas {
     opacity: 1;
   }
 
+  .nav__external {
+    position: relative;
+    transform: translateY(35%);
+  }
+  .nav__external a {
+    margin-left: 3rem;
+  }
   .nav__item {
     font-size: 2.5rem;
     margin: 0 2rem;

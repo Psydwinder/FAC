@@ -37,4 +37,4 @@ function handleOverlay() {
   }
 }
 
-createListItems();
+export { createListItems };

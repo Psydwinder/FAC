@@ -3,10 +3,12 @@ import projects from "../data/projectsData.js";
 // Project Search
 const searchDiv = document.querySelector(".search");
 const input = document.querySelector(".search__input");
+const deleteBtn = document.querySelector(".search__delete");
 
 searchDiv.addEventListener("mouseenter", handleMouseEnter);
 searchDiv.addEventListener("mouseleave", handleMouseLeave);
 input.addEventListener("keyup", filterProjects);
+deleteBtn.addEventListener("click", clearSearch);
 
 function handleMouseEnter({ currentTarget }) {
   input.focus();
@@ -14,16 +16,30 @@ function handleMouseEnter({ currentTarget }) {
 }
 
 function handleMouseLeave({ currentTarget }) {
-  // input.blur();
   if (input.value.length > 0) return;
+  input.blur();
+  showDeleteBtn(false);
   currentTarget.classList.remove("search--active");
 }
 
-function filterProjects({ currentTarget }) {
+function filterProjects() {
   const filteredObjArr = projects.filter(({ name }) =>
-    name.toLowerCase().includes(currentTarget.value.toLowerCase())
+    name.toLowerCase().includes(input.value.toLowerCase())
   );
   displayProjects(filteredObjArr);
+  showDeleteBtn();
+}
+
+function showDeleteBtn() {
+  const deleteBtn = document.querySelector(".search__delete");
+  if (input.value.length === 0)
+    return deleteBtn.classList.remove("search__delete--show");
+  deleteBtn.classList.add("search__delete--show");
+}
+
+function clearSearch() {
+  input.value = "";
+  filterProjects();
 }
 
 // Project Card creation
@@ -62,6 +78,7 @@ function generateInnerHTML(props) {
         </div>
   `;
 }
+
 function handleProjectPreviews() {
   const previewButtons = document.querySelectorAll(".project__preview");
   previewButtons.forEach((button) => {

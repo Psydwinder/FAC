@@ -11,6 +11,10 @@
   src: url(./fonts/FuturaPTLight.otf);
 }
 
+/* TODO */
+/* Add X button to delete search text on click [search-bar] */
+/* Add stat carousel */
+
 :root {
   --dark-bg-color: #08021a;
   --bg-color: #31294665;
@@ -313,7 +317,7 @@ section.reveal {
   color: var(--highlight);
 }
 
-.about__list {
+.about-me__list {
   list-style: none;
   width: 90%;
   margin: auto;
@@ -327,7 +331,7 @@ section.reveal {
   color: var(--text-color);
 }
 
-.about__item::before {
+.about-me__item::before {
   content: "";
   display: inline-block;
   margin-right: 1rem;
@@ -351,6 +355,13 @@ section.reveal {
   cursor: pointer;
 }
 
+.search__input-wrapper {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  width: 0;
+}
+
 .search__input {
   outline: none;
   border: none;
@@ -362,21 +373,45 @@ section.reveal {
   opacity: 0;
 }
 
+.search__delete {
+  display: none;
+  background-color: transparent;
+  width: 0%;
+  border: none;
+}
+
 .search--active {
   background-color: transparent;
   width: 30rem;
+  max-width: 100%;
+}
+
+.search--active .search__input-wrapper {
+  width: fit-content;
+  border-bottom: 1px solid white;
 }
 
 .search--active .search__input {
-  border-bottom: 1px solid white;
-  margin-right: 1rem;
-  width: 80%;
+  width: 90%;
   opacity: 1;
+}
+
+.search--active .search__delete--show {
+  display: block;
+  color: white;
+  font-weight: 900;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
+
+.search--active .search__delete--show:hover {
+  color: tomato;
 }
 
 .search img {
   filter: invert(1);
   height: 2rem;
+  cursor: default;
   width: 2rem;
 }
 
@@ -629,7 +664,7 @@ canvas {
     min-height: 60rem;
   }
 
-  #about {
+  #about-me {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "title title" "paragraph techs";
@@ -637,22 +672,22 @@ canvas {
     flex-direction: row;
   }
 
-  #about .section__title {
+  #about-me .section__title {
     grid-area: title;
   }
 
-  #about .section__paragraph {
+  #about-me .section__paragraph {
     grid-area: paragraph;
     width: 90%;
   }
 
-  .about__technologies {
+  .about-me__technologies {
     grid-area: techs;
     width: 80%;
     justify-self: end;
   }
 
-  .about__list {
+  .about-me__list {
     flex-direction: column;
     justify-content: space-around;
     height: fit-content;

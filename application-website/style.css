@@ -50,16 +50,23 @@ a {
 }
 
 header {
+  position: fixed;
   display: flex;
   width: 100%;
   padding: 1rem 0;
   flex-direction: row;
   justify-content: space-between;
   font-family: futuraLight, Arial, Helvetica, sans-serif;
+  transition: all 0.2s linear;
+}
+
+.header--hide {
+  top: -5rem;
+  transition: all 0.2s linear;
 }
 
 .header--show {
-  position: fixed;
+  top: 0;
   background-color: #18112b;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   z-index: 2;
@@ -142,7 +149,7 @@ header * {
   min-width: 30rem;
   width: 60%;
   height: 100%;
-  transition: all 0.2s ease-in-out;
+  /* transition: position 0.2s ease-in-out; */
   opacity: 1;
 }
 
@@ -150,6 +157,11 @@ header * {
   position: absolute;
   bottom: 2rem;
   order: 3;
+}
+
+.nav__external a img:hover {
+  transform: rotate(360deg);
+  transition: all 0.2s linear;
 }
 
 .nav__external a img {
@@ -355,7 +367,7 @@ section.reveal {
 
 .search--active {
   background-color: transparent;
-  max-width: 30rem;
+  width: 30rem;
 }
 
 .search--active .search__input {
@@ -369,11 +381,6 @@ section.reveal {
   filter: invert(1);
   height: 2rem;
   width: 2rem;
-}
-
-.search--active {
-  justify-content: flex-end;
-  width: 50vw;
 }
 
 .project__subsection {
@@ -592,6 +599,12 @@ canvas {
     box-shadow: none;
     opacity: 1;
     z-index: 3;
+    transition: all 0.2s linear;
+  }
+
+  .header--hide .nav__list {
+    top: -5rem;
+    transition: all 0.1s linear;
   }
 
   .nav__external {
@@ -638,5 +651,16 @@ canvas {
     flex-direction: column;
     justify-content: space-around;
     height: fit-content;
+  }
+}
+
+/* Animations */
+
+@keyframes header-show-scroll {
+  from {
+    top: -50px;
+  }
+  to {
+    top: 0;
   }
 }

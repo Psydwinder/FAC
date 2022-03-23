@@ -1,3 +1,7 @@
+import { showNav } from "./Nav.js";
+
+let previousScrollTop = 0;
+
 function revealElementsOnScroll() {
   const sectionNodeList = document.querySelectorAll("section");
   sectionNodeList.forEach((section) => {
@@ -9,4 +13,12 @@ function revealElementsOnScroll() {
   });
 }
 
-export { revealElementsOnScroll };
+function revealNavOnScrollUp() {
+  const documentScrollTop = document.documentElement.scrollTop;
+  if (documentScrollTop > 45) {
+    documentScrollTop < previousScrollTop ? showNav(true) : showNav(false);
+    previousScrollTop = documentScrollTop;
+  }
+}
+
+export { revealElementsOnScroll, revealNavOnScrollUp };

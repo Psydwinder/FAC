@@ -21,7 +21,7 @@ function toggleOverlay() {
   }
 }
 
-function createListItems() {
+function createNavItems() {
   navItems.forEach(createItem);
 }
 
@@ -46,4 +46,10 @@ function deactivateNavMenu() {
   }
 }
 
-export { createListItems, deactivateNavMenu };
+function showNav(boolean) {
+  const header = document.querySelector("header");
+  header.classList.remove(`header--${!boolean ? "show" : "hide"}`);
+  header.classList.add(`header--${boolean ? "show" : "hide"}`);
+}
+
+export { createNavItems, deactivateNavMenu, showNav };

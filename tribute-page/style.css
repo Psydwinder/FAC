@@ -202,12 +202,12 @@ section::after {
   justify-content: center;
 }
 
-img {
+.image-wrapper img {
   pointer-events: none;
   box-sizing: border-box;
   height: auto;
-  max-width: 100%;
-  max-height: 40vh;
+  width: 95%;
+  max-width: 600px;
   border-radius: 5px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }

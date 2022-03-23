@@ -46,10 +46,11 @@ function deactivateNavMenu() {
   }
 }
 
-function showNav(boolean) {
+function showNav(showOrHide) {
   const header = document.querySelector("header");
-  header.classList.remove(`header--${!boolean ? "show" : "hide"}`);
-  header.classList.add(`header--${boolean ? "show" : "hide"}`);
+  if (showOrHide === "start") header.classList.add("header--start");
+  header.classList = "";
+  header.classList.add(`header--${showOrHide ? "show" : "hide"}`);
 }
 
 export { createNavItems, deactivateNavMenu, showNav };

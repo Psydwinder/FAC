@@ -15,10 +15,9 @@ function revealElementsOnScroll() {
 
 function revealNavOnScrollUp() {
   const documentScrollTop = document.documentElement.scrollTop;
-  if (documentScrollTop > 45) {
-    documentScrollTop < previousScrollTop ? showNav(true) : showNav(false);
-    previousScrollTop = documentScrollTop;
-  }
+  if (documentScrollTop === 0) return showNav("start");
+  documentScrollTop < previousScrollTop ? showNav(true) : showNav(false);
+  previousScrollTop = documentScrollTop;
 }
 
 export { revealElementsOnScroll, revealNavOnScrollUp };

@@ -11,9 +11,6 @@
   src: url(./fonts/FuturaPTLight.otf);
 }
 
-/* TODO  */
-/* Show Nav on scroll up for a few seconds */
-
 :root {
   --dark-bg-color: #08021a;
   --bg-color: #31294665;
@@ -62,7 +59,7 @@ header {
 
 .header--hide {
   top: -5rem;
-  transition: all 0.2s linear;
+  transition: all 0.1s linear;
 }
 
 .header--show {
@@ -149,7 +146,7 @@ header * {
   min-width: 30rem;
   width: 60%;
   height: 100%;
-  /* transition: position 0.2s ease-in-out; */
+  transition: position 0.2s ease-in-out;
   opacity: 1;
 }
 
@@ -599,12 +596,20 @@ canvas {
     box-shadow: none;
     opacity: 1;
     z-index: 3;
-    transition: all 0.2s linear;
+    /* transition: all 0.2s linear; */
+  }
+
+  .header--start {
+    box-shadow: none;
   }
 
   .header--hide .nav__list {
     top: -5rem;
     transition: all 0.1s linear;
+  }
+
+  .header--show .nav__list {
+    transition: all 0.2s linear;
   }
 
   .nav__external {

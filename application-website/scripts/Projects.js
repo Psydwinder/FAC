@@ -4,21 +4,19 @@ import projects from "../data/projectsData.js";
 const searchDiv = document.querySelector(".search");
 const input = document.querySelector(".search__input");
 
-searchDiv.addEventListener("mouseenter", toggleSearchBar);
+searchDiv.addEventListener("mouseenter", handleMouseEnter);
 searchDiv.addEventListener("mouseleave", handleMouseLeave);
 input.addEventListener("keyup", filterProjects);
 
-function toggleSearchBar({ currentTarget }) {
+function handleMouseEnter({ currentTarget }) {
   input.focus();
-  if (input.value.length > 0)
-    return currentTarget.classList.add("search--active");
-
-  currentTarget.classList.toggle("search--active");
+  currentTarget.classList.add("search--active");
 }
 
-function handleMouseLeave(event) {
-  input.blur();
-  toggleSearchBar(event);
+function handleMouseLeave({ currentTarget }) {
+  // input.blur();
+  if (input.value.length > 0) return;
+  currentTarget.classList.remove("search--active");
 }
 
 function filterProjects({ currentTarget }) {

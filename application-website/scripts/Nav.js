@@ -1,6 +1,6 @@
 const navIconDiv = document.querySelector(".nav__icon");
 const navList = document.querySelector(".nav__list");
-const navItems = ["About Me", "FAC", "Other"];
+const navItemsArr = ["About Me", "FAC", "Other"];
 
 navIconDiv.addEventListener("click", toggleMenu);
 
@@ -22,16 +22,19 @@ function toggleOverlay() {
 }
 
 function createNavItems() {
-  navItems.forEach(createItem);
+  navItemsArr.forEach(createItem);
 }
 
 function createItem(item) {
   const li = document.createElement("li");
   const anchor = document.createElement("a");
   anchor.innerHTML = item;
-  anchor.href = `#${item.toLowerCase()}`;
+  anchor.href = `#${item.toLowerCase().replace(" ", "-")}`;
   li.append(anchor);
   li.classList.add("nav__item");
+
+  li.addEventListener("click", () => window.innerWidth < 768 && toggleMenu());
+
   navList.append(li);
 }
 

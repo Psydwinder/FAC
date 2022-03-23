@@ -1,5 +1,3 @@
-window.addEventListener("scroll", revealElementsOnScroll);
-
 function revealElementsOnScroll() {
   const sectionNodeList = document.querySelectorAll("section");
   sectionNodeList.forEach((section) => {

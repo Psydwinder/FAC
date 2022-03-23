@@ -35,7 +35,7 @@ html {
 body {
   background-color: var(--dark-bg-color);
   margin: 0;
-  width: 95%;
+  width: 100%;
   margin: auto;
   font-size: 1.6rem;
   color: var(--text-color);
@@ -51,13 +51,22 @@ a {
 
 header {
   display: flex;
+  width: 100%;
+  padding: 1rem 0;
   flex-direction: row;
   justify-content: space-between;
   font-family: futuraLight, Arial, Helvetica, sans-serif;
 }
 
+.header--show {
+  position: fixed;
+  background-color: #18112b;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
 header * {
-  margin-top: 1rem;
+  margin: 0.5rem 1rem;
 }
 
 .header__logo {
@@ -66,6 +75,7 @@ header * {
 }
 
 .nav__icon {
+  margin-top: 0.7rem;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -89,7 +99,7 @@ header * {
 
 .nav--active .nav__icon {
   position: fixed;
-  right: 2.5%;
+  right: 2%;
 }
 
 .nav__icon--mid {
@@ -179,6 +189,7 @@ main {
   align-items: center;
   justify-content: center;
   font-family: "Roboto", sans-serif;
+  z-index: -1;
 }
 
 section {
@@ -349,6 +360,7 @@ section.reveal {
 
 .search--active .search__input {
   border-bottom: 1px solid white;
+  margin-right: 1rem;
   width: 80%;
   opacity: 1;
 }
@@ -566,29 +578,25 @@ canvas {
 
 /* Responsiveness */
 @media screen and (min-width: 768px) {
-  .header__logo {
-    transform: translateY(25%);
-  }
-
   .nav__icon {
     display: none;
   }
 
   .nav__list {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: fit-content;
-    padding: 1.2rem 0;
     flex-direction: row;
+    top: 1rem;
+    left: 0;
+    height: fit-content;
+    width: 100%;
     background-color: transparent;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: none;
     opacity: 1;
+    z-index: 3;
   }
 
   .nav__external {
     position: relative;
-    transform: translateY(35%);
+    bottom: 0;
   }
   .nav__external a {
     margin-left: 3rem;
@@ -600,6 +608,7 @@ canvas {
 
   .content section {
     padding: 2rem;
+    min-height: 60rem;
   }
 
   #about {

@@ -12,10 +12,14 @@ function toggleMenu() {
 
 function toggleOverlay() {
   const overlayDiv = document.querySelector(".overlay");
-  if (overlayDiv) overlayDiv.remove();
-  else {
+  const header = document.querySelector("header");
+  if (overlayDiv) {
+    overlayDiv.remove();
+    header.style.backgroundColor = "#18112b";
+  } else {
     const body = document.querySelector("body");
     const overlayNewDiv = document.createElement("div");
+    header.style.backgroundColor = "transparent";
     overlayNewDiv.classList.add("overlay");
     body.append(overlayNewDiv);
   }
@@ -51,6 +55,8 @@ function deactivateNavMenu() {
 
 function showNav(showOrHide) {
   const header = document.querySelector("header");
+  const nav = document.querySelector("nav");
+  if (nav.classList[0] && nav.classList[0] === "nav--active") return;
   if (showOrHide === "start") header.classList.add("header--start");
   header.classList = "";
   header.classList.add(`header--${showOrHide ? "show" : "hide"}`);

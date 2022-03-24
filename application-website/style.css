@@ -141,6 +141,7 @@ header * {
   list-style: none;
   background-color: var(--light-bg-color);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s linear;
   opacity: 0;
   z-index: 2;
 }
@@ -160,9 +161,15 @@ header * {
   order: 3;
 }
 
+.nav__external a {
+  height: fit-content;
+  cursor: default;
+}
+
 .nav__external a img:hover {
   transform: rotate(360deg);
   transition: all 0.2s linear;
+  cursor: pointer;
 }
 
 .nav__external a img {

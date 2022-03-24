@@ -311,10 +311,10 @@ p {
     margin: auto 1rem;
   }
 
-  section:nth-child(2n) .image-wrapper {
+  section:nth-child(even) .image-wrapper {
     order: 2;
   }
-  section:nth-child(2n) p {
+  section:nth-child(even) p {
     order: 1;
   }
 

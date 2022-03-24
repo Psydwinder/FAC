@@ -31,15 +31,17 @@ function createNavItems() {
 
 function createItem(item) {
   const li = document.createElement("li");
+  li.addEventListener("click", () => window.innerWidth < 768 && toggleMenu());
+  li.classList.add("nav__item");
+  li.append(createAnchor(item));
+  navList.append(li);
+}
+
+function createAnchor(item) {
   const anchor = document.createElement("a");
   anchor.innerHTML = item;
   anchor.href = `#${item.toLowerCase().replace(" ", "-")}`;
-  li.append(anchor);
-  li.classList.add("nav__item");
-
-  li.addEventListener("click", () => window.innerWidth < 768 && toggleMenu());
-
-  navList.append(li);
+  return anchor;
 }
 
 function deactivateNavMenu() {

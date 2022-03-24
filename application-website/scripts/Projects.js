@@ -23,11 +23,20 @@ function handleMouseLeave({ currentTarget }) {
 }
 
 function filterProjects() {
-  const filteredObjArr = projects.filter(({ name }) =>
+  const results = projects.filter(({ name }) =>
     name.toLowerCase().includes(input.value.toLowerCase())
   );
-  displayProjects(filteredObjArr);
+  displayProjects(results);
+  if (results.length === 0) displayNotFound();
   showDeleteBtn();
+}
+
+function displayNotFound() {
+  const projectSubSection = document.querySelector(".FAC");
+  const p = document.createElement("p");
+  p.innerText = "No results found";
+  p.classList.add("project__no-result");
+  projectSubSection.append(p);
 }
 
 function showDeleteBtn() {

@@ -58,7 +58,6 @@ header {
   flex-direction: row;
   justify-content: space-between;
   font-family: futuraLight, Arial, Helvetica, sans-serif;
-  transition: all 0.2s linear;
 }
 
 .header--hide {
@@ -70,6 +69,7 @@ header {
   top: 0;
   background-color: #18112b;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: top 0.2s linear;
   z-index: 2;
 }
 
@@ -423,10 +423,16 @@ section.reveal {
 }
 
 .project__subsection {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(28rem, 1fr));
   justify-items: center;
   grid-gap: 2rem;
+}
+
+.project__no-result {
+  padding: 2rem 0;
+  text-align: center;
 }
 
 .project {
@@ -668,7 +674,6 @@ canvas {
 
   .content section {
     padding: 2rem;
-    min-height: 60rem;
   }
 
   #about-me {

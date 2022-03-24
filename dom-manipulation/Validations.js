@@ -44,7 +44,7 @@ function displayFailedValidations(validations) {
   for (let item in validations) {
     if (validations[item] === false) {
       const failedItem = document.createElement("li");
-      failedItem.innerText = requirement;
+      failedItem.innerText = item;
       failedListEl.appendChild(failedItem);
     }
   }

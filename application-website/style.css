@@ -11,10 +11,6 @@
   src: url(./fonts/FuturaPTLight.otf);
 }
 
-/* TODO */
-/* Add X button to delete search text on click [search-bar] */
-/* Add stat carousel */
-
 :root {
   --dark-bg-color: #08021a;
   --bg-color: #31294665;

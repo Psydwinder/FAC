@@ -13,8 +13,6 @@ function handleKeydown({ key }) {
   key === "Enter" && runSelectedFunction();
 }
 
-function selectFilter() {}
-
 function runSelectedFunction() {
   const cleanArr = numOnlyArr();
   if (cleanArr.length === 0) return;

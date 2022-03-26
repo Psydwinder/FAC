@@ -14,17 +14,17 @@ function shoppingList(str) {
   return objSplitTwice(str, ", ", " ", 1, 0);
 }
 
-function objSplitTwice(str, firstSplit, secondSplit, left, right) {
+function objSplitTwice(str, firstSplit, secondSplit, key, value) {
   const newObj = {};
   const firstSplitArr = str.split(firstSplit);
   if (str === "") return newObj;
 
   firstSplitArr.forEach((item) => {
     const secondSplitArr = item.split(secondSplit);
-    const key = secondSplitArr[left];
-    const value = secondSplitArr[right];
-    if (value === "0") return;
-    newObj[key] = value;
+    const newKey = secondSplitArr[key];
+    const newValue = secondSplitArr[value];
+    if (newValue === "0") return;
+    newObj[newKey] = newValue;
   });
   return newObj;
 }

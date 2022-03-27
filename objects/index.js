@@ -16,9 +16,9 @@ function shoppingList(str) {
 
 function objSplitTwice(str, firstSplit, secondSplit, key, value) {
   const newObj = {};
-  const firstSplitArr = str.split(firstSplit);
   if (str === "") return newObj;
 
+  const firstSplitArr = str.split(firstSplit);
   firstSplitArr.forEach((item) => {
     const secondSplitArr = item.split(secondSplit);
     const newKey = secondSplitArr[key];

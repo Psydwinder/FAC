@@ -1,5 +1,5 @@
 import { createNavItems, deactivateNavMenu } from "./Nav.js";
-import { adjustCanvasSize } from "./Background.js";
+import { resizeCanvas } from "./Background.js";
 import { displayProjects } from "./Projects.js";
 import { revealElementsOnScroll, revealNavOnScrollUp } from "./Scroll.js";
 
@@ -10,7 +10,7 @@ window.addEventListener("scroll", handleScroll);
 function handleLoad() {
   const loaderDiv = document.querySelector(".loader");
   loaderDiv.classList.add("loaded");
-  adjustCanvasSize();
+  resizeCanvas();
   revealElementsOnScroll();
   revealNavOnScrollUp();
   createNavItems();
@@ -18,7 +18,7 @@ function handleLoad() {
 }
 
 function handleResize() {
-  adjustCanvasSize();
+  resizeCanvas();
   deactivateNavMenu();
 }
 

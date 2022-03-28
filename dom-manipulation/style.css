@@ -3,7 +3,7 @@
   --secondary-color: linear-gradient(90deg, #92a9bd, 70%, #ffcbcb);
   --tertiary-color: #11324d;
   --codename-input-border: 2px solid;
-  --codename-section-width: clamp(150px, 90vw, 25rem);
+  --codename-section-width: clamp(150px, 70vw, 25rem);
 }
 
 body {
@@ -44,9 +44,8 @@ h1 {
 }
 
 .codename__input {
+  width: clamp(1rem, 80%, 20rem);
   background-color: transparent;
-  padding: 5% 8%;
-  padding-left: 1rem;
   border: var(--codename-input-border);
   border-color: transparent;
   border-radius: 4rem;
@@ -135,7 +134,7 @@ h1 {
 }
 
 .codename__requirements-list {
-  width: 90%;
+  width: 80%;
   min-height: 4rem;
   user-select: none;
   list-style: circle;
@@ -145,6 +144,11 @@ li {
   width: 100%;
   font-size: 0.8rem;
   color: var(--tertiary-color);
+}
+
+li::before {
+  content: "-";
+  padding: 0 0.2rem;
 }
 
 /* Valid */

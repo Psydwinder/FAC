@@ -7,9 +7,9 @@ const hasNumbers = (str) => (str.match(/[0-9]/g) || []).length >= 2;
 
 function startValidation() {
   const validations = {
-    "Is at least 6 characters long": checkLength(inputEl.value),
-    "Has at least two numbers": hasNumbers(inputEl.value),
-    "Has at least one lowercase and uppercase letter": hasLowerUppercase(
+    "Is at least 6 characters long.": checkLength(inputEl.value),
+    "Has at least two numbers.": hasNumbers(inputEl.value),
+    "Has at least one lowercase and uppercase letter.": hasLowerUppercase(
       inputEl.value
     ),
   };

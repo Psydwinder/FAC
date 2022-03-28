@@ -39,7 +39,7 @@ function applyStyling(isValid) {
 
 function displayFailedValidations(validations) {
   const failedListEl = document.querySelector("ul");
-  failedListEl.innerHTML = "";
+  failedListEl.innerHTML = ""; // Clear failedList
 
   for (let item in validations) {
     if (validations[item] === false) {

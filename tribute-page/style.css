@@ -26,6 +26,9 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 0, 0, 0.7);
 }
+html {
+  scrollbar-color: rgba(255, 0, 0, 0.5) #f1f1f1;
+}
 
 body {
   margin: 0;

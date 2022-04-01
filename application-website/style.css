@@ -350,7 +350,7 @@ section.reveal {
   width: 4rem;
   background-color: black;
   border-radius: 20rem;
-  transition: all 0.5s ease-in-out;
+  transition: width 0.5s ease-in-out, background-color 0.2s linear;
   cursor: pointer;
 }
 

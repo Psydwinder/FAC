@@ -37,6 +37,10 @@ a {
   color: var(--text-color);
 }
 
+br {
+  margin-bottom: 2rem;
+}
+
 header {
   position: fixed;
   display: flex;

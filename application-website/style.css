@@ -71,6 +71,7 @@ header * {
 .header__logo {
   font-size: 3rem;
   user-select: none;
+  z-index: -1;
 }
 
 .nav__icon {

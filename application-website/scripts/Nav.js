@@ -1,6 +1,6 @@
 const navIconDiv = document.querySelector(".nav__icon");
 const navList = document.querySelector(".nav__list");
-const navItemsArr = ["About Me", "FAC", "Other"];
+const navItemsArr = ["About Me", , "Featured", "FAC"];
 
 navIconDiv.addEventListener("click", toggleMenu);
 
@@ -13,13 +13,17 @@ function toggleMenu() {
 function toggleOverlay() {
   const overlayDiv = document.querySelector(".overlay");
   const header = document.querySelector("header");
+  const logo = document.querySelector(".header__logo");
+
   if (overlayDiv) {
     overlayDiv.remove();
     header.style.backgroundColor = "#18112b";
+    logo.style.visibility = "visible";
   } else {
     const body = document.querySelector("body");
     const overlayNewDiv = document.createElement("div");
     header.style.backgroundColor = "transparent";
+    logo.style.visibility = "hidden";
     overlayNewDiv.classList.add("overlay");
     body.append(overlayNewDiv);
   }

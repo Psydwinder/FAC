@@ -1,5 +1,7 @@
 import { inputEl, labelEl, codenameSection } from "./main.js";
 
+document.addEventListener("keydown", blockSpacebar);
+
 // Validation
 const checkLength = (str) => str.length > 5;
 const hasLowerUppercase = (str) => /(?=.*[a-z])(?=.*[A-Z]).*/g.test(str);
@@ -48,6 +50,10 @@ function displayFailedValidations(validations) {
       failedListEl.appendChild(failedItem);
     }
   }
+}
+
+function blockSpacebar(event) {
+  if (event.key == " ") return event.preventDefault();
 }
 
 export { startValidation };

@@ -13,7 +13,7 @@ function startValidation() {
       inputEl.value
     ),
   };
-  applyStyling(isCodenameValid(validations));
+  applyCodenamStyling(isCodenameValid(validations));
   displayFailedValidations(validations);
 }
 
@@ -27,7 +27,7 @@ function isCodenameValid(validations) {
   return finalResult;
 }
 
-function applyStyling(isValid) {
+function applyCodenamStyling(isValid) {
   inputEl.value.length > 0
     ? (labelEl.style = "opacity: 1")
     : (labelEl.style = "opacity: 0");

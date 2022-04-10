@@ -99,21 +99,21 @@ h1 {
   border-radius: 4rem;
   background-color: white;
   color: #396081;
-  transition: 0.5s all ease-in-out;
+  transition: 0.3s all ease-in-out;
   opacity: 1;
   cursor: text;
 }
 
-.codename__label {
+.codename__checkmark {
   margin-left: 1rem;
   height: 2px;
   width: 15px;
   opacity: 0;
-  transition: 0.5s all ease-in-out;
+  transition: 0.3s all ease-in-out;
 }
 
-.codename__label::before,
-.codename__label::after {
+.codename__checkmark::before,
+.codename__checkmark::after {
   content: "";
   display: inline-block;
   position: absolute;
@@ -124,12 +124,12 @@ h1 {
   border-radius: 20%;
 }
 
-.codename__label::before {
+.codename__checkmark::before {
   transform: translate(-50%) rotate(45deg);
   background-color: var(--tertiary-color);
 }
 
-.codename__label::after {
+.codename__checkmark::after {
   transform: translate(-50%) rotate(-45deg);
 }
 
@@ -157,13 +157,13 @@ li::before {
   border: 2px solid rgb(0, 109, 128);
 }
 
-.valid .codename__label::before {
+.valid .codename__checkmark::before {
   width: 8px;
   background-color: blue;
   transform: translate(-80%, 100%) rotate(45deg);
 }
 
-.valid .codename__label::after {
+.valid .codename__checkmark::after {
   width: 15px;
   background-color: blue;
   transform: translate(-20%, -20%) rotate(-45deg);

@@ -1,4 +1,4 @@
-import { inputEl, labelEl, codenameSection } from "./main.js";
+import { inputEl, checkmarkEl, codenameSection } from "./main.js";
 
 document.addEventListener("keydown", blockSpacebar);
 
@@ -31,8 +31,8 @@ function isCodenameValid(validations) {
 
 function applyCodenamStyling(isValid) {
   inputEl.value.length > 0
-    ? (labelEl.style = "opacity: 1")
-    : (labelEl.style = "opacity: 0");
+    ? (checkmarkEl.style = "opacity: 1")
+    : (checkmarkEl.style = "opacity: 0");
 
   isValid
     ? codenameSection.classList.add("valid")

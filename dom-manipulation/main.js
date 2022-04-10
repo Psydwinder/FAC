@@ -3,7 +3,7 @@ import { startValidation } from "./Validations.js";
 // DOM Containers
 const codenameSection = document.querySelector(".codename");
 const inputEl = document.querySelector(".codename__input");
-const labelEl = document.querySelector(".codename__label");
+const checkmarkEl = document.querySelector(".codename__checkmark");
 
 // Event Listeners
 codenameSection.addEventListener("click", handleSectionClick);
@@ -18,4 +18,4 @@ function handleInputUpdate() {
   startValidation();
 }
 
-export { inputEl, labelEl, codenameSection };
+export { inputEl, checkmarkEl, codenameSection };

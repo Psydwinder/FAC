@@ -21,4 +21,4 @@ function numOnlyArr() {
     (num) => Number(num)
   );
 }
-export { numOnlyArr, clearInput };
+export { numOnlyArr, clearInput, handleFocus };

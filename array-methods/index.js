@@ -1,4 +1,4 @@
-import { numOnlyArr, clearInput } from "./scripts/ArrayInput.js";
+import { numOnlyArr, clearInput, handleFocus } from "./scripts/ArrayInput.js";
 import { selectedFunction, filter, reduce } from "./scripts/FilterOrReduce.js";
 
 // DOM containers
@@ -11,6 +11,8 @@ buttonEl.addEventListener("click", runSelectedFunction);
 
 function handleKeydown({ key }) {
   key === "Enter" && runSelectedFunction();
+  document.querySelector(".array__input").focus();
+  handleFocus();
 }
 
 function runSelectedFunction() {

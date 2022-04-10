@@ -17,7 +17,7 @@ function clearInput() {
 }
 
 function numOnlyArr() {
-  return (arrayInputEl.value.replace(/\s/g, "").match(/[-0-9]+/g) || []).map(
+  return (arrayInputEl.value.replace(/\s/g, "").match(/[-.0-9]+/g) || []).map(
     (num) => Number(num)
   );
 }

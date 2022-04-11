@@ -179,7 +179,6 @@ header ~ hr {
 
 .gallery__img:hover {
   transform: scale(1.01);
-  cursor: default;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
@@ -322,6 +321,7 @@ header ~ hr {
   .gallery__img {
     width: 12rem;
     min-height: 12rem;
+    cursor: pointer;
   }
 
   .recommended__list {

@@ -7,7 +7,6 @@
       name="viewport"
       content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi"
     />
-
     <link rel="shortcut icon" href="./media/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link type="text/css" href="reset.css" />
@@ -24,14 +23,15 @@
         </div>
         <ul class="nav__list">
           <li class="nav__external">
-            <a href="https://github.com/DogwishX"
-              ><img src="./media/github.png"
-            /></a>
+            <a href="https://github.com/DogwishX">
+              <img src="./media/github.png" />
+            </a>
             <a
               class="freecodecamp-icon"
               href="https://www.freecodecamp.org/DogwishX"
-              ><img src="./media/freecodecamp.png"
-            /></a>
+            >
+              <img src="./media/freecodecamp.png" />
+            </a>
           </li>
         </ul>
       </nav>
@@ -41,7 +41,8 @@
         <div class="intro__content">
           <h2 class="intro__title">Patrick Delaney</h2>
           <h3 class="intro__subtitle">
-            A Professional Waiter turned Web Dev <span>[not yet]</span>
+            A Professional Waiter turned Web Dev
+            <span>[not yet]</span>
           </h3>
           <div class="intro__buttons-wrapper">
             <a class="intro__button" href="#fac">Projects</a>
@@ -49,29 +50,34 @@
           </div>
         </div>
       </section>
-
       <div class="content">
         <section id="about-me">
           <h2 class="section__title">About Me</h2>
           <p class="section__paragraph">
-            Hi! My name is <span>Patrick Delaney</span> (he/him), I'm currently
-            investing my time and effort into a career I believe is the right
-            one for me.
+            Hi! My name is
+            <span>Patrick Delaney</span> (he/him), I'm currently investing my
+            time and effort into a career I believe is the right one for me.
+
             <br />
             I started out as a penniless dropout backpacker in
+
             <span>Brazil</span>. I had to work at various places, doing
             different things.
+
             <br />
             Things changed when I got my first office job in
+
             <span>Ireland</span>, at a company that provided services for
             Microsoft. That's where I discovered I could automate most of my
             tasks through
+
             <span>Python, VBA and accessing their SQL databases</span>. This
             experience showed me I really enjoy solving problems and building
             stuff from a blank page. So I recently decided to take the risk,
             quit my job and study full-time to become a web dev. It is my belief
             that being accepted and studying under the Founders and Coders
             curriculum is a step in the right direction to make that happen.
+
             <br />
           </p>
           <div class="about-me__technologies">
@@ -81,8 +87,59 @@
               <li class="about-me__item">HTML</li>
               <li class="about-me__item">CSS</li>
               <li class="about-me__item">JavaScript</li>
-              <li class="about-me__item">React</li>
+              <li class="about-me__item">Firestore</li>
             </ul>
+          </div>
+        </section>
+        <section id="featured">
+          <h2 class="section__title">Featured Project</h2>
+          <div class="featured__project">
+            <a
+              class="featured__link"
+              href="https://dogwishx.github.io/Ecommerce_Project/"
+              ><img
+                class="featured__image"
+                src="./media/nobirds.png"
+                alt="ecommerce website screenshot"
+              />
+            </a>
+            <div class="featured__content">
+              <a class="project__name featured__name" target="_blank"
+                >Ecommerce Project</a
+              >
+              <p class="project__description featured__description">
+                Built in collaboration with
+                <a href="https://joe-lindie.github.io/Application-Website/"
+                  >@Joe Lindie</a
+                >. This is a simple ecommerce website which makes use of
+                localStorage for the cart system and cloud database [firestore]
+                for the review data within the product pages. All images were
+                taken from <a href="https://unsplash.com/">Unsplash</a> and
+                design inspirations were taken from
+                <a href="https://www.allbirds.co.uk/">Allbirds</a>. This website
+                was created for educational/research purposes only.
+              </p>
+              <ul class="project__list featured__list">
+                <li class="project__item">HTML</li>
+                <li class="project__item">CSS</li>
+                <li class="project__item">JavaScript</li>
+                <li class="project__item">Firestore</li>
+              </ul>
+              <div class="project__links featured__links">
+                <a
+                  class="project__source"
+                  target="_blank"
+                  href="https://github.com/DogwishX/Ecommerce_Project"
+                  ><img src="./media/github.png" alt="github icon"
+                /></a>
+                <a
+                  class="project__demo"
+                  target="_blank"
+                  href="https://dogwishx.github.io/Ecommerce_Project/"
+                  ><img src="./media/new-window.png" alt="new window icon"
+                /></a>
+              </div>
+            </div>
           </div>
         </section>
         <section id="fac">
@@ -98,9 +155,7 @@
             </div>
             <img src="./media/magnifying-glass.png" alt="magnifying glass" />
           </div>
-          <div class="project__subsection featured" id="featured"></div>
           <div class="project__subsection FAC"></div>
-          <div class="project__subsection honorable-mention" id="other"></div>
         </section>
       </div>
     </main>

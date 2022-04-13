@@ -1,4 +1,4 @@
-const canvas = document.querySelector("canvas");
+const canvas = document.querySelector("#background");
 const ctx = canvas.getContext("2d");
 
 const backgroundDrawSpeed = 10;
@@ -8,11 +8,11 @@ const sphereCleanup = setInterval(cleanupSpheres, 10000);
 let spheres = [];
 
 function drawBackground() {
-  resizeCanvas(); // Redraws the whole canvas, avoiding trails
+  resizeBackground(); // Redraws the whole canvas, avoiding trails
   drawSpheres();
 }
 
-function resizeCanvas() {
+function resizeBackground() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight < 450 ? 450 : window.innerHeight;
 }
@@ -69,4 +69,4 @@ class Sphere {
   }
 }
 
-export { resizeCanvas };
+export { resizeBackground };

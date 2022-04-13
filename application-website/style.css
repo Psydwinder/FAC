@@ -613,20 +613,6 @@ section.reveal {
   transform: scale(1.1);
 }
 
-footer {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  width: 100%;
-}
-
-footer * {
-  height: 2rem;
-  margin: 0.5rem;
-}
-
 .freecodecamp-icon img {
   filter: invert(1);
   height: 2.2rem;
@@ -643,7 +629,22 @@ footer * {
   z-index: 1;
 }
 
-canvas {
+#bored {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bored__paragraph {
+  width: fit-content;
+}
+
+#game {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#background {
   position: fixed;
   top: 0;
   left: 0;

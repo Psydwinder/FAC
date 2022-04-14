@@ -1,10 +1,11 @@
 const canvas = document.querySelector("#game");
 const ctx = canvas.getContext("2d");
 
-canvas.height = 360;
-canvas.width = 620;
+canvas.height = 500;
+canvas.width = 500;
 
 canvas.addEventListener("click", init);
+let hasGameStarted = true;
 
 function init() {
   window.addEventListener("keydown", handleKeyDown);
@@ -27,6 +28,7 @@ function resetCanvas() {
 
 function updateObjects() {
   player.update();
+  projectiles.forEach((projectile) => projectile.update());
 }
 
 function drawGameBackground() {
@@ -62,14 +64,6 @@ class Character {
   }
 }
 
-// class Projectile {
-//   constructor() {
-//     this.x = player.x;
-//     this.y = player.y + player.height / 2;
-//     this.speed =
-//   }
-// }
-
 // Player initialization
 const player = new Character({
   velocity: {
@@ -100,8 +94,9 @@ function handleKeyDown(event) {
   if (key === "ArrowRight") return changeDirection("right");
   if (key === "ArrowLeft") return changeDirection("left");
   // Check if player is on ground to allow jump
-  if (key === "ArrowUp" && player.y + player.height >= canvas.height)
+  if (key === "x" && player.y + player.height >= canvas.height)
     player.velocity.y = -10;
+  if (key === "z") shoot();
 }
 
 function handleKeyUp(event) {
@@ -109,7 +104,6 @@ function handleKeyUp(event) {
   const { key } = event;
   if (key === "ArrowRight") directions.right = false;
   if (key === "ArrowLeft") directions.left = false;
-  if (key === "z") shoot();
 }
 
 function changeDirection(direction) {
@@ -123,4 +117,28 @@ function movePlayer() {
   player.velocity.x = 0;
 }
 
-function shoot() {}
+// Projectiles
+const projectiles = [];
+class Projectile {
+  constructor(direction) {
+    this.x = player.x;
+    this.y = player.y + player.height / 2;
+    this.height = 5;
+    this.width = 5;
+    this.speed = direction === "left" ? -5 : 5;
+  }
+
+  draw() {
+    ctx.fillStyle = "white";
+    ctx.fillRect(this.x, this.y, this.width, this.height);
+  }
+
+  update() {
+    this.draw();
+    this.y += this.speed;
+  }
+}
+
+function shoot() {
+  projectiles.push(new Projectile("left"));
+}

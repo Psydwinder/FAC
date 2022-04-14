@@ -2,8 +2,8 @@ const canvas = document.querySelector("#game");
 const ctx = canvas.getContext("2d");
 
 // TODO
-// Add player collision
 // Detect game over
+// Add levels
 // Add score count system
 // Submit highscore to DB
 // Display top 10 leaderboard
@@ -15,20 +15,26 @@ canvas.width = 500;
 
 canvas.addEventListener("click", init);
 let hasGameStarted = false;
+let score = 0;
+let velocity = score / 100;
+let createVerticalEnemies;
+let createHorizontalEnemies;
 
 function init() {
-  const createVerticalEnemies = setInterval(createVerticalEnemy, 1000);
-  const createHorizontalEnemies = setInterval(createHorizontalEnemy, 2000);
+  createVerticalEnemies = setInterval(createVerticalEnemy, 1000);
+  createHorizontalEnemies = setInterval(createHorizontalEnemy, 2000);
 
   window.addEventListener("keydown", handleKeyDown);
   window.addEventListener("keyup", handleKeyUp);
-
+  hasGameStarted = true;
   function drawGame() {
-    window.requestAnimationFrame(drawGame);
-    resetCanvas();
-    updateObjects();
-    movePlayer();
-    clearEnemies();
+    if (hasGameStarted) {
+      window.requestAnimationFrame(drawGame);
+      resetCanvas();
+      updateObjects();
+      movePlayer();
+      clearEnemies();
+    }
   }
 
   drawGame();
@@ -180,23 +186,6 @@ class Enemy extends Character {
   }
 }
 
-enemies.push(
-  new Enemy({
-    gravity: 0,
-    velocity: {
-      x: 0,
-      y: 0,
-    },
-    dimensions: {
-      width: 25,
-      height: 25,
-    },
-    position: {
-      x: 25,
-      y: 0,
-    },
-  })
-);
 function createVerticalEnemy() {
   enemies.push(
     new Enemy({
@@ -263,6 +252,12 @@ function shoot() {
 }
 
 function gameOver() {
-  ctx.fillRect(0, 0, canvas.height, canvas.width);
-  alert("gameOver");
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "white";
+  ctx.fillText("Game Over!", canvas.width / 2, canvas.height / 2);
+  hasGameStarted = false;
+  clearInterval(createHorizontalEnemy);
+  clearInterval(createVerticalEnemy);
+  enemies = [];
+  projectiles = [];
 }

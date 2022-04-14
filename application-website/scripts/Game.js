@@ -1,31 +1,33 @@
 const canvas = document.querySelector("#game");
 const ctx = canvas.getContext("2d");
-const directions = {
-  right: false,
-  left: false,
-  up: false,
-};
 
 canvas.height = 360;
 canvas.width = 620;
 
-function drawGame() {
-  window.requestAnimationFrame(drawGame);
-  resetCanvas();
-  updateObjects();
-  movePlayer();
+canvas.addEventListener("click", init);
+
+function init() {
+  window.addEventListener("keydown", handleKeyDown);
+  window.addEventListener("keyup", handleKeyUp);
+
+  function drawGame() {
+    window.requestAnimationFrame(drawGame);
+    resetCanvas();
+    updateObjects();
+    player.draw();
+    movePlayer();
+  }
+  drawGame();
 }
 
 function resetCanvas() {
   ctx.fillStyle = "black";
-  ctx.fillReact(0, 0, canvas.width, canvas.height);
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
 function updateObjects() {
   player.update();
 }
-
-function movePlayer() {}
 
 function drawGameBackground() {
   // Background Image NightForest by saukgp - https://saurabhkgp.itch.io/pixel-art-forest-background-simple-seamless-parallax-ready-for-2d-platformer-s
@@ -35,33 +37,38 @@ function drawGameBackground() {
 }
 
 class Character {
-  constructor({ position, velocity, dimensions }) {
-    this.position = position;
+  constructor({ position, velocity, dimensions, gravity = 0.7 }) {
+    this.x = position.x;
+    this.y = position.y;
     this.velocity = velocity;
-    this.dimensions = dimensions;
+    this.width = dimensions.width;
+    this.height = dimensions.height;
+    this.gravity = gravity;
   }
 
   draw() {
     ctx.fillStyle = "blue";
-    ctx.fillRect(
-      this.position.x,
-      this.position.y,
-      this.dimensions.width,
-      this.dimensions.height
-    );
+    ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 
   update() {
     this.draw();
-    this.position;
-    this.position.x += this.velocity.x;
-    this.position.y += this.velocity.y;
+    this.x += this.velocity.x;
+    this.y += this.velocity.y;
 
-    this.position.y + this.height + this.velocity.y >= canvas.height
+    this.y + this.height + this.velocity.y >= canvas.height
       ? (this.velocity.y = 0)
-      : (this.velocity.y += gravity);
+      : (this.velocity.y += this.gravity);
   }
 }
+
+// class Projectile {
+//   constructor() {
+//     this.x = player.x;
+//     this.y = player.y + player.height / 2;
+//     this.speed =
+//   }
+// }
 
 // Player initialization
 const player = new Character({
@@ -75,8 +82,45 @@ const player = new Character({
   },
   position: {
     x: canvas.width / 2,
-    y: canvas.height - 50,
+    y: canvas.height - 25,
   },
 });
 
-player.draw();
+// Player Movement
+let lastDirection = "";
+const directions = {
+  right: false,
+  left: false,
+};
+
+function handleKeyDown(event) {
+  event.preventDefault();
+  const { key } = event;
+
+  if (key === "ArrowRight") return changeDirection("right");
+  if (key === "ArrowLeft") return changeDirection("left");
+  // Check if player is on ground to allow jump
+  if (key === "ArrowUp" && player.y + player.height >= canvas.height)
+    player.velocity.y = -10;
+}
+
+function handleKeyUp(event) {
+  event.preventDefault();
+  const { key } = event;
+  if (key === "ArrowRight") directions.right = false;
+  if (key === "ArrowLeft") directions.left = false;
+  if (key === "z") shoot();
+}
+
+function changeDirection(direction) {
+  directions[direction] = true;
+  lastDirection = direction;
+}
+
+function movePlayer() {
+  if (directions.right) return (player.velocity.x = 5);
+  if (directions.left) return (player.velocity.x = -5);
+  player.velocity.x = 0;
+}
+
+function shoot() {}

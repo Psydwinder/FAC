@@ -3,7 +3,7 @@ const ctx = canvas.getContext("2d");
 
 // TODO
 // Detect game over
-// Add levels
+// Add Difficulty
 // Add score count system
 // Submit highscore to DB
 // Display top 10 leaderboard
@@ -16,28 +16,34 @@ canvas.width = 500;
 canvas.addEventListener("click", init);
 let hasGameStarted = false;
 let score = 0;
-let velocity = score / 100;
+let gameVelocity;
 let createVerticalEnemies;
 let createHorizontalEnemies;
+let verticalInterval = 1000;
+let horizontalInterval = 2000;
 
 function init() {
-  createVerticalEnemies = setInterval(createVerticalEnemy, 1000);
-  createHorizontalEnemies = setInterval(createHorizontalEnemy, 2000);
-
-  window.addEventListener("keydown", handleKeyDown);
-  window.addEventListener("keyup", handleKeyUp);
   hasGameStarted = true;
-  function drawGame() {
-    if (hasGameStarted) {
+  resetCanvas();
+  if (hasGameStarted) {
+    const updateDifficultyInterval = setInterval(updateDifficulty, 1000);
+    createVerticalEnemies = setInterval(createVerticalEnemy, verticalInterval);
+    createHorizontalEnemies = setInterval(
+      createHorizontalEnemy,
+      horizontalInterval
+    );
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+    function drawGame() {
       window.requestAnimationFrame(drawGame);
       resetCanvas();
+      drawScore();
       updateObjects();
       movePlayer();
       clearEnemies();
     }
+    drawGame();
   }
-
-  drawGame();
 }
 
 function resetCanvas() {
@@ -49,6 +55,22 @@ function updateObjects() {
   player.update();
   projectiles.forEach((projectile) => projectile.update());
   enemies.forEach((enemy) => enemy.update());
+  gameVelocity = score / 200;
+}
+
+function updateDifficulty() {
+  if (score % 200 === 0 && score > 0) {
+    console.log("incresed difficulty");
+    clearInterval(createHorizontalEnemies);
+    clearInterval(createVerticalEnemies);
+    horizontalInterval -= 50;
+    verticalInterval -= 50;
+    createHorizontalEnemies = setInterval(
+      createHorizontalEnemy,
+      horizontalInterval
+    );
+    createVerticalEnemies = setInterval(createVerticalEnemy, verticalInterval);
+  }
 }
 
 function drawGameBackground() {
@@ -56,6 +78,12 @@ function drawGameBackground() {
   const backgroundImg = new Image();
   backgroundImg.src = "./media/game-assets/game-background.png";
   backgroundImg.onload = () => ctx.drawImage(backgroundImg, 0, 0);
+}
+
+function drawScore() {
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "white";
+  ctx.fillText(`Score:  ${score}`, canvas.width - 100, 30);
 }
 
 class Character {
@@ -170,8 +198,10 @@ class Enemy extends Character {
         projectile.x <= this.x + this.width &&
         projectile.y >= this.y &&
         projectile.y <= this.y + this.height
-      )
+      ) {
         this.hasCollided = true;
+        score += 50;
+      }
     });
   }
 
@@ -192,7 +222,7 @@ function createVerticalEnemy() {
       gravity: 0.1,
       velocity: {
         x: Math.random() * 1,
-        y: Math.random() * 5 + 1,
+        y: Math.random() * 5 + gameVelocity,
       },
       dimensions: {
         width: 25,
@@ -211,7 +241,7 @@ function createHorizontalEnemy() {
     new Enemy({
       gravity: 0,
       velocity: {
-        x: Math.random() * 10 + 2,
+        x: Math.random() + gameVelocity,
         y: 0,
       },
       dimensions: {
@@ -260,4 +290,6 @@ function gameOver() {
   clearInterval(createVerticalEnemy);
   enemies = [];
   projectiles = [];
+  score = 0;
+  drawScore();
 }

@@ -1,6 +1,15 @@
 const canvas = document.querySelector("#game");
 const ctx = canvas.getContext("2d");
 
+// TODO
+// Add player collision
+// Detect game over
+// Add score count system
+// Submit highscore to DB
+// Display top 10 leaderboard
+// Change sprites
+// Add bg music
+
 canvas.height = 500;
 canvas.width = 500;
 
@@ -100,7 +109,7 @@ function handleKeyDown(event) {
   if (key === "ArrowLeft") return changeDirection("left");
   // Check if player is on ground to allow jump
   if (key === "x" && player.y + player.height >= canvas.height)
-    player.velocity.y = -10;
+    player.velocity.y = -15;
   if (key === "z") shoot();
 }
 
@@ -142,12 +151,13 @@ class Enemy extends Character {
 
   update() {
     this.draw();
-    this.checkCollision();
+    this.detectProjectileCollision();
+    this.detectPlayerCollision();
     this.x += this.velocity.x * this.leftOrRight;
     this.y += this.velocity.y;
   }
 
-  checkCollision() {
+  detectProjectileCollision() {
     projectiles.forEach((projectile) => {
       if (
         projectile.x >= this.x &&
@@ -157,6 +167,16 @@ class Enemy extends Character {
       )
         this.hasCollided = true;
     });
+  }
+
+  detectPlayerCollision() {
+    if (
+      player.x >= this.x &&
+      player.x <= this.x + this.width &&
+      player.y >= this.y &&
+      player.y <= this.y + this.height
+    )
+      gameOver();
   }
 }
 
@@ -220,12 +240,11 @@ function createHorizontalEnemy() {
 // Projectiles
 const projectiles = [];
 class Projectile {
-  constructor(direction) {
-    this.x = player.x;
-    this.y = player.y + player.height / 2;
+  constructor() {
+    this.x = player.x + player.width / 2;
+    this.y = player.y;
     this.height = 5;
     this.width = 5;
-    this.speed = direction === "left" ? -5 : 5;
   }
 
   draw() {
@@ -235,10 +254,15 @@ class Projectile {
 
   update() {
     this.draw();
-    this.y += this.speed;
+    this.y += -5;
   }
 }
 
 function shoot() {
   projectiles.push(new Projectile());
+}
+
+function gameOver() {
+  ctx.fillRect(0, 0, canvas.height, canvas.width);
+  alert("gameOver");
 }

@@ -2,7 +2,7 @@ import { createNavItems, deactivateNavMenu } from "./Nav.js";
 import { resizeBackground } from "./Background.js";
 import { displayProjects } from "./Projects.js";
 import { revealElementsOnScroll, revealNavOnScrollUp } from "./Scroll.js";
-import { resizeGame } from "./Game.js";
+import "./Game.js";
 
 window.addEventListener("load", handleLoad);
 window.addEventListener("resize", handleResize);
@@ -16,13 +16,11 @@ function handleLoad() {
   revealNavOnScrollUp();
   createNavItems();
   displayProjects();
-  resizeGame();
 }
 
 function handleResize() {
   resizeBackground();
   deactivateNavMenu();
-  resizeGame();
 }
 
 function handleScroll() {

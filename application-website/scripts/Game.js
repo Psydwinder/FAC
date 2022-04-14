@@ -5,9 +5,12 @@ canvas.height = 500;
 canvas.width = 500;
 
 canvas.addEventListener("click", init);
-let hasGameStarted = true;
+let hasGameStarted = false;
 
 function init() {
+  const createVerticalEnemies = setInterval(createVerticalEnemy, 1000);
+  const createHorizontalEnemies = setInterval(createHorizontalEnemy, 2000);
+
   window.addEventListener("keydown", handleKeyDown);
   window.addEventListener("keyup", handleKeyUp);
 
@@ -15,9 +18,10 @@ function init() {
     window.requestAnimationFrame(drawGame);
     resetCanvas();
     updateObjects();
-    player.draw();
     movePlayer();
+    clearEnemies();
   }
+
   drawGame();
 }
 
@@ -29,6 +33,7 @@ function resetCanvas() {
 function updateObjects() {
   player.update();
   projectiles.forEach((projectile) => projectile.update());
+  enemies.forEach((enemy) => enemy.update());
 }
 
 function drawGameBackground() {
@@ -112,9 +117,104 @@ function changeDirection(direction) {
 }
 
 function movePlayer() {
-  if (directions.right) return (player.velocity.x = 5);
-  if (directions.left) return (player.velocity.x = -5);
+  if (directions.right) return (player.velocity.x = 10);
+  if (directions.left) return (player.velocity.x = -10);
   player.velocity.x = 0;
+}
+
+// Enemies
+let enemies = [];
+if (hasGameStarted) {
+}
+
+function clearEnemies() {
+  enemies = enemies.filter(
+    (enemy) =>
+      enemy.x <= canvas.width && enemy.y <= canvas.height && !enemy.hasCollided
+  );
+}
+class Enemy extends Character {
+  constructor(obj) {
+    super(obj);
+    this.leftOrRight = Math.random() <= 0.5 ? -1 : 1;
+    this.hasCollided = false;
+  }
+
+  update() {
+    this.draw();
+    this.checkCollision();
+    this.x += this.velocity.x * this.leftOrRight;
+    this.y += this.velocity.y;
+  }
+
+  checkCollision() {
+    projectiles.forEach((projectile) => {
+      if (
+        projectile.x >= this.x &&
+        projectile.x <= this.x + this.width &&
+        projectile.y >= this.y &&
+        projectile.y <= this.y + this.height
+      )
+        this.hasCollided = true;
+    });
+  }
+}
+
+enemies.push(
+  new Enemy({
+    gravity: 0,
+    velocity: {
+      x: 0,
+      y: 0,
+    },
+    dimensions: {
+      width: 25,
+      height: 25,
+    },
+    position: {
+      x: 25,
+      y: 0,
+    },
+  })
+);
+function createVerticalEnemy() {
+  enemies.push(
+    new Enemy({
+      gravity: 0.1,
+      velocity: {
+        x: Math.random() * 1,
+        y: Math.random() * 5 + 1,
+      },
+      dimensions: {
+        width: 25,
+        height: 25,
+      },
+      position: {
+        x: Math.random() * canvas.width,
+        y: 0,
+      },
+    })
+  );
+}
+
+function createHorizontalEnemy() {
+  enemies.push(
+    new Enemy({
+      gravity: 0,
+      velocity: {
+        x: Math.random() * 10 + 2,
+        y: 0,
+      },
+      dimensions: {
+        width: 25,
+        height: 25,
+      },
+      position: {
+        x: -25,
+        y: canvas.height - player.height,
+      },
+    })
+  );
 }
 
 // Projectiles
@@ -140,5 +240,5 @@ class Projectile {
 }
 
 function shoot() {
-  projectiles.push(new Projectile("left"));
+  projectiles.push(new Projectile());
 }

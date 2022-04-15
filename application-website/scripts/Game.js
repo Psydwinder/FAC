@@ -1,14 +1,14 @@
+import { firestore, db } from "./firebase.js";
+
 const canvas = document.querySelector("#game");
 const ctx = canvas.getContext("2d");
 
 // TODO
-// Detect game over
-// Add Difficulty
-// Add score count system
 // Submit highscore to DB
 // Display top 10 leaderboard
 // Change sprites
-// Add bg music
+// Add SFX
+// Refactor
 
 canvas.height = 500;
 canvas.width = 500;
@@ -19,36 +19,47 @@ let score = 0;
 let gameVelocity;
 let createVerticalEnemies;
 let createHorizontalEnemies;
+let updateDifficultyInterval;
 let verticalInterval = 1000;
 let horizontalInterval = 2000;
 
 function init() {
+  if (hasGameStarted) return;
   hasGameStarted = true;
   resetCanvas();
-  if (hasGameStarted) {
-    const updateDifficultyInterval = setInterval(updateDifficulty, 1000);
-    createVerticalEnemies = setInterval(createVerticalEnemy, verticalInterval);
-    createHorizontalEnemies = setInterval(
-      createHorizontalEnemy,
-      horizontalInterval
-    );
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
-    function drawGame() {
+  setIntervals();
+  window.addEventListener("keydown", handleKeyDown);
+  window.addEventListener("keyup", handleKeyUp);
+  ctx.fillStyle = "white";
+  function drawGame() {
+    if (hasGameStarted) {
       window.requestAnimationFrame(drawGame);
       resetCanvas();
       drawScore();
+
       updateObjects();
       movePlayer();
       clearEnemies();
     }
-    drawGame();
   }
+  drawGame();
 }
 
 function resetCanvas() {
   ctx.fillStyle = "black";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function setIntervals() {
+  createVerticalEnemies = setInterval(createVerticalEnemy, 1000);
+  createHorizontalEnemies = setInterval(createHorizontalEnemy, 2000);
+  updateDifficultyInterval = setInterval(updateDifficulty, 1000);
+}
+
+function clearIntervals() {
+  clearInterval(createHorizontalEnemies);
+  clearInterval(createVerticalEnemies);
+  clearInterval(updateDifficultyInterval);
 }
 
 function updateObjects() {
@@ -61,8 +72,7 @@ function updateObjects() {
 function updateDifficulty() {
   if (score % 200 === 0 && score > 0) {
     console.log("incresed difficulty");
-    clearInterval(createHorizontalEnemies);
-    clearInterval(createVerticalEnemies);
+    clearIntervals();
     horizontalInterval -= 50;
     verticalInterval -= 50;
     createHorizontalEnemies = setInterval(
@@ -83,7 +93,8 @@ function drawGameBackground() {
 function drawScore() {
   ctx.font = "16px Arial";
   ctx.fillStyle = "white";
-  ctx.fillText(`Score:  ${score}`, canvas.width - 100, 30);
+  ctx.fillText(`Score:  ${score}`, canvas.width - 120, 30);
+  ctx.fillText(`Hi-score:  ${localStorage.hiScore}`, canvas.width - 120, 50);
 }
 
 class Character {
@@ -217,6 +228,7 @@ class Enemy extends Character {
 }
 
 function createVerticalEnemy() {
+  console.log("vertical created");
   enemies.push(
     new Enemy({
       gravity: 0.1,
@@ -237,11 +249,12 @@ function createVerticalEnemy() {
 }
 
 function createHorizontalEnemy() {
+  console.log("horizontal created");
   enemies.push(
     new Enemy({
       gravity: 0,
       velocity: {
-        x: Math.random() + gameVelocity,
+        x: Math.random() + gameVelocity + 1,
         y: 0,
       },
       dimensions: {
@@ -257,7 +270,7 @@ function createHorizontalEnemy() {
 }
 
 // Projectiles
-const projectiles = [];
+let projectiles = [];
 class Projectile {
   constructor() {
     this.x = player.x + player.width / 2;
@@ -286,10 +299,20 @@ function gameOver() {
   ctx.fillStyle = "white";
   ctx.fillText("Game Over!", canvas.width / 2, canvas.height / 2);
   hasGameStarted = false;
-  clearInterval(createHorizontalEnemy);
-  clearInterval(createVerticalEnemy);
   enemies = [];
   projectiles = [];
+  (localStorage.hiScore || 0) < score && localStorage.setItem("hiScore", score);
   score = 0;
-  drawScore();
+  gameVelocity = 0;
+  horizontalInterval = 2000;
+  verticalInterval = 1000;
+  addHiScoreToDb();
+  clearIntervals();
+}
+
+async function addHiScoreToDb() {
+  const collectionRef = firestore.doc(db, "ranking", "hiscores");
+  await firestore.updateDoc(collectionRef, {
+    cat: 200,
+  });
 }

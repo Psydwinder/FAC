@@ -1,19 +1,22 @@
-import { firestore, db } from "./firebase.js";
-
-const canvas = document.querySelector("#game");
-const ctx = canvas.getContext("2d");
-
 // TODO
-// Submit highscore to DB
 // Display top 10 leaderboard
 // Change sprites
 // Add SFX
 // Refactor
 
+import { firestore, db } from "./firebase.js";
+
+const canvas = document.querySelector("#game");
+const ctx = canvas.getContext("2d");
+const rankingInput = document.querySelector(".ranking__input");
+const rankingSaveBtn = document.querySelector(".ranking__button");
+
 canvas.height = 500;
 canvas.width = 500;
 
 canvas.addEventListener("click", init);
+rankingSaveBtn.addEventListener("click", addScoreToDb);
+
 let hasGameStarted = false;
 let score = 0;
 let gameVelocity;
@@ -146,23 +149,18 @@ const directions = {
   left: false,
 };
 
-function handleKeyDown(event) {
-  event.preventDefault();
-  const { key } = event;
-
-  if (key === "ArrowRight") return changeDirection("right");
-  if (key === "ArrowLeft") return changeDirection("left");
+function handleKeyDown({ key }) {
+  if (key === "d") return changeDirection("right");
+  if (key === "a") return changeDirection("left");
   // Check if player is on ground to allow jump
-  if (key === "x" && player.y + player.height >= canvas.height)
+  if (key === "k" && player.y + player.height >= canvas.height)
     player.velocity.y = -15;
-  if (key === "z") shoot();
+  if (key === "j") shoot();
 }
 
-function handleKeyUp(event) {
-  event.preventDefault();
-  const { key } = event;
-  if (key === "ArrowRight") directions.right = false;
-  if (key === "ArrowLeft") directions.left = false;
+function handleKeyUp({ key }) {
+  if (key === "d") directions.right = false;
+  if (key === "a") directions.left = false;
 }
 
 function changeDirection(direction) {
@@ -302,17 +300,23 @@ function gameOver() {
   enemies = [];
   projectiles = [];
   (localStorage.hiScore || 0) < score && localStorage.setItem("hiScore", score);
-  score = 0;
   gameVelocity = 0;
   horizontalInterval = 2000;
   verticalInterval = 1000;
-  addHiScoreToDb();
+  addScoreToDb();
   clearIntervals();
 }
 
-async function addHiScoreToDb() {
-  const collectionRef = firestore.doc(db, "ranking", "hiscores");
-  await firestore.updateDoc(collectionRef, {
-    cat: 200,
+async function addScoreToDb() {
+  const hiscoreRef = firestore.doc(db, "ranking", "hiscores");
+  const hiscoreSnap = await firestore.getDoc(hiscoreRef);
+  const hiscoreData = hiscoreSnap.data();
+  console.log(hiscoreData);
+
+  await firestore.updateDoc(hiscoreRef, {
+    users: firestore.arrayUnion({
+      [rankingInput.value]: score,
+    }),
   });
+  score = 0;
 }

@@ -218,7 +218,7 @@ class Enemy extends Character {
     if (
       player.x >= this.x &&
       player.x <= this.x + this.width &&
-      player.y >= this.y &&
+      player.y + player.height >= this.y &&
       player.y <= this.y + this.height
     )
       gameOver();

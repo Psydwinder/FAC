@@ -43,6 +43,7 @@ function init() {
       updateObjects();
       movePlayer();
       clearEnemies();
+      clearProjectiles();
     }
   }
   drawGame();
@@ -74,7 +75,6 @@ function updateObjects() {
 
 function updateDifficulty() {
   if (score % 200 === 0 && score > 0) {
-    console.log("incresed difficulty");
     clearIntervals();
     horizontalInterval -= 50;
     verticalInterval -= 50;
@@ -110,8 +110,8 @@ class Character {
     this.gravity = gravity;
   }
 
-  draw() {
-    ctx.fillStyle = "blue";
+  draw(color = "blue") {
+    ctx.fillStyle = color;
     ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 
@@ -190,10 +190,11 @@ class Enemy extends Character {
     super(obj);
     this.leftOrRight = Math.random() <= 0.5 ? -1 : 1;
     this.hasCollided = false;
+    this.hp = 2;
   }
 
   update() {
-    this.draw();
+    this.draw("red");
     this.detectProjectileCollision();
     this.detectPlayerCollision();
     this.x += this.velocity.x * this.leftOrRight;
@@ -208,25 +209,26 @@ class Enemy extends Character {
         projectile.y >= this.y &&
         projectile.y <= this.y + this.height
       ) {
-        this.hasCollided = true;
+        this.hp -= 1;
+        projectile.hasCollided = true;
         score += 50;
+        if(this.hp === 0) this.hasCollided = true;
       }
     });
   }
 
   detectPlayerCollision() {
     if (
-      player.x >= this.x &&
-      player.x <= this.x + this.width &&
-      player.y + player.height >= this.y &&
-      player.y <= this.y + this.height
+      player.x + player.width > this.x &&
+      player.x < this.x + this.width &&
+      player.y + player.height > this.y &&
+      player.y < this.y + this.height
     )
       gameOver();
   }
 }
 
 function createVerticalEnemy() {
-  console.log("vertical created");
   enemies.push(
     new Enemy({
       gravity: 0.1,
@@ -239,7 +241,7 @@ function createVerticalEnemy() {
         height: 25,
       },
       position: {
-        x: Math.random() * canvas.width,
+        x: player.x + Math.random() * 100,
         y: 0,
       },
     })
@@ -247,7 +249,6 @@ function createVerticalEnemy() {
 }
 
 function createHorizontalEnemy() {
-  console.log("horizontal created");
   enemies.push(
     new Enemy({
       gravity: 0,
@@ -269,12 +270,22 @@ function createHorizontalEnemy() {
 
 // Projectiles
 let projectiles = [];
+function clearProjectiles() {
+  projectiles = projectiles.filter(
+    (projectile) =>
+      projectile.x <= canvas.width &&
+      projectile.y <= canvas.height &&
+      !projectile.hasCollided
+  );
+}
+
 class Projectile {
   constructor() {
     this.x = player.x + player.width / 2;
     this.y = player.y;
     this.height = 5;
     this.width = 5;
+    this.hasCollided = false;
   }
 
   draw() {
@@ -308,7 +319,7 @@ function gameOver() {
 }
 
 async function addScoreToDb() {
-  const {hiscoreRef} = await fetchData();
+  const { hiscoreRef } = await fetchData();
   const currentScore = { name: rankingInput.value, score };
   await firestore.updateDoc(hiscoreRef, {
     users: firestore.arrayUnion(currentScore),
@@ -318,7 +329,7 @@ async function addScoreToDb() {
 }
 
 async function displayRanking(currentScore) {
-  const {sortedHiscoreData} = await fetchData();
+  const { sortedHiscoreData } = await fetchData();
   const top10 = sortedHiscoreData.slice(0, 10);
   const currentScorePosition = sortedHiscoreData.findIndex(
     (user) =>
@@ -326,13 +337,12 @@ async function displayRanking(currentScore) {
   );
 }
 
-
 async function fetchData() {
   const hiscoreRef = firestore.doc(db, "ranking", "hiscores");
   const hiscoreSnap = await firestore.getDoc(hiscoreRef);
-  const hiscoreData = hiscoreSnap.data();  
+  const hiscoreData = hiscoreSnap.data();
   const sortedHiscoreData = hiscoreData.users.sort(
     (user1, user2) => user2.score - user1.score
   );
-  return {hiscoreRef, hiscoreSnap, hiscoreData, sortedHiscoreData }
+  return { hiscoreRef, hiscoreSnap, hiscoreData, sortedHiscoreData };
 }

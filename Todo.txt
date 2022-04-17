@@ -1,6 +1,0 @@
-/* TODO */
-* Clean code for:
-    Array Methods
-    Application Website
-
-* Customize github profile

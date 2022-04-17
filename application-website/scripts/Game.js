@@ -308,15 +308,31 @@ function gameOver() {
 }
 
 async function addScoreToDb() {
+  const {hiscoreRef} = await fetchData();
+  const currentScore = { name: rankingInput.value, score };
+  await firestore.updateDoc(hiscoreRef, {
+    users: firestore.arrayUnion(currentScore),
+  });
+  displayRanking(currentScore);
+  score = 0;
+}
+
+async function displayRanking(currentScore) {
+  const {sortedHiscoreData} = await fetchData();
+  const top10 = sortedHiscoreData.slice(0, 10);
+  const currentScorePosition = sortedHiscoreData.findIndex(
+    (user) =>
+      user.name === currentScore.name && user.score === currentScore.score
+  );
+}
+
+
+async function fetchData() {
   const hiscoreRef = firestore.doc(db, "ranking", "hiscores");
   const hiscoreSnap = await firestore.getDoc(hiscoreRef);
-  const hiscoreData = hiscoreSnap.data();
-  console.log(hiscoreData);
-
-  await firestore.updateDoc(hiscoreRef, {
-    users: firestore.arrayUnion({
-      [rankingInput.value]: score,
-    }),
-  });
-  score = 0;
+  const hiscoreData = hiscoreSnap.data();  
+  const sortedHiscoreData = hiscoreData.users.sort(
+    (user1, user2) => user2.score - user1.score
+  );
+  return {hiscoreRef, hiscoreSnap, hiscoreData, sortedHiscoreData }
 }

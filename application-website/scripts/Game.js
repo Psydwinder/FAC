@@ -29,7 +29,6 @@ let horizontalInterval = 2000;
 function init() {
   if (hasGameStarted) return;
   hasGameStarted = true;
-  resetCanvas();
   setIntervals();
   window.addEventListener("keydown", handleKeyDown);
   window.addEventListener("keyup", handleKeyUp);
@@ -37,9 +36,9 @@ function init() {
   function drawGame() {
     if (hasGameStarted) {
       window.requestAnimationFrame(drawGame);
-      resetCanvas();
       drawScore();
-
+      background.draw();
+      // drawGameBackground();
       updateObjects();
       movePlayer();
       clearEnemies();
@@ -90,7 +89,8 @@ function drawGameBackground() {
   // Background Image NightForest by saukgp - https://saurabhkgp.itch.io/pixel-art-forest-background-simple-seamless-parallax-ready-for-2d-platformer-s
   const backgroundImg = new Image();
   backgroundImg.src = "./media/game-assets/game-background.png";
-  backgroundImg.onload = () => ctx.drawImage(backgroundImg, 0, 0);
+  backgroundImg.onload = () =>
+    ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height);
 }
 
 function drawScore() {
@@ -99,6 +99,35 @@ function drawScore() {
   ctx.fillText(`Score:  ${score}`, canvas.width - 120, 30);
   ctx.fillText(`Hi-score:  ${localStorage.hiScore}`, canvas.width - 120, 50);
 }
+
+class Sprite {
+  constructor({ position, dimensions, imageSrc }) {
+    this.x = position.x;
+    this.y = position.y;
+    this.width = dimensions.width;
+    this.height = dimensions.height;
+    this.imageSrc = imageSrc;
+  }
+
+  draw() {
+    this.image = new Image();
+    this.image.src = this.imageSrc;
+    this.image.onload = () =>
+      ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+  }
+}
+
+const background = new Sprite({
+  position: {
+    x: 0,
+    y: 0,
+  },
+  dimensions: {
+    height: canvas.height,
+    width: canvas.width,
+  },
+  imageSrc: "./media/game-assets/game-background.png",
+});
 
 class Character {
   constructor({ position, velocity, dimensions, gravity = 0.7 }) {
@@ -120,7 +149,7 @@ class Character {
     this.x += this.velocity.x;
     this.y += this.velocity.y;
 
-    this.y + this.height + this.velocity.y >= canvas.height
+    this.y + this.height + this.velocity.y >= canvas.height - 95
       ? (this.velocity.y = 0)
       : (this.velocity.y += this.gravity);
   }
@@ -138,7 +167,7 @@ const player = new Character({
   },
   position: {
     x: canvas.width / 2,
-    y: canvas.height - 25,
+    y: canvas.height - 200,
   },
 });
 
@@ -153,7 +182,7 @@ function handleKeyDown({ key }) {
   if (key === "d") return changeDirection("right");
   if (key === "a") return changeDirection("left");
   // Check if player is on ground to allow jump
-  if (key === "k" && player.y + player.height >= canvas.height)
+  if (key === "k" && player.y + player.height >= canvas.height - 95)
     player.velocity.y = -15;
   if (key === "j") shoot();
 }
@@ -212,7 +241,7 @@ class Enemy extends Character {
         this.hp -= 1;
         projectile.hasCollided = true;
         score += 50;
-        if(this.hp === 0) this.hasCollided = true;
+        if (this.hp === 0) this.hasCollided = true;
       }
     });
   }
@@ -262,7 +291,7 @@ function createHorizontalEnemy() {
       },
       position: {
         x: -25,
-        y: canvas.height - player.height,
+        y: canvas.height - player.height - 95,
       },
     })
   );
@@ -330,18 +359,15 @@ async function addScoreToDb() {
 
 async function displayRanking(currentScore) {
   const { sortedHiscoreData } = await fetchData();
-  const top10Div = document.querySelector('.ranking__top10');
+  const top10Div = document.querySelector(".ranking__top10");
   const top10 = sortedHiscoreData.slice(0, 10);
-  const displayTop10 = () => top10.forEach(({name, score}) => {
-  })
+  const displayTop10 = () => top10.forEach(({ name, score }) => {});
   const currentScorePosition = sortedHiscoreData.findIndex(
     (user) =>
       user.name === currentScore.name && user.score === currentScore.score
   );
 
-
-
-    top10Div.innerText = top10;
+  top10Div.innerText = top10;
 }
 
 async function fetchData() {

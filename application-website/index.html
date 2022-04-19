@@ -164,10 +164,20 @@
             Try and beat my highscore!
           </p>
           <canvas id="game" height="150px" width="150px"></canvas>
-          <div class="ranking__form">
-            <h3>Name</h3>
-            <input class="ranking__input" type="text" />
-            <button class="ranking__button">Submit</button>
+          <div class="ranking">
+            <ul class="ranking__top10--list">
+              <template class="ranking-template">
+                <li class="ranking__top10--item">
+                  <p class="ranking__name"></p>
+                  <p class="ranking__score"></p>
+                </li>
+              </template>
+            </ul>
+            <div class="ranking__form">
+              <h3>Name</h3>
+              <input class="ranking__input" type="text" />
+              <button class="ranking__button">Submit</button>
+            </div>
           </div>
         </section>
       </div>

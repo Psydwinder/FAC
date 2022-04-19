@@ -330,11 +330,18 @@ async function addScoreToDb() {
 
 async function displayRanking(currentScore) {
   const { sortedHiscoreData } = await fetchData();
+  const top10Div = document.querySelector('.ranking__top10');
   const top10 = sortedHiscoreData.slice(0, 10);
+  const displayTop10 = () => top10.forEach(({name, score}) => {
+  })
   const currentScorePosition = sortedHiscoreData.findIndex(
     (user) =>
       user.name === currentScore.name && user.score === currentScore.score
   );
+
+
+
+    top10Div.innerText = top10;
 }
 
 async function fetchData() {

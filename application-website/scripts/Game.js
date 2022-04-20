@@ -14,7 +14,7 @@ const rankingSaveBtn = document.querySelector(".ranking__button");
 // Game dimensions
 canvas.height = 360;
 canvas.width = 620;
-const floorPositionY = canvas.height - 110;
+const floorPositionY = canvas.height - 145;
 
 canvas.addEventListener("click", init);
 rankingSaveBtn.addEventListener("click", addScoreToDb);
@@ -194,7 +194,7 @@ const player = new Character({
     height: 110,
   },
   scale: 0.85,
-  imageSrc: "./media/game-assets/Idle.png",
+  imageSrc: "./media/game-assets/idle-right.png",
 });
 
 // Player Movement
@@ -208,10 +208,7 @@ function handleKeyDown({ key }) {
   if (key === "d") return changeDirection("right");
   if (key === "a") return changeDirection("left");
   // Check if player is on ground to allow jump
-  if (
-    key === "k" &&
-    player.y + player.height >= floorPositionY - player.height
-  ) {
+  if (key === "k" && player.y >= floorPositionY) {
     player.velocity.y = -15;
   }
   if (key === "j") shoot();
@@ -225,6 +222,9 @@ function handleKeyUp({ key }) {
 function changeDirection(direction) {
   directions[direction] = true;
   lastDirection = direction;
+  player.imageSrc = `./media/game-assets/idle-${direction}.png`;
+  if (direction === "left") player.frame.x = 82;
+  if (direction === "right") player.frame.x = 110;
 }
 
 function movePlayer() {
@@ -348,7 +348,7 @@ class Projectile {
   }
 
   draw() {
-    ctx.fillStyle = "white";
+    ctx.fillStyle = "#29072e";
     ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 

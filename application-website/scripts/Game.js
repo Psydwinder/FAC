@@ -22,6 +22,7 @@ const floorPositionY = canvas.height - 145;
 gameBtn.addEventListener("click", init);
 
 let hasGameStarted = false;
+let isMusicPlaying = false;
 let score = 0;
 let gameVelocity;
 let createVerticalEnemies;
@@ -33,6 +34,10 @@ let horizontalInterval = 2000;
 function init() {
   gameForm.style = "display: none";
   if (hasGameStarted) return;
+  if (!isMusicPlaying) {
+    playSound("music.mp3");
+    isMusicPlaying = true;
+  }
   hasGameStarted = true;
   setIntervals();
   window.addEventListener("keydown", handleKeyDown);
@@ -88,6 +93,13 @@ function updateDifficulty() {
     );
     createVerticalEnemies = setInterval(createVerticalEnemy, verticalInterval);
   }
+}
+
+function playSound(soundName, volume = 1) {
+  const sound = new Audio(`./media/game-assets/sfx/${soundName}`);
+  sound.volume = volume;
+  sound.play();
+  console.log("sound played");
 }
 
 function drawGameBackground() {
@@ -275,6 +287,7 @@ class Enemy extends Character {
         projectile.hasCollided = true;
         score += 50;
         if (this.hp === 0) this.hasCollided = true;
+        playSound("hit.mp3", 0.2);
       }
     });
   }
@@ -379,12 +392,14 @@ class Projectile {
 
 function shoot() {
   projectiles.push(new Projectile());
+  playSound("shoot.mp3", 0.2);
 }
 
 function gameOver() {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "white";
   ctx.fillText("Game Over!", canvas.width / 2, canvas.height / 2);
+  playSound("game-over.mp3", 1);
   hasGameStarted = false;
   enemies = [];
   projectiles = [];

@@ -47,8 +47,8 @@ function init() {
     if (hasGameStarted) {
       window.requestAnimationFrame(drawGame);
       drawScore();
-      background.draw();
-      // drawGameBackground();
+      // background.draw();
+      drawGameBackground();
       updateObjects();
       movePlayer();
       clearEnemies();
@@ -111,6 +111,8 @@ function drawGameBackground() {
 }
 
 function drawScore() {
+  ctx.fillStyle = "black";
+  ctx.fillRect(canvas.width - 120, 0, 120, 70);
   ctx.font = "16px Arial";
   ctx.fillStyle = "white";
   ctx.fillText(`Score:  ${score}`, canvas.width - 120, 30);
@@ -374,13 +376,13 @@ class Projectile {
   constructor() {
     this.x = player.x + player.width / 2;
     this.y = player.y;
-    this.height = 5;
-    this.width = 5;
+    this.height = 7;
+    this.width = 7;
     this.hasCollided = false;
   }
 
   draw() {
-    ctx.fillStyle = "#29072e";
+    ctx.fillStyle = "#cf2527";
     ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 

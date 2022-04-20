@@ -161,22 +161,26 @@
         <section id="bored">
           <h2 class="section__title">Bored?</h2>
           <p class="section__paragraph bored__paragraph">
-            Try and beat my highscore!
+            Try and beat my highscore! <br />
+            Whenever you manage to beat a top 10 score, the hall of fame will be
+            updated!
           </p>
-          <canvas id="game" height="150px" width="150px"></canvas>
           <div class="ranking">
-            <ul class="ranking__top10--list">
-              <template class="ranking-template">
-                <li class="ranking__top10--item">
-                  <p class="ranking__name"></p>
-                  <p class="ranking__score"></p>
-                </li>
-              </template>
-            </ul>
-            <div class="ranking__form">
-              <h3>Name</h3>
-              <input class="ranking__input" type="text" />
-              <button class="ranking__button">Submit</button>
+            <h3>Hall of Fame - TOP 10</h3>
+            <ul class="ranking__top10--list"></ul>
+            <template class="ranking-template">
+              <li class="ranking__top10--item">
+                <p class="ranking__name"></p>
+                <p class="ranking__score"></p>
+              </li>
+            </template>
+          </div>
+          <div id="game">
+            <canvas id="game__canvas" height="150px" width="150px"></canvas>
+            <div class="game__form">
+              <h3>Tell me your name</h3>
+              <input class="game__input" type="text" />
+              <button class="game__button">Play</button>
             </div>
           </div>
         </section>

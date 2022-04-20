@@ -638,11 +638,42 @@ section.reveal {
 
 .bored__paragraph {
   width: fit-content;
+  text-align: center;
 }
 
 #game {
+  position: relative;
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+.game__form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ranking {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  width: 620px;
+  height: 360px;
+}
+
+.ranking__top10--list {
+  margin-top: 2rem;
+  list-style: none;
+  padding: 0;
+}
+
+.ranking__top10--item {
+  display: flex;
+  justify-content: space-between;
+  width: 20rem;
+}
+
 
 #background {
   position: fixed;
@@ -667,6 +698,9 @@ section.reveal {
   opacity: 0;
   z-index: -1;
 }
+
+
+
 
 /* Responsiveness */
 @media screen and (min-width: 768px) {

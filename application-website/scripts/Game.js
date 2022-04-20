@@ -1,23 +1,25 @@
 // TODO
-// Display top 10 leaderboard
-// Change sprites
 // Add SFX
 // Refactor
+// Improve hitboxes
+// Add sprite animations
+// Improve Ranking form
+// Display player's latest hiscore compared to leaderboard
 
 import { firestore, db } from "./firebase.js";
 
-const canvas = document.querySelector("#game");
+const canvas = document.querySelector("#game__canvas");
 const ctx = canvas.getContext("2d");
-const rankingInput = document.querySelector(".ranking__input");
-const rankingSaveBtn = document.querySelector(".ranking__button");
+const gameForm = document.querySelector(".game__form");
+const gameInput = document.querySelector(".game__input");
+const gameBtn = document.querySelector(".game__button");
 
 // Game dimensions
 canvas.height = 360;
 canvas.width = 620;
 const floorPositionY = canvas.height - 145;
 
-canvas.addEventListener("click", init);
-rankingSaveBtn.addEventListener("click", addScoreToDb);
+gameBtn.addEventListener("click", init);
 
 let hasGameStarted = false;
 let score = 0;
@@ -29,6 +31,7 @@ let verticalInterval = 1000;
 let horizontalInterval = 2000;
 
 function init() {
+  gameForm.style = "display: none";
   if (hasGameStarted) return;
   hasGameStarted = true;
   setIntervals();
@@ -310,7 +313,7 @@ function createVerticalEnemy() {
         height: 53,
       },
       scale: 2,
-      imageSrc: "./media/game-assets/Blue_witch/B_witch_charge.png",
+      imageSrc: "./media/game-assets/Blue_witch/B_witch_idle.png",
     })
   );
 }
@@ -390,30 +393,26 @@ function gameOver() {
   horizontalInterval = 2000;
   verticalInterval = 1000;
   addScoreToDb();
+  gameForm.style.display = "block";
   clearIntervals();
 }
 
 async function addScoreToDb() {
-  const { hiscoreRef } = await fetchData();
-  const currentScore = { name: rankingInput.value, score };
+  const { hiscoreRef, hiscoreData } = await fetchData();
+  const tempArr = hiscoreData.users;
+  const currentScore = { name: gameInput.value, score };
+  tempArr.push(currentScore);
   await firestore.updateDoc(hiscoreRef, {
-    users: firestore.arrayUnion(currentScore),
+    users: tempArr,
   });
-  displayRanking(currentScore);
+  displayRanking();
+
   score = 0;
 }
 
-async function displayRanking(currentScore) {
+async function displayRanking() {
   const { sortedHiscoreData } = await fetchData();
-  const top10Div = document.querySelector(".ranking__top10");
-  const top10 = sortedHiscoreData.slice(0, 10);
-  const displayTop10 = () => top10.forEach(({ name, score }) => {});
-  const currentScorePosition = sortedHiscoreData.findIndex(
-    (user) =>
-      user.name === currentScore.name && user.score === currentScore.score
-  );
-
-  top10Div.innerText = top10;
+  displayTop10(sortedHiscoreData);
 }
 
 async function fetchData() {
@@ -425,3 +424,27 @@ async function fetchData() {
   );
   return { hiscoreRef, hiscoreSnap, hiscoreData, sortedHiscoreData };
 }
+
+function displayTop10(sortedHiscoreData) {
+  const top10Div = document.querySelector(".ranking__top10");
+  const top10 = sortedHiscoreData.slice(0, 10);
+  const rankingList = document.querySelector(".ranking__top10--list");
+  const itemTemplate = document.querySelector(".ranking-template");
+
+  rankingList.innerHTML = "";
+  top10.forEach(({ name, score }, index) => {
+    const newItemClone = itemTemplate.content.cloneNode(true);
+    const newItem = newItemClone.querySelector(".ranking__top10--item");
+    const newItemName = newItemClone.querySelector(".ranking__name");
+    const newItemScore = newItemClone.querySelector(".ranking__score");
+
+    newItemName.innerText = `${index + 1} - ${
+      name === "" ? "Anonymous" : name
+    }`;
+    newItemScore.innerText = score;
+    newItem.append(newItemName, newItemScore);
+    rankingList.append(newItem);
+  });
+}
+
+displayRanking();

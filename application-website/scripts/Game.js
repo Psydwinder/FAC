@@ -11,8 +11,10 @@ const ctx = canvas.getContext("2d");
 const rankingInput = document.querySelector(".ranking__input");
 const rankingSaveBtn = document.querySelector(".ranking__button");
 
-canvas.height = 500;
-canvas.width = 500;
+// Game dimensions
+canvas.height = 360;
+canvas.width = 620;
+const floorPositionY = canvas.height - 110;
 
 canvas.addEventListener("click", init);
 rankingSaveBtn.addEventListener("click", addScoreToDb);
@@ -68,7 +70,7 @@ function clearIntervals() {
 function updateObjects() {
   player.update();
   projectiles.forEach((projectile) => projectile.update());
-  enemies.forEach((enemy) => enemy.update());
+  // enemies.forEach((enemy) => enemy.update());
   gameVelocity = score / 200;
 }
 
@@ -101,19 +103,31 @@ function drawScore() {
 }
 
 class Sprite {
-  constructor({ position, dimensions, imageSrc }) {
+  constructor({ position, dimensions, imageSrc, frame, scale = 1 }) {
     this.x = position.x;
     this.y = position.y;
     this.width = dimensions.width;
     this.height = dimensions.height;
+    this.frame = frame;
     this.imageSrc = imageSrc;
+    this.scale = scale;
   }
 
   draw() {
     this.image = new Image();
     this.image.src = this.imageSrc;
     this.image.onload = () =>
-      ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+      ctx.drawImage(
+        this.image, // image,
+        this.frame.x, // subRectangleX,
+        this.frame.y, // subRectangleY,
+        this.frame.width, // subRectangleWidth,
+        this.frame.height, // subRectangleHeight,
+        this.x, // destinationX,
+        this.y, // destinationY,
+        this.width * this.scale, // destinationWidth,
+        this.height * this.scale // destinationHeight
+      );
   }
 }
 
@@ -126,11 +140,19 @@ const background = new Sprite({
     height: canvas.height,
     width: canvas.width,
   },
+  frame: {
+    x: 0,
+    y: 0,
+    width: canvas.width,
+    height: canvas.height,
+  },
   imageSrc: "./media/game-assets/game-background.png",
 });
 
-class Character {
-  constructor({ position, velocity, dimensions, gravity = 0.7 }) {
+class Character extends Sprite {
+  constructor(obj) {
+    const { position, velocity, dimensions, gravity = 0.7 } = obj;
+    super(obj);
     this.x = position.x;
     this.y = position.y;
     this.velocity = velocity;
@@ -139,17 +161,12 @@ class Character {
     this.gravity = gravity;
   }
 
-  draw(color = "blue") {
-    ctx.fillStyle = color;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
-  }
-
   update() {
     this.draw();
     this.x += this.velocity.x;
     this.y += this.velocity.y;
 
-    this.y + this.height + this.velocity.y >= canvas.height - 95
+    this.y + this.velocity.y >= floorPositionY
       ? (this.velocity.y = 0)
       : (this.velocity.y += this.gravity);
   }
@@ -162,13 +179,22 @@ const player = new Character({
     y: 0,
   },
   dimensions: {
-    width: 25,
-    height: 25,
+    width: 65,
+    height: 110,
   },
   position: {
     x: canvas.width / 2,
-    y: canvas.height - 200,
+    y: floorPositionY,
   },
+
+  frame: {
+    x: 110,
+    y: 72,
+    width: 65,
+    height: 110,
+  },
+  scale: 0.85,
+  imageSrc: "./media/game-assets/Idle.png",
 });
 
 // Player Movement
@@ -182,8 +208,12 @@ function handleKeyDown({ key }) {
   if (key === "d") return changeDirection("right");
   if (key === "a") return changeDirection("left");
   // Check if player is on ground to allow jump
-  if (key === "k" && player.y + player.height >= canvas.height - 95)
+  if (
+    key === "k" &&
+    player.y + player.height >= floorPositionY - player.height
+  ) {
     player.velocity.y = -15;
+  }
   if (key === "j") shoot();
 }
 
@@ -223,7 +253,7 @@ class Enemy extends Character {
   }
 
   update() {
-    this.draw("red");
+    this.draw();
     this.detectProjectileCollision();
     this.detectPlayerCollision();
     this.x += this.velocity.x * this.leftOrRight;
@@ -291,7 +321,7 @@ function createHorizontalEnemy() {
       },
       position: {
         x: -25,
-        y: canvas.height - player.height - 95,
+        y: canvas.height - floorPositionY,
       },
     })
   );

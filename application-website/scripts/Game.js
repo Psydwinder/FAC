@@ -70,7 +70,7 @@ function clearIntervals() {
 function updateObjects() {
   player.update();
   projectiles.forEach((projectile) => projectile.update());
-  // enemies.forEach((enemy) => enemy.update());
+  enemies.forEach((enemy) => enemy.update());
   gameVelocity = score / 200;
 }
 
@@ -179,8 +179,8 @@ const player = new Character({
     y: 0,
   },
   dimensions: {
-    width: 65,
-    height: 110,
+    width: 52,
+    height: 100,
   },
   position: {
     x: canvas.width / 2,
@@ -188,10 +188,10 @@ const player = new Character({
   },
 
   frame: {
-    x: 110,
-    y: 72,
-    width: 65,
-    height: 110,
+    x: 82,
+    y: 74,
+    width: 52,
+    height: 100,
   },
   scale: 0.85,
   imageSrc: "./media/game-assets/idle-right.png",
@@ -249,7 +249,7 @@ class Enemy extends Character {
     super(obj);
     this.leftOrRight = Math.random() <= 0.5 ? -1 : 1;
     this.hasCollided = false;
-    this.hp = 2;
+    this.hp = 1;
   }
 
   update() {
@@ -296,13 +296,21 @@ function createVerticalEnemy() {
         y: Math.random() * 5 + gameVelocity,
       },
       dimensions: {
-        width: 25,
-        height: 25,
+        width: 30,
+        height: 40,
       },
       position: {
         x: player.x + Math.random() * 100,
         y: 0,
       },
+      frame: {
+        x: 0,
+        y: 143,
+        width: 42,
+        height: 53,
+      },
+      scale: 2,
+      imageSrc: "./media/game-assets/Blue_witch/B_witch_charge.png",
     })
   );
 }
@@ -316,13 +324,21 @@ function createHorizontalEnemy() {
         y: 0,
       },
       dimensions: {
-        width: 25,
-        height: 25,
+        width: 30,
+        height: 40,
       },
       position: {
         x: -25,
-        y: canvas.height - floorPositionY,
+        y: floorPositionY,
       },
+      frame: {
+        x: 0,
+        y: 143,
+        width: 42,
+        height: 53,
+      },
+      scale: 2,
+      imageSrc: "./media/game-assets/Blue_witch/B_witch_charge.png",
     })
   );
 }

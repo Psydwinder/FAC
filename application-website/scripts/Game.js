@@ -143,11 +143,11 @@ function drawGameBackground() {
 
 class Sprite {
   constructor({ position, dimensions, imageSrc, frame, scale = 1 }) {
-    this.x = position.x;
-    this.y = position.y;
     this.width = dimensions.width;
     this.height = dimensions.height;
     this.frame = frame;
+    this.x = position.x;
+    this.y = position.y;
     this.imageSrc = imageSrc;
     this.scale = scale;
   }
@@ -350,7 +350,7 @@ function createVerticalEnemy() {
       },
       position: {
         x: player.x + Math.random() * 100,
-        y: 0,
+        y: 0 - 40, // - 40: enemy height
       },
       hitbox: {
         width: 30,

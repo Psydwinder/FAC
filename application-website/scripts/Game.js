@@ -37,6 +37,7 @@ function init() {
   if (!isMusicPlaying) {
     playSound("music.mp3");
     isMusicPlaying = true;
+    setTimeout(() => (isMusicPlaying = false), 100000);
   }
   hasGameStarted = true;
   setIntervals();

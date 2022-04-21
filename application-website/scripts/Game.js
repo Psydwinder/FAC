@@ -19,15 +19,6 @@ canvas.width = 620;
 const floorPositionY = canvas.height - 145;
 
 // Game init
-const bigAssets = {
-  music: "",
-  backgroundImg: new Image(),
-};
-
-function loadAssets() {
-  bigAssets.music = new Audio(`./media/game-assets/sfx/music.mp3`);
-  bigAssets.backgroundImg.src = "./media/game-assets/game-background.png";
-}
 gameBtn.addEventListener("click", init);
 
 // Game settings
@@ -42,17 +33,12 @@ let verticalInterval = 1000;
 let horizontalInterval = 2000;
 
 function init() {
-  console.log("loading");
-  loadAssets();
-
-  bigAssets.backgroundImg.onload = () => {
-    hasGameStarted = true;
-    loopBackgroundMusic();
-    toggleGameForm();
-    setIntervals();
-    addEventListeners();
-    drawGame();
-  };
+  hasGameStarted = true;
+  loopBackgroundMusic();
+  toggleGameForm();
+  setIntervals();
+  addEventListeners();
+  drawGame();
 }
 
 function toggleGameForm() {
@@ -147,7 +133,10 @@ function updateDifficulty() {
 }
 
 function drawGameBackground() {
-  ctx.drawImage(bigAssets.backgroundImg, 0, 0, canvas.width, canvas.height);
+  const backgroundImg = new Image();
+  backgroundImg.src = "./media/game-assets/game-background.png";
+  backgroundImg.onload = () =>
+    ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height);
 }
 
 class Sprite {

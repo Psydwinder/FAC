@@ -19,6 +19,8 @@ canvas.width = 620;
 const floorPositionY = canvas.height - 145;
 
 // Game init
+drawGameBackground();
+playSound("music.mp3", 0);
 gameBtn.addEventListener("click", init);
 
 // Game settings

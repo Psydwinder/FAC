@@ -1,5 +1,4 @@
 // TODO
-// Refactor
 // Improve hitboxes
 // Add sprite animations
 // Improve Ranking form
@@ -171,7 +170,7 @@ class Sprite {
 }
 class Character extends Sprite {
   constructor(obj) {
-    const { position, velocity, dimensions, gravity = 0.7 } = obj;
+    const { position, velocity, dimensions, gravity = 0.7, hitbox } = obj;
     super(obj);
     this.x = position.x;
     this.y = position.y;
@@ -179,6 +178,7 @@ class Character extends Sprite {
     this.width = dimensions.width;
     this.height = dimensions.height;
     this.gravity = gravity;
+    this.hitbox = hitbox;
   }
 
   update() {
@@ -196,7 +196,6 @@ let enemies = [];
 class Enemy extends Character {
   constructor(obj) {
     super(obj);
-    this.leftOrRight = Math.random() <= 0.5 ? -1 : 1;
     this.hasCollided = false;
     this.hp = 1;
   }
@@ -205,7 +204,7 @@ class Enemy extends Character {
     this.draw();
     this.detectProjectileCollision();
     this.detectPlayerCollision();
-    this.x += this.velocity.x * this.leftOrRight;
+    this.x += this.velocity.x;
     this.y += this.velocity.y;
   }
 
@@ -228,10 +227,10 @@ class Enemy extends Character {
 
   detectPlayerCollision() {
     if (
-      player.x + player.width > this.x &&
-      player.x < this.x + this.width &&
-      player.y + player.height > this.y &&
-      player.y < this.y + this.height
+      player.x + player.hitbox.width > this.x &&
+      player.x < this.x + this.hitbox.width &&
+      player.y + player.hitbox.height > this.y &&
+      player.y < this.y + this.hitbox.height
     )
       gameOver();
   }
@@ -271,6 +270,10 @@ const player = new Character({
   position: {
     x: canvas.width / 2 - 52, // 52 character width
     y: floorPositionY,
+  },
+  hitbox: {
+    width: 32,
+    height: 35,
   },
 
   frame: {
@@ -348,6 +351,10 @@ function createVerticalEnemy() {
         x: player.x + Math.random() * 100,
         y: 0,
       },
+      hitbox: {
+        width: 30,
+        height: 57,
+      },
       frame: {
         x: 0,
         y: 143,
@@ -375,6 +382,10 @@ function createHorizontalEnemy() {
       position: {
         x: -25,
         y: floorPositionY,
+      },
+      hitbox: {
+        width: 30,
+        height: 57,
       },
       frame: {
         x: 0,

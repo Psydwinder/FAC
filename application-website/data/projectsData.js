@@ -16,7 +16,7 @@ const projects = [
     img: "./media/functions.png",
     description:
       "With this console-only project I decided to create a mini-test environment, providing visual feedback whenever it passes or fails a test",
-    tags: ["HTML", "CSS", "JavaScript"],
+    tags: ["JavaScript"],
   },
   {
     name: "DOM Manipulation",
@@ -54,6 +54,27 @@ const projects = [
     img: "./media/application-website.png",
     description: `Despite its simplicity, this was the most challenging to build. The canvas generating spheres varying in speed, size and direction proved to be harder than initially thought.`,
     tags: ["HTML", "CSS", "JavaScript"],
+  },
+  {
+    name: "Objects",
+    liveDemo: "https://github.com/DogwishX/FAC/tree/main/objects/index.js",
+    sourceCode: "https://github.com/DogwishX/FAC/tree/main/objects/index.js",
+    subSection: "FAC",
+    img: "./media/objects.png",
+    description: `Prompt related to object manipulation. This file includes te following functions: capitalizeKeys(), stringToObject(), shoppingList() and mapObject()`,
+    tags: ["JavaScript"],
+  },
+  {
+    name: "Feature",
+    liveDemo:
+      "https://dogwishx.github.io/FAC/application-website/index.html#bored",
+    sourceCode:
+      "https://github.com/DogwishX/FAC/tree/main/application-website/scripts/Game.js",
+    subSection: "FAC",
+    img: "./media/feature.png",
+    description:
+      "The decision was to create a canvas game, where the user would input commands and the character would action accordingly. This project also includes a ranking, which is integrated with the Firestore Database",
+    tags: ["HTML", "JavaScript", "Firestore"],
   },
 ];
 

@@ -578,7 +578,7 @@ section.reveal {
 .project__item {
   margin-right: 1rem;
   font-family: monospace;
-  font-size: 1.2rem;
+  font-size: clamp(0.8rem, 2.5vw, 1.2rem);
 }
 
 .project__links {
@@ -826,7 +826,7 @@ section.reveal {
     display: flex;
   }
 
-  .bored-link {
+  .boredlink {
     display: block;
     order: 3;
   }

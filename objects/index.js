@@ -7,22 +7,22 @@ function capitaliseKeys(obj) {
 }
 
 function stringToObject(str) {
-  return objSplitTwice(str, ",", ":", 0, 1);
+  return splitObject(str, ",", ":", 0, 1);
 }
 
 function shoppingList(str) {
-  return objSplitTwice(str, ", ", " ", 1, 0);
+  return splitObject(str, ", ", " ", 1, 0);
 }
 
-function objSplitTwice(str, firstSplit, secondSplit, key, value) {
+function splitObject(str, firstSplit, secondSplit, keyIndex, valueIndex) {
   const newObj = {};
   if (str === "") return newObj;
 
   const firstSplitArr = str.split(firstSplit);
   firstSplitArr.forEach((item) => {
     const secondSplitArr = item.split(secondSplit);
-    const newKey = secondSplitArr[key];
-    const newValue = secondSplitArr[value];
+    const newKey = secondSplitArr[keyIndex];
+    const newValue = secondSplitArr[valueIndex];
     if (newValue === "0") return;
     newObj[newKey] = newValue;
   });

@@ -629,8 +629,12 @@ section.reveal {
   z-index: 1;
 }
 
+.bored-link {
+  display: none;
+}
+
 #bored {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -761,7 +765,7 @@ section.reveal {
   }
   .nav__item {
     font-size: 2rem;
-    margin: 0 2rem;
+    margin: 0 1rem;
   }
 
   .content section {
@@ -816,6 +820,15 @@ section.reveal {
   .featured__image:hover {
     cursor: pointer;
     opacity: 1;
+  }
+
+  #bored {
+    display: flex;
+  }
+
+  .bored-link {
+    display: block;
+    order: 3;
   }
 }
 

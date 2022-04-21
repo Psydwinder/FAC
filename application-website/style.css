@@ -647,13 +647,17 @@ section.reveal {
 }
 
 .game__form {
+  display: none;
+}
+
+.game__form--active {
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   top: 50%;
   left: 50%;
-  background-color:rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   padding: 2rem 4rem;
   transform: translate(-50%, -50%);
 }
@@ -663,22 +667,24 @@ section.reveal {
   flex-direction: column;
   align-items: center;
   margin-top: 2rem;
-  width: 620px;
-  height: 360px;
+  height: auto;
+  margin-bottom: 1rem;
 }
 
 .ranking__top10--list {
   margin-top: 2rem;
-  list-style: none;
-  padding: 0;
+  list-style: decimal;
 }
 
 .ranking__top10--item {
+  display: list-item;
+}
+
+.ranking__person-container {
   display: flex;
   justify-content: space-between;
   width: 20rem;
 }
-
 
 #background {
   position: fixed;
@@ -703,9 +709,6 @@ section.reveal {
   opacity: 0;
   z-index: -1;
 }
-
-
-
 
 /* Responsiveness */
 @media screen and (min-width: 768px) {

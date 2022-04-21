@@ -170,14 +170,16 @@
             <ul class="ranking__top10--list"></ul>
             <template class="ranking-template">
               <li class="ranking__top10--item">
-                <p class="ranking__name"></p>
-                <p class="ranking__score"></p>
+                <div class="ranking__person-container">
+                  <p class="ranking__name"></p>
+                  <p class="ranking__score"></p>
+                </div>
               </li>
             </template>
           </div>
           <div id="game">
             <canvas id="game__canvas" height="150px" width="150px"></canvas>
-            <div class="game__form">
+            <div class="game__form game__form--active">
               <h3>Tell me your name</h3>
               <input class="game__input" type="text" />
               <button class="game__button">Play</button>

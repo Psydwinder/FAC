@@ -19,6 +19,7 @@ canvas.width = 620;
 const floorPositionY = canvas.height - 145;
 
 // Game init
+canvas.onload = () => drawGameBackground();
 gameBtn.addEventListener("click", init);
 
 // Game settings

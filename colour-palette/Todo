@@ -1,0 +1,13 @@
+Main:
+    ☐ Create skeleton for each colour
+    ☐ Create Colour constructor class
+    ☐ Generate random colour for all divs
+    ☐ Add color picker
+    ☐ Export colour palette
+    ☐ Generate related colours
+    ☐ Save colour palettes to localStorage
+
+Stretch:
+    ☐ Add lock functionality
+    ☐ Generate color palette with AI
+    ☐ Add website template to apply colours

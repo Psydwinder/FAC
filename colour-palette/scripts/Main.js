@@ -9,16 +9,10 @@ coloursGenerateBtn.addEventListener(
   "click",
   renderAllColours
 );
-coloursSaveBtn.addEventListener(
-  "click",
-  savePalette
-);
-
-function randomNumber(possibilities) {
-  return Math.floor(
-    Math.random() * possibilities
-  );
-}
+// coloursSaveBtn.addEventListener(
+//   "click",
+//   savePalette
+// );
 
 class Colour {
   constructor({
@@ -165,6 +159,10 @@ function renderAllColours() {
   }
 }
 
-function savePalette() {}
+function randomNumber(possibilities) {
+  return Math.floor(
+    Math.random() * possibilities
+  );
+}
 
 renderAllColours();

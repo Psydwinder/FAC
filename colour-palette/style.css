@@ -40,6 +40,7 @@ header {
   flex-direction: column;
   width: 100%;
   height: var(--main-height);
+  background-color: black;
 }
 
 .colours__item {
@@ -50,6 +51,12 @@ header {
 
 .colours__representation {
   height: var(--colours-item-height);
+  opacity: 0.9;
+}
+
+.colours__representation:hover {
+  opacity: 1;
+  cursor: pointer;
 }
 
 .colours__input {
@@ -79,6 +86,7 @@ header {
   top: 0;
   margin: 0.5rem;
   font-size: 1.5rem;
+  text-transform: capitalize;
 }
 /* Is colour Dark or Light?  */
 
@@ -99,8 +107,8 @@ header {
 }
 
 .colours__item--dark .colours__input:hover {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 .colours__item--light .colours__input:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
 }

@@ -1,13 +1,106 @@
+:root {
+  font-size: 62.5%;
+
+  --header-height: 5rem;
+  --bottom-nav-height: 5rem;
+  --colours-container-height: calc(
+    100vh - var(--header-height) -
+      var(--bottom-nav-height)
+  );
+  --colours-item-height: calc(
+    var(--colours-container-height) / 6
+  );
+}
+
 body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.6rem;
+  background-color: rgb(255, 255, 255);
+}
+
+header {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  font-family: Arial, Helvetica, sans-serif;
-  color: white;
-  background-color: rgb(10%, 10%, 10%);
+  height: var(--header-height);
 }
 
 .title {
+  font-size: 2rem;
+  color: #4f4f4f;
+}
+
+.colours__container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: var(--main-height);
+}
+
+.colours__item {
+  position: relative;
+  height: var(--colours-item-height);
+  width: 100%;
+}
+
+.colours__representation {
+  height: var(--colours-item-height);
+}
+
+.colours__input {
+  padding: 1rem 0.5rem;
+  border: none;
   text-align: center;
+  background-color: transparent;
+}
+
+.colours__input--empty {
+  min-width: 5rem;
+  border-radius: 0.5rem;
+}
+
+.colours__input:hover {
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+
+.colours__input:focus {
+  outline: none;
+  border: none;
+}
+
+.colours__name {
+  position: absolute;
+  top: 0;
+  margin: 0.5rem;
+  font-size: 1.5rem;
+}
+/* Is colour Dark or Light?  */
+
+.colours__item--light .colours__input {
+  color: white;
+}
+
+.colours__item--dark .colours__input {
+  color: black;
+}
+
+.colours__item--light .colours__input--empty {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.colours__item--dark .colours__input--empty {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.colours__item--dark .colours__input:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.colours__item--light .colours__input:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }

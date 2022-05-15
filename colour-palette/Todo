@@ -1,7 +1,7 @@
 Main:
-    ☐ Create Colour constructor class
+    ✔ Create Colour constructor class @done(22-05-13 16:09)
     ☐ Create skeleton for each colour
-    ☐ Generate random colour for all divs
+    ✔ Generate random colour for all divs @done(22-05-15 04:34)
     ☐ Add color picker
     ☐ Export colour palette
     ☐ Generate related colours

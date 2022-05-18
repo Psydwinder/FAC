@@ -23,10 +23,6 @@ class Colour {
     this.colour = colour;
     this.colourName = colourName;
     this.isLocked = isLocked;
-
-    // DOM related
-    this.container =
-      document.createElement("div");
   }
 
   generateRandomColor() {
@@ -40,28 +36,44 @@ class Colour {
     return newColourStr;
   }
 
-  render() {
+  create() {
+    // DOM related
     const coloursContainer =
       document.querySelector(
         ".colours__container"
       );
+    this.container =
+      document.createElement("div");
+    this.render();
+    coloursContainer.append(this.container);
+  }
+
+  render() {
     this.container.innerHTML = `
       <div 
-        class='colours__representation' style='background-color: ${this.colour};'
-      ></div>
-      <input 
-        class='colours__input colours__name'
-        type='text'
-        value='${this.colourName}'
-      ></input>
+        class='colours__representation' style='background-color: ${
+          this.colour
+        };'
+      >
+        <input 
+          class='colours__input colours__name'
+          type='text'
+          value='${this.colourName}'
+        ></input>
+        <div class='colours__buttons'>
+          <i class="colours__lock fa-solid fa-lock${
+            this.isLocked ? "" : "-open"
+          }"></i>
+        </div>
+      </div>
     `;
-    coloursContainer.append(this.container);
     this.resizeInput();
     this.applyStyle();
     this.addEventListeners();
   }
 
   addEventListeners() {
+    // Inputs
     const inputNodeList =
       this.container.querySelectorAll("input");
     inputNodeList.forEach((input) => {
@@ -74,6 +86,15 @@ class Colour {
         this.resizeInput.bind(this)
       );
     });
+
+    // Buttons
+    const lockIcon = this.container.querySelector(
+      ".colours__lock"
+    );
+    lockIcon.addEventListener(
+      "click",
+      this.toggleIsLocked.bind(this)
+    );
   }
 
   applyStyle() {
@@ -129,12 +150,16 @@ class Colour {
       maxPerceivedBrightness / 2
     );
   }
+
+  toggleIsLocked({ currentTarget }) {
+    this.isLocked = !this.isLocked;
+    this.render();
+  }
 }
 
 const colours = {
   primary: new Colour({
     colourName: "primary",
-    isLocked: true,
   }),
   secondary: new Colour({
     colourName: "secondary",
@@ -152,10 +177,15 @@ const colours = {
 const colourPalettes = {};
 
 function renderAllColours() {
+  actionAllColours("generateRandomColor");
+  actionAllColours("render");
+}
+
+function actionAllColours(fn) {
   for (let colour in colours) {
+    console.log(colours[colour].isLocked);
     if (!colours[colour].isLocked)
-      colours[colour].generateRandomColor();
-    colours[colour].render();
+      colours[colour][fn]();
   }
 }
 
@@ -165,4 +195,4 @@ function randomNumber(possibilities) {
   );
 }
 
-renderAllColours();
+actionAllColours("create");

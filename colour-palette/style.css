@@ -50,6 +50,9 @@ header {
 }
 
 .colours__representation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   height: var(--colours-item-height);
   opacity: 0.9;
 }
@@ -82,12 +85,24 @@ header {
 }
 
 .colours__name {
-  position: absolute;
   top: 0;
   margin: 0.5rem;
   font-size: 1.5rem;
   text-transform: capitalize;
 }
+
+.colours__buttons {
+  margin: 2rem;
+}
+
+.colours__lock {
+  transform: scale(0.8);
+}
+
+.fa-lock-open {
+  transform: translateX(25%) scale(0.8);
+}
+
 /* Is colour Dark or Light?  */
 
 .colours__item--light .colours__input {
@@ -111,4 +126,12 @@ header {
 }
 .colours__item--light .colours__input:hover {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+.colours__item--dark .colours__buttons {
+  color: black;
+}
+.colours__item--light .colours__buttons {
+  color: white;
+  opacity: 0.8;
 }

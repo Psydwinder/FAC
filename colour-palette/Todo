@@ -8,6 +8,6 @@ Main:
     ☐ Save colour palettes to localStorage
 
 Stretch:
-    ☐ Add lock functionality
+    ✔ Add lock functionality @done(22-05-18 01:08)
     ☐ Generate color palette with AI
     ☐ Add website template to apply colours

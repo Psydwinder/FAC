@@ -18,6 +18,19 @@
         font-family: system-ui, sans-serif;
         padding: 1.5rem;
       }
+
+      section:not(:first-child) {
+        margin-top: 2rem;
+      }
+
+      section *:not(:first-child) {
+        margin-top: 1rem;
+      }
+
+      label + input,
+      label + textarea {
+        margin-top: 0.5rem;
+      }
     </style>
   </head>
   <body>

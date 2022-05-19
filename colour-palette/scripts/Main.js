@@ -26,7 +26,7 @@ class Colour {
       .map((colour) => this.convertToHexValue(colour))
       .join("");
 
-    return "#" + hexString;
+    return hexString.toUpperCase();
   }
 
   convertToHexValue(colour) {
@@ -47,35 +47,21 @@ class Colour {
       <div 
         class='colours__representation' style='background-color: ${this.rgb};'
       >
-        <input 
-          class='colours__input colours__name'
-          type='text'
-          value='${this.colourName}'
-        ></input>
+        <p class='colours__picker'>
+          ${this.hex}
+        </p>
         <div class='colours__buttons'>
+          <i class="colours__copy fa-solid fa-clone"></i>
           <i class="colours__lock fa-solid fa-lock${
             this.isLocked ? "" : "-open"
           }"></i>
-          <input type='color' value='${this.hex}' />
         </div>
       </div>
-    `;
-    this.resizeInput();
+          `;
+    // <input type='color' value='${this.hex}' />
+
     this.applyStyle();
     this.addEventListeners();
-  }
-
-  addEventListeners() {
-    // Inputs
-    const inputNodeList = this.container.querySelectorAll("input");
-    inputNodeList.forEach((input) => {
-      input.addEventListener("keydown", this.resizeInput.bind(this));
-      input.addEventListener("keyup", this.resizeInput.bind(this));
-    });
-
-    // Buttons
-    const lockIcon = this.container.querySelector(".colours__lock");
-    lockIcon.addEventListener("click", this.toggleIsLocked.bind(this));
   }
 
   applyStyle() {
@@ -91,18 +77,54 @@ class Colour {
     );
   }
 
-  resizeInput() {
-    const inputNodeList = this.container.querySelectorAll("input");
-    inputNodeList.forEach((input) => {
-      this.handleEmptyInput(input);
-      input.style.width = input.value.length + "ch";
-    });
+  addEventListeners() {
+    // Container
+    const colourRepresentation = this.container.querySelector(
+      ".colours__representation"
+    );
+    colourRepresentation.addEventListener(
+      "mouseenter",
+      this.handleColourContainerMouseEnter.bind(this)
+    );
+    colourRepresentation.addEventListener(
+      "mouseleave",
+      this.handleColourContainerMouseLeave.bind(this)
+    );
+
+    // Colour picker
+    const colourPicker = this.container.querySelector(".colours__picker");
+    colourPicker.addEventListener("click", this.displayColorPicker.bind(this));
+
+    // Lock
+    const lockIcon = this.container.querySelector(".colours__lock");
+    lockIcon.addEventListener("click", this.toggleIsLocked.bind(this));
+
+    // Copy
+    const copyIcon = this.container.querySelector(".colours__copy");
+    copyIcon.addEventListener("click", this.copyToClipboard.bind(this));
   }
 
-  handleEmptyInput(input) {
-    if (input.value.length === 0)
-      return input.classList.add("colours__input--empty");
-    input.classList.remove("colours__input--empty");
+  handleColourContainerMouseEnter() {
+    const buttons = this.container.querySelector(".colours__buttons");
+    buttons.classList.toggle("colours__buttons--active");
+    buttons.classList.remove("colours__buttons--locked");
+  }
+
+  handleColourContainerMouseLeave() {
+    const buttons = this.container.querySelector(".colours__buttons");
+    buttons.classList.toggle("colours__buttons--active");
+    if (this.isLocked) {
+      buttons.classList.add("colours__buttons--locked");
+    }
+  }
+
+  displayColorPicker() {
+    console.log("clicked");
+  }
+
+  copyToClipboard() {
+    createNotification("✓ Copied to clipboard!");
+    navigator.clipboard.writeText("#" + this.hex);
   }
 
   calculateIsColourDark() {
@@ -139,7 +161,6 @@ const colours = {
     colourName: "quaternary",
   }),
   quinary: new Colour({ colourName: "quinary" }),
-  senary: new Colour({ colourName: "senary" }),
 };
 
 const colourPalettes = {};
@@ -153,6 +174,15 @@ function actionAllColours(fn) {
   for (let colour in colours) {
     if (!colours[colour].isLocked) colours[colour][fn]();
   }
+}
+
+function createNotification(text) {
+  const body = document.querySelector("body");
+  const notification = document.createElement("p");
+  notification.classList.add("notification");
+  notification.innerText = text;
+  body.append(notification);
+  setTimeout(() => notification.remove(), 5000);
 }
 
 function randomNumber(possibilities) {

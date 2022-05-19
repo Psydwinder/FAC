@@ -1,14 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;700&display=swap");
+
 :root {
   font-size: 62.5%;
 
   --header-height: 5rem;
   --bottom-nav-height: 5rem;
+  --colours-qty: 5;
   --colours-container-height: calc(
-    100vh - var(--header-height) -
-      var(--bottom-nav-height)
+    100vh - var(--header-height) - var(--bottom-nav-height)
   );
   --colours-item-height: calc(
-    var(--colours-container-height) / 6
+    var(--colours-container-height) / var(--colours-qty)
   );
 }
 
@@ -18,9 +20,11 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.6rem;
   background-color: rgb(255, 255, 255);
+  user-select: none;
+  overflow-y: hidden;
 }
 
 header {
@@ -30,16 +34,30 @@ header {
   height: var(--header-height);
 }
 
+.nav--bottom {
+  max-height: var(--bottom-nav-height);
+}
+
 .title {
   font-size: 2rem;
   color: #4f4f4f;
+}
+
+.notification {
+  position: absolute;
+  bottom: 2rem;
+  padding: 1rem 2rem;
+  border-radius: 20rem;
+  animation: notification-animation 5s forwards;
+  background-color: black;
+  color: white;
 }
 
 .colours__container {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: var(--main-height);
+  height: var(--colours-container-height);
   background-color: black;
 }
 
@@ -52,7 +70,7 @@ header {
 .colours__representation {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   height: var(--colours-item-height);
   opacity: 0.9;
 }
@@ -62,76 +80,106 @@ header {
   cursor: pointer;
 }
 
-.colours__input {
+.colours__picker {
   padding: 1rem 0.5rem;
   border: none;
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.08rem;
   text-align: center;
   background-color: transparent;
 }
 
-.colours__input--empty {
-  min-width: 5rem;
-  border-radius: 0.5rem;
-}
-
-.colours__input:hover {
+.colours__picker:hover {
   cursor: pointer;
   border-radius: 0.5rem;
 }
 
-.colours__input:focus {
+.colours__picker:focus {
   outline: none;
   border: none;
 }
 
-.colours__name {
+.colours__picker {
   top: 0;
-  margin: 0.5rem;
-  font-size: 1.5rem;
+  margin: 1rem 2rem;
+  font-size: 1.6rem;
   text-transform: capitalize;
 }
 
 .colours__buttons {
+  display: flex;
+  gap: 1.5rem;
   margin: 2rem;
+  transition: all 0.1s ease-in-out;
+  opacity: 0;
 }
 
-.colours__lock {
-  transform: scale(0.8);
+.colours__buttons--active {
+  opacity: 1;
 }
 
-.fa-lock-open {
-  transform: translateX(25%) scale(0.8);
+.colours__buttons--locked {
+  opacity: 1;
+}
+
+.colours__buttons--locked *:not(.colours__lock) {
+  opacity: 0;
+}
+
+.colours__lock .fa-lock-open {
+  transform: translateX(50%);
 }
 
 /* Is colour Dark or Light?  */
 
-.colours__item--light .colours__input {
+.colours__item--light .colours__picker {
   color: white;
 }
 
-.colours__item--dark .colours__input {
+.colours__item--dark .colours__picker {
   color: black;
 }
 
-.colours__item--light .colours__input--empty {
+.colours__item--light .colours__picker--empty {
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-.colours__item--dark .colours__input--empty {
+.colours__item--dark .colours__picker--empty {
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
-.colours__item--dark .colours__input:hover {
+.colours__item--dark .colours__picker:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
-.colours__item--light .colours__input:hover {
+.colours__item--light .colours__picker:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
 .colours__item--dark .colours__buttons {
-  color: black;
+  color: rgba(0, 0, 0, 0.8);
 }
+
 .colours__item--light .colours__buttons {
-  color: white;
-  opacity: 0.8;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Animations */
+@keyframes notification-animation {
+  0% {
+    display: none;
+    bottom: -50%;
+  }
+  5% {
+    display: block;
+  }
+  10% {
+    bottom: 2rem;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

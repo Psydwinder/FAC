@@ -107,6 +107,10 @@ header {
   text-transform: capitalize;
 }
 
+.colours__picker-input {
+  display: none;
+}
+
 .colours__buttons {
   display: flex;
   gap: 1.5rem;

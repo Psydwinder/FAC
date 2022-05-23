@@ -8,21 +8,34 @@
   </head>
   <body>
     <h1>Contact</h1>
-    <form action="https://learn-forms.netlify.com/submit/part1">
+    <form action="https://learn-forms.netlify.com/submit/part3">
       <label for="name">Name</label>
       <input id="name" type="text" name="name" />
 
       <label for="email">Email</label>
-      <input id="email" type="text" name="email" />
+      <input id="email" type="email" name="email" />
 
       <label for="telephone">Telephone</label>
-      <input id="telephone" type="text" name="telephone" />
+      <input id="telephone" type="tel" name="tel" />
 
       <label for="message">Message</label>
-      <textarea id="message" type="text" name="message"></textarea>
+      <textarea id="message" name="message"></textarea>
 
       <label for="marketing-consent">Flood my inbox</label>
       <input id="marketing-consent" type="checkbox" name="marketingConsent" />
+
+      <fieldset>
+        <legend>Preferred Contact Method</legend>
+
+        <label for="email-radio">Email</label>
+        <input id="email-radio" type="radio" name="contact" checked="true" />
+
+        <label for="telephone-radio">Telephone</label>
+        <input id="telephone-radio" type="radio" name="contact" />
+
+        <label for="post-radio">Post</label>
+        <input id="post-radio" type="radio" name="contact" />
+      </fieldset>
 
       <button type="submit">Submit</button>
     </form>

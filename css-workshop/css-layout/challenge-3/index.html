@@ -22,32 +22,33 @@
         color: inherit;
       }
 
-      ul,
-      header {
+      .flex {
         display: flex;
+        flex-wrap: wrap;
         gap: 1rem;
+      }
+
+      .margin-right {
+        margin-right: auto;
       }
 
       ul {
         list-style: none;
         padding: 0;
       }
+
       header {
         padding: 1.5rem;
         background-color: black;
         color: white;
       }
-
-      header > a {
-        margin-right: auto;
-      }
     </style>
   </head>
   <body>
-    <header>
-      <a href="/" aria-label="Home">🐹</a>
+    <header class="flex">
+      <a class="margin-right" href="/" aria-label="Home">🐹</a>
       <nav>
-        <ul>
+        <ul class="flex">
           <li><a href="#about">About</a></li>
           <li><a href="#work">Work</a></li>
           <li><a href="#blog">Blog</a></li>

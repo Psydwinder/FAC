@@ -1,9 +1,10 @@
 import Colour from "./Colour.js";
 
-const coloursGenerateBtn = document.querySelector(".colours__generate");
-const coloursSaveBtn = document.querySelector(".colours__save");
+const generateBtn = document.querySelector(".colours__generate");
+const saveBtn = document.querySelector(".colours__save");
 
-coloursGenerateBtn.addEventListener("click", renderAllColours);
+generateBtn.addEventListener("click", renderAllColours);
+saveBtn.addEventListener("click", saveColourPalette);
 
 const colours = {
   primary: new Colour({
@@ -33,3 +34,5 @@ function actionAllColours(fn) {
 }
 
 actionAllColours("create");
+
+function saveColourPalette() {}

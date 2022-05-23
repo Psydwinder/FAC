@@ -12,6 +12,7 @@
   --colours-item-height: calc(
     var(--colours-container-height) / var(--colours-qty)
   );
+  --colours-item-width: calc(100vw / var(--colours-qty));
 }
 
 body {
@@ -31,7 +32,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: var(--header-height);
+  height: fit-content;
 }
 
 .nav--bottom {
@@ -71,13 +72,12 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  height: var(--colours-item-height);
+  height: 100%;
   opacity: 0.9;
 }
 
 .colours__representation:hover {
   opacity: 1;
-  cursor: pointer;
 }
 
 .colours__picker {
@@ -119,12 +119,17 @@ header {
   opacity: 0;
 }
 
+.colours__buttons i:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
 .colours__buttons--active {
-  opacity: 1;
+  opacity: 0.8;
 }
 
 .colours__buttons--locked {
-  opacity: 1;
+  opacity: 0.9;
 }
 
 .colours__buttons--locked *:not(.colours__lock) {
@@ -132,7 +137,6 @@ header {
 }
 
 .colours__lock .fa-lock-open {
-  transform: translateX(50%);
 }
 
 /* Is colour Dark or Light?  */
@@ -185,5 +189,28 @@ header {
   }
   100% {
     opacity: 0;
+  }
+}
+
+/* Media queries */
+
+@media screen and (min-width: 768px) {
+  .colours__container {
+    flex-direction: row;
+  }
+
+  .colours__item {
+    width: var(--colours-item-width);
+    height: 100%;
+  }
+
+  .colours__representation {
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .colours__buttons {
+    margin-bottom: 5rem;
   }
 }

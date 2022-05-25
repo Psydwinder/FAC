@@ -136,7 +136,40 @@ header {
   opacity: 0;
 }
 
-.colours__lock .fa-lock-open {
+/* Bottom nav */
+.nav__save {
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+}
+
+.nav__save:hover {
+  cursor: pointer;
+  color: lightseagreen;
+}
+
+.modal {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 0 2rem 2rem;
+  border-radius: 1.5rem;
+}
+
+.modal__title {
+  margin: 0;
+  text-align: center;
+  font-size: 1.8rem;
+  padding: 1rem;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-top: 2rem;
+  height: 10rem;
 }
 
 /* Is colour Dark or Light?  */

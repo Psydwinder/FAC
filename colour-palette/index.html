@@ -22,11 +22,21 @@
     <div class="colours__container"></div>
 
     <div class="notifications"></div>
+
+    <div class="modal">
+      <h2 class="modal__title">Save Palette</h2>
+      <form class="modal__form">
+        <label for="palette-name">Name</label>
+        <input id="palette-name" type="text" />
+        <button class="modal__save" type="button">Save</button>
+      </form>
+    </div>
+
     <!-- Bottom buttons -->
     <div class="nav--buttom">
-      <button class="colours__generate">Generate</button>
-      <input class="colours__palette-name" type="text" />
-      <button class="colours__save">Save</button>
+      <button class="nav__generate">Generate</button>
+      <input class="nav__palette-name" type="text" />
+      <button class="nav__save"><i class="fa-regular fa-heart"></i></button>
     </div>
     <script type="module" src="./scripts/Main.js"></script>
   </body>

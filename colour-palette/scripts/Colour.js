@@ -3,7 +3,7 @@ import { createNotification, randomNumber } from "./utils.js";
 class Colour {
   constructor({ colour, colourName, isLocked }) {
     this.hex = colour || this.generateRandomColor();
-    this.colourName = colourName;
+    this.colourName = colourName || "";
     this.isLocked = isLocked || false;
   }
 

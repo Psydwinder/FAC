@@ -1,26 +1,10 @@
 import Colour from "./Colour.js";
 
-const generateBtn = document.querySelector(".colours__generate");
-const saveBtn = document.querySelector(".colours__save");
+const generateBtn = document.querySelector(".nav__generate");
 
 generateBtn.addEventListener("click", renderAllColours);
-saveBtn.addEventListener("click", saveColourPalette);
 
-const colours = {
-  primary: new Colour({
-    colourName: "primary",
-  }),
-  secondary: new Colour({
-    colourName: "secondary",
-  }),
-  tertiary: new Colour({
-    colourName: "tertiary",
-  }),
-  quaternary: new Colour({
-    colourName: "quaternary",
-  }),
-  quinary: new Colour({ colourName: "quinary" }),
-};
+const coloursArr = new Array(5).fill("").map((item) => new Colour({}));
 
 function renderAllColours() {
   actionAllColours("generateRandomColor");
@@ -28,11 +12,24 @@ function renderAllColours() {
 }
 
 function actionAllColours(fn) {
-  for (let colour in colours) {
-    if (!colours[colour].isLocked) colours[colour][fn]();
-  }
+  coloursArr.forEach((colour) => !colour.isLocked && colour[fn]());
 }
 
 actionAllColours("create");
 
-function saveColourPalette() {}
+// Save Modal
+const saveBtn = document.querySelector(".nav__save");
+const modal = document.querySelector(".modal");
+const modalSaveBtn = document.querySelector(".modal__save");
+const paletteNameInput = document.querySelector("#palette-name");
+
+saveBtn.addEventListener("click", displayModal);
+modalSaveBtn.addEventListener("click", saveToLocalStorage);
+
+function displayModal() {}
+
+function saveToLocalStorage() {
+  const localStoragePalettes = JSON.parse(localStorage.palettes || "{}");
+  localStoragePalettes[paletteNameInput.value] = coloursArr;
+  localStorage.setItem("palettes", JSON.stringify(localStoragePalettes));
+}

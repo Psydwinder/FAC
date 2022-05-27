@@ -4,7 +4,7 @@ Main:
     ✔ Generate random colour for all divs @done(22-05-15 04:34)
     ✔ Add color picker @done(22-05-25 01:41)
     ✔ Save colour palettes to localStorage @done(22-05-25 02:35)
-    ☐ Add dropdown for saved colour palettes
+    ☐ Display saved colour palettes
     ☐ Export colour palette
     ☐ Generate related colours
 

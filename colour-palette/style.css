@@ -26,6 +26,7 @@ body {
   background-color: rgb(255, 255, 255);
   user-select: none;
   overflow-y: hidden;
+  height: 100vh;
 }
 
 header {
@@ -35,8 +36,44 @@ header {
   height: fit-content;
 }
 
+/* Bottom nav */
+
 .nav--bottom {
-  max-height: var(--bottom-nav-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 5rem;
+}
+
+.nav--bottom > * {
+  margin: 1rem;
+}
+
+.nav__generate {
+  border: 1px solid #b1b0b5;
+  background-color: transparent;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 900;
+  letter-spacing: 0.1rem;
+  transition: all 0.1s linear;
+}
+
+.nav__generate:hover {
+  border: 1px solid #838386;
+  cursor: pointer;
+}
+
+.nav__save {
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+}
+
+.nav__save:hover {
+  cursor: pointer;
+  color: lightseagreen;
 }
 
 .title {
@@ -85,7 +122,7 @@ header {
   border: none;
   font-size: 2rem;
   font-weight: 500;
-  letter-spacing: 0.08rem;
+  letter-spacing: 0.1rem;
   text-align: center;
   background-color: transparent;
 }
@@ -108,7 +145,9 @@ header {
 }
 
 .colours__picker-input {
-  display: none;
+  position: absolute;
+  visibility: hidden;
+  /* display: none; */
 }
 
 .colours__buttons {
@@ -136,42 +175,70 @@ header {
   opacity: 0;
 }
 
-/* Bottom nav */
-.nav__save {
-  background-color: transparent;
-  border: none;
-  font-size: 2rem;
-}
-
-.nav__save:hover {
-  cursor: pointer;
-  color: lightseagreen;
-}
-
 .modal {
   position: absolute;
   display: flex;
   flex-direction: column;
   background-color: white;
-  padding: 0 2rem 2rem;
+  padding: 2rem;
   border-radius: 1.5rem;
+}
+
+.modal__header {
+  position: relative;
 }
 
 .modal__title {
   margin: 0;
   text-align: center;
+  color: #4f4f4f;
   font-size: 1.8rem;
   padding: 1rem;
+}
+
+.modal__close {
+  position: absolute;
+  right: 0.5rem;
+  top: 1.3rem;
+  transition: all 0.2s linear;
+}
+
+.modal__close:hover {
+  transform: scale(1.2) rotate(90deg);
+  cursor: pointer;
 }
 
 .modal__form {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  margin-top: 2rem;
+  margin-top: 1rem;
   height: 10rem;
 }
 
+.modal__input {
+  height: 3rem;
+  padding-left: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 0.5rem;
+  outline-color: #0066ff;
+}
+
+.modal__button {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  font-size: 1.6rem;
+  background-color: #005ce6;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  opacity: 0.9;
+}
+
+.modal__button:hover {
+  cursor: pointer;
+  opacity: 1;
+}
 /* Is colour Dark or Light?  */
 
 .colours__item--light .colours__picker {
@@ -243,7 +310,14 @@ header {
     align-items: center;
   }
 
-  .colours__buttons {
+  .colours__picker {
+    order: 2;
+    margin-top: 0;
     margin-bottom: 5rem;
+  }
+
+  .colours__buttons {
+    flex-direction: column;
+    order: 1;
   }
 }

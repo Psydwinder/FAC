@@ -40,7 +40,6 @@ header {
 
 .nav--bottom {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 5rem;
@@ -48,15 +47,17 @@ header {
 
 .nav--bottom > * {
   margin: 1rem;
+  cursor: pointer;
 }
 
 .nav__generate {
-  border: 1px solid #b1b0b5;
   background-color: transparent;
-  padding: 1rem 2rem;
   border-radius: 0.5rem;
+  border: 1px solid #b1b0b5;
   font-weight: 900;
   letter-spacing: 0.1rem;
+  margin-right: auto;
+  padding: 1rem 2rem;
   transition: all 0.1s linear;
 }
 

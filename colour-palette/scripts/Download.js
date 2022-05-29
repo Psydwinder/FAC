@@ -1,4 +1,5 @@
 import { coloursArr } from "./Colours.js";
+import { selectedPalette } from "./PaletteCollection.js";
 
 const downloadBtnNodeList = document.querySelectorAll(".nav__download");
 downloadBtnNodeList.forEach((btn) =>
@@ -12,7 +13,7 @@ function handleDownloadClick({ currentTarget }) {
     json: createJSONData,
   };
 
-  downloadPalette(`colours.${filetype}`, fileData[filetype]());
+  downloadPalette(`${selectedPalette}.${filetype}`, fileData[filetype]());
 }
 
 function createCSSData() {

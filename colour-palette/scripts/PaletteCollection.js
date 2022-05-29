@@ -84,4 +84,4 @@ function renderPalettes() {
   }
 }
 
-export { renderPalettes, toggleCollection };
+export { renderPalettes, toggleCollection, selectedPalette };

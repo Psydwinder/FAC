@@ -1,4 +1,5 @@
 import { coloursArr } from "./Colours.js";
+import { renderPalettes, toggleCollection } from "./PaletteCollection.js";
 import { createNotification } from "./utils.js";
 
 // Modal display
@@ -17,12 +18,15 @@ const paletteNameInput = document.querySelector("#palette-name");
 
 modalSaveBtn.addEventListener("click", saveToLocalStorage);
 
-function saveToLocalStorage() {
+function saveToLocalStorage(event) {
   const savedPalettes = JSON.parse(localStorage.palettes || "{}");
   savedPalettes[paletteNameInput.value] = coloursArr;
   localStorage.setItem("palettes", JSON.stringify(savedPalettes));
+  paletteNameInput.value = "";
   toggleModal();
   createNotification("Palette saved succesfully!");
+  renderPalettes();
+  toggleCollection(event);
 }
 
 // Close modal

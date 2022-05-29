@@ -1,3 +1,5 @@
+import { coloursArr } from "./Colours.js";
+
 function createNotification(text) {
   const body = document.querySelector("body");
   const notification = document.createElement("p");
@@ -24,4 +26,15 @@ function actionAllColours(coloursArr, fn) {
   coloursArr.forEach((colour) => !colour.isLocked && colour[fn]());
 }
 
-export { createNotification, randomNumber, randomHex, actionAllColours };
+function applyNewColours(newPaletteArr) {
+  coloursArr.forEach((colour, index) => (colour.hex = newPaletteArr[index]));
+  actionAllColours(coloursArr, "render");
+}
+
+export {
+  createNotification,
+  randomNumber,
+  randomHex,
+  actionAllColours,
+  applyNewColours,
+};

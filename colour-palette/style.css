@@ -25,6 +25,10 @@ body {
   font-size: 1.6rem;
   background-color: rgb(255, 255, 255);
   user-select: none;
+}
+
+.overflow-x-hidden {
+  position: relative;
   overflow-x: hidden;
 }
 

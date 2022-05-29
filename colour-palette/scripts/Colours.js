@@ -51,6 +51,7 @@ class Colour {
         </div>
       </div>
           `;
+    this.calculateIsColourDark();
     this.applyStyle();
     this.addEventListeners();
     this.updateName();
@@ -125,7 +126,6 @@ class Colour {
 
   changeColour({ currentTarget }) {
     this.hex = currentTarget.value.replace("#", "").toUpperCase();
-    this.calculateIsColourDark();
     this.render();
   }
 

@@ -11,8 +11,17 @@ function randomNumber(possibilities) {
   return Math.floor(Math.random() * possibilities);
 }
 
+function randomHex() {
+  const HEX_POSSIBILITIES = 16777215; // 16^6
+  const randomHex = parseInt(randomNumber(HEX_POSSIBILITIES))
+    .toString(16)
+    .toUpperCase();
+
+  return randomHex.length < 6 ? randomHex.padStart(6, "0") : randomHex;
+}
+
 function actionAllColours(coloursArr, fn) {
   coloursArr.forEach((colour) => !colour.isLocked && colour[fn]());
 }
 
-export { createNotification, randomNumber, actionAllColours };
+export { createNotification, randomNumber, randomHex, actionAllColours };

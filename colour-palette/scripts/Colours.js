@@ -1,4 +1,5 @@
-import { createNotification, randomNumber } from "./utils.js";
+import { createNotification, randomHex } from "./utils.js";
+
 class Colour {
   constructor({ colour, colourName, isLocked }) {
     this.hex = colour || this.generateRandomColor();
@@ -7,11 +8,7 @@ class Colour {
   }
 
   generateRandomColor() {
-    const HEX_POSSIBILITIES = 16777215; // 16^6
-    const randomHex = parseInt(randomNumber(HEX_POSSIBILITIES))
-      .toString(16)
-      .toUpperCase();
-    this.hex = randomHex.length < 6 ? randomHex.padStart(6, "0") : randomHex;
+    this.hex = randomHex();
     this.isColourDark = this.calculateIsColourDark();
     return this.hex;
   }

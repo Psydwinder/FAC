@@ -1,5 +1,5 @@
 import { coloursArr } from "./Colours.js";
-import { actionAllColours, randomHex } from "./utils.js";
+import { actionAllColours, randomHex, applyNewColours } from "./utils.js";
 
 const randomAIBtn = document.querySelector(".nav__random-ai");
 randomAIBtn.addEventListener("click", fetchData);
@@ -20,11 +20,8 @@ function applyNewPalette(newPalette) {
 
   newPalette.colors.forEach((colour) => hexPaletteArr.push(colour.hex.clean));
 
-  coloursArr.forEach((colour, index) => {
-    colour.hex = hexPaletteArr[index];
-  });
+  applyNewColours(hexPaletteArr);
 
-  actionAllColours(coloursArr, "render");
   // Provide visual feedback to user when changes have been applied
   document.body.style = "cursor: auto; opacity: 1;";
 }

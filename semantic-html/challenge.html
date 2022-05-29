@@ -1,15 +1,15 @@
 <html>
   <head>
-    <link href="challenge.css" />
+    <link rel="stylesheet" href="challenge.css" />
   </head>
   <body>
     <header>
       <h1>My Messy Site</h1>
       <h2>I Love Coding</h2>
-      <img src="./catonkeyboard.jpeg" />
+      <img src="./catonkeyboard.jpg" />
     </header>
-    <br /><br />
-    <main>
+
+    <main class="mt-1">
       <section>
         <h3>First Section Header</h3>
         <p>
@@ -32,17 +32,16 @@
         </p>
       </section>
       <br />
-      <form action="/" method="post">
-        <label for="first-name">First Name</label>
-        <input id="first-name" type="text" /> <br /><br />
-        <label for="last-name">Last Name</label>
-        <input id="last-name" type="text" /> <br /><br />
-        <label for="email">Email</label>
-        <input id="email" type="email" /> Password <br /><br />
-        <label for="password">Email</label>
+      <form action="/" method="post" class="column">
+        <label class="mt-1" for="first-name">First Name</label>
+        <input id="first-name" type="text" />
+        <label class="mt-1" for="last-name">Last Name</label>
+        <input id="last-name " type="text" />
+        <label class="mt-1" for="email">Email</label>
+        <input id="email" type="email" />
+        <label class="mt-1" for="password">Password</label>
         <input id="password" type="password" />
-        <br />
-        <button type="button">Submit</button>
+        <button class="mt-1" type="button">Submit</button>
       </form>
       <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</q>
       <em>by John Smith, 2017</em>

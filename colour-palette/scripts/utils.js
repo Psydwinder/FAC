@@ -27,7 +27,9 @@ function actionAllColours(coloursArr, fn) {
 }
 
 function applyNewColours(newPaletteArr) {
-  coloursArr.forEach((colour, index) => (colour.hex = newPaletteArr[index]));
+  coloursArr.forEach(
+    (colour, index) => !colour.isLocked && (colour.hex = newPaletteArr[index])
+  );
   actionAllColours(coloursArr, "render");
 }
 

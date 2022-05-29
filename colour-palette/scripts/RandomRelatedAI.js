@@ -8,7 +8,7 @@ function fetchColorMindData() {
   // Provide visual feedback to user when fetching data
   document.body.style = "cursor: wait; opacity: 0.9;";
 
-  const url = "http://colormind.io/api/";
+  const url = "https://colormind.io/api/";
   const data = {
     model: "default",
     input: ["N", "N", "N", "N", "N"],

@@ -6,12 +6,12 @@ Main:
     ✔ Save colour palettes to localStorage @done(22-05-25 02:35)
     ☐ Display saved colour palettes
     ✔ Export colour palette @done(22-05-28 23:39)
-    ☐ Generate related colours
+    ✔ Generate related colours @done(22-05-29 05:38)
 
 Stretch:
     ✔ Add lock functionality @done(22-05-18 01:08)
     ☐ Add accessibility
     ☐ Improve styling
     ☐ Add and remove similar colours
-    ☐ Generate color palette with AI
+    ✔ Generate color palette with AI @done(22-05-29 05:38)
     ☐ Add website template to apply colours

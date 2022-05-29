@@ -16,7 +16,7 @@ Optional features:
 
 - [x] Export colour palette in different formats (e.g. JSON, CSS variables)
 - [x] Generate related colours rather than random (e.g. ascending lightness, complementary hues etc)
-- [ ] Save palettes to localStorage
+- [x] Save palettes to localStorage
 
 Methods contained within the Colour constructor class:
 | Method | Description |

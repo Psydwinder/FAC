@@ -1,4 +1,4 @@
-## [Colour Palette](https://dogwishx.github.io/FAC/colour-palette/)
+## [Founders and Colours](https://dogwishx.github.io/FAC/colour-palette/)
 
 _Inspired by [Coolors](https://coolors.co/generate)_
 

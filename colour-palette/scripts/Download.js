@@ -8,25 +8,30 @@ downloadBtnNodeList.forEach((btn) =>
 function handleDownloadClick({ currentTarget }) {
   const filetype = currentTarget.dataset.filetype;
   const fileData = {
-    css: ":root {\n", // Add opening curly braces for the root selector
-    json: [],
+    css: createCSSData,
+    json: createJSONData,
   };
 
-  // Check if user selected json
-  if (currentTarget.dataset.filetype === "json") {
-    fileData.json = JSON.stringify(
-      coloursArr.map(({ hex, isColourDark, colourName }) => {
-        return { colourName, hex, isColourDark };
-      })
-    );
-  } else {
-    // User selected css
-    coloursArr.forEach(({ colourName, hex }) => {
-      fileData.css += "\t--" + colourName + ": #" + hex + ";\n";
-    });
-    fileData.css += "}"; // Add closing curly braces for the css root selector
-  }
-  downloadPalette(`colours.${filetype}`, fileData[filetype]);
+  downloadPalette(`colours.${filetype}`, fileData[filetype]());
+}
+
+function createCSSData() {
+  let cssString = ":root {\n";
+
+  coloursArr.forEach(({ colourName, hex }) => {
+    cssString += "\t--" + colourName + ": #" + hex + ";\n";
+  });
+  cssString += "}";
+
+  return cssString;
+}
+
+function createJSONData() {
+  return JSON.stringify(
+    coloursArr.map(({ hex, isColourDark, colourName }) => {
+      return { colourName, hex, isColourDark };
+    })
+  );
 }
 
 function downloadPalette(filename, content) {

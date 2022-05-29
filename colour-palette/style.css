@@ -50,7 +50,7 @@ header {
   cursor: pointer;
 }
 
-.nav__generate {
+.nav__btn--lg {
   background-color: transparent;
   border-radius: 0.5rem;
   border: 1px solid #b1b0b5;

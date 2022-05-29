@@ -11,4 +11,8 @@ function randomNumber(possibilities) {
   return Math.floor(Math.random() * possibilities);
 }
 
-export { createNotification, randomNumber };
+function actionAllColours(coloursArr, fn) {
+  coloursArr.forEach((colour) => !colour.isLocked && colour[fn]());
+}
+
+export { createNotification, randomNumber, actionAllColours };

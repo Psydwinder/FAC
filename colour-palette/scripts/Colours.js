@@ -1,5 +1,4 @@
 import { createNotification, randomNumber } from "./utils.js";
-
 class Colour {
   constructor({ colour, colourName, isLocked }) {
     this.hex = colour || this.generateRandomColor();
@@ -160,4 +159,6 @@ class Colour {
   }
 }
 
-export default Colour;
+const coloursArr = new Array(5).fill("").map((item) => new Colour({}));
+
+export { coloursArr, Colour };

@@ -29,9 +29,18 @@ body {
 
 header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   height: fit-content;
+  width: 100%;
+}
+
+header > * {
+  margin: 1rem;
+}
+
+.palette-collection__button {
+  cursor: pointer;
 }
 
 /* Bottom nav */
@@ -72,7 +81,7 @@ header {
 .nav__btn {
   background-color: transparent;
   border: none;
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 .nav__save:hover {
@@ -194,12 +203,16 @@ header {
 }
 
 .modal {
+  display: none;
   position: absolute;
-  display: flex;
   flex-direction: column;
   background-color: white;
   padding: 2rem;
   border-radius: 1.5rem;
+}
+
+.modal--active {
+  display: flex;
 }
 
 .modal__header {

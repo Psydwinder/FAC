@@ -16,10 +16,25 @@
   <body>
     <header>
       <h1 class="title">Founders and Colours</h1>
-      <button class="nav__btn palette-collection__button">
+      <button class="btn palette-collection__button">
         <i class="fa-solid fa-bars"></i>
       </button>
     </header>
+
+    <div class="palette-collection">
+      <div class="palette-collection__header">
+        <button class="btn palette-collection__back">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        </button>
+        <h2 class="palette-collection__title">Collection</h2>
+      </div>
+      <hr />
+      <ul class="palette-collection__list">
+        <li class="palette-collection__placeholder">
+          This is where your saved palettes go
+        </li>
+      </ul>
+    </div>
 
     <!-- Empty div for colours__item insertion -->
     <div class="colours__container"></div>
@@ -31,7 +46,7 @@
         <h2 class="modal__title">Save Palette</h2>
         <i class="modal__close fa-solid fa-xmark"></i>
       </div>
-      <form class="modal__form">
+      <form class="modal__form" onsubmit="return false">
         <label for="palette-name">Name</label>
         <input
           class="modal__input"
@@ -45,25 +60,25 @@
 
     <!-- Bottom buttons -->
     <nav class="nav--bottom">
-      <button class="nav__btn--lg nav__random">Random</button>
+      <button class="btn--lg nav__random">Random</button>
       <button
-        class="nav__btn--lg nav__random-ai"
+        class="btn--lg nav__random-ai"
         title="These color scheme types have close relationships to one another."
       >
         Analogic
       </button>
 
-      <button class="nav__btn nav__download" data-filetype="json">
+      <button class="btn nav__download" data-filetype="json">
         <img
           class="nav__json-icon"
           src="https://images.gamebanana.com/img/ss/tuts/61ce5d722786b.jpg"
           alt="a file with json written on it"
         />
       </button>
-      <button class="nav__btn nav__download" data-filetype="css">
+      <button class="btn nav__download" data-filetype="css">
         <i class="nav__css-icon fa-brands fa-css3-alt"></i>
       </button>
-      <button class="nav__btn nav__save">
+      <button class="btn nav__save">
         <i class="fa-regular fa-heart"></i>
       </button>
     </nav>

@@ -25,6 +25,7 @@ body {
   font-size: 1.6rem;
   background-color: rgb(255, 255, 255);
   user-select: none;
+  overflow-x: hidden;
 }
 
 header {
@@ -43,6 +44,85 @@ header > * {
   cursor: pointer;
 }
 
+.palette-collection {
+  position: absolute;
+  top: 0;
+  right: -200%;
+  min-height: 100vh;
+  max-height: 100vh;
+  width: clamp(10rem, 100%, 40rem);
+  box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  transition: all 0.2s ease-in-out;
+  overflow: auto;
+  z-index: 1;
+}
+
+.palette-collection--active {
+  right: 0;
+}
+
+.palette-collection__header {
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+  color: #4f4f4f;
+}
+
+.palette-collection__title {
+  font-size: 1.5rem;
+  margin: auto;
+}
+
+.palette-collection hr {
+  width: 90%;
+  opacity: 0.3;
+}
+
+.palette-collection__list {
+  list-style: none;
+  padding: 0;
+}
+
+.palette-collection__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 2rem 0;
+  margin-top: 2rem;
+}
+
+.palette-collection__item:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.palette-collection__name {
+  font-size: 1.4rem;
+  color: #4f4f4f;
+}
+
+.palette-collection__placeholder {
+  font-size: 1.5rem;
+  color: gray;
+  text-align: center;
+}
+
+.palette-collection__demo {
+  display: flex;
+  flex-direction: row;
+  height: 3.5rem;
+  width: 90%;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.palette-collection__colour {
+  height: 100%;
+  width: 100%;
+}
+
 /* Bottom nav */
 
 .nav--bottom {
@@ -58,7 +138,7 @@ header > * {
   cursor: pointer;
 }
 
-.nav__btn--lg {
+.btn--lg {
   background-color: transparent;
   border-radius: 0.5rem;
   border: 1px solid #b1b0b5;
@@ -68,7 +148,7 @@ header > * {
   transition: all 0.1s linear;
 }
 
-.nav__btn--lg:hover {
+.btn--lg:hover {
   border: 1px solid #525253;
   cursor: pointer;
 }
@@ -78,10 +158,11 @@ header > * {
   white-space: nowrap;
 }
 
-.nav__btn {
+.btn {
   background-color: transparent;
   border: none;
   font-size: 2rem;
+  cursor: pointer;
 }
 
 .nav__save:hover {
@@ -105,7 +186,7 @@ header > * {
 .title {
   font-size: 2rem;
   color: #4f4f4f;
-  text-align: center;
+  margin: auto;
 }
 
 .notification {
@@ -116,6 +197,7 @@ header > * {
   animation: notification-animation 5s forwards;
   background-color: black;
   color: white;
+  z-index: 3;
 }
 
 .colours__container {
@@ -307,7 +389,7 @@ header > * {
 @keyframes notification-animation {
   0% {
     display: none;
-    bottom: -50%;
+    bottom: -1rem;
   }
   5% {
     display: block;

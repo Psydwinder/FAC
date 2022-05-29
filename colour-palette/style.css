@@ -219,11 +219,11 @@ header > * {
   justify-content: space-between;
   align-items: flex-start;
   height: 100%;
-  opacity: 0.9;
+  opacity: 1;
 }
 
 .colours__representation:hover {
-  opacity: 1;
+  opacity: 0.9;
 }
 
 .colours__picker {

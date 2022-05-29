@@ -1,6 +1,7 @@
 ## [Colour Palette](https://dogwishx.github.io/FAC/colour-palette/)
 
 _Inspired by [Coolors](https://coolors.co/generate)_
+_Colour names and scheme data taken from [The Color API](https://thecolorapi.com)_
 
 <img src="https://user-images.githubusercontent.com/53922624/170775984-a63dd1bc-fd92-4740-9e9c-4cb954a9e57d.png" height="400" />
 

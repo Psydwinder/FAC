@@ -66,15 +66,30 @@ header {
   cursor: pointer;
 }
 
-.nav__save {
+.nav__btn {
   background-color: transparent;
   border: none;
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 
 .nav__save:hover {
   cursor: pointer;
   color: lightseagreen;
+}
+
+.nav__json-icon {
+  height: 3rem;
+  margin-top: 0.5rem;
+}
+
+.nav__css-icon {
+  margin-top: 0.3rem;
+  font-size: 2.8rem;
+}
+
+.nav__json-icon:hover,
+.nav__css-icon:hover {
+  transform: scale(1.05);
 }
 
 .title {

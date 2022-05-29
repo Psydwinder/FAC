@@ -43,8 +43,20 @@
     <!-- Bottom buttons -->
     <div class="nav--bottom">
       <button class="nav__generate">Random</button>
-      <button class="nav__save"><i class="fa-regular fa-heart"></i></button>
-      <button class="nav__export"><i class="fa-solid fa-download"></i></button>
+
+      <button class="nav__btn nav__download" data-filetype="json">
+        <img
+          class="nav__json-icon"
+          src="https://images.gamebanana.com/img/ss/tuts/61ce5d722786b.jpg"
+          alt="a file with json written on it"
+        />
+      </button>
+      <button class="nav__btn nav__download" data-filetype="css">
+        <i class="nav__css-icon fa-brands fa-css3-alt"></i>
+      </button>
+      <button class="nav__btn nav__save">
+        <i class="fa-regular fa-heart"></i>
+      </button>
     </div>
     <script type="module" src="./scripts/Main.js"></script>
   </body>

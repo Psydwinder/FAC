@@ -17,6 +17,17 @@ class Colour {
     return this.hex;
   }
 
+  updateName() {
+    const colourData = fetch(
+      `https://www.thecolorapi.com/id?format=json&hex=${this.hex}`
+    )
+      .then((response) => response.json())
+      .then(
+        (data) =>
+          (this.colourName = data.name.value.toLowerCase().replace(/\W/g, "-"))
+      );
+  }
+
   create() {
     // DOM related
     const coloursContainer = document.querySelector(".colours__container");
@@ -43,6 +54,7 @@ class Colour {
           `;
     this.applyStyle();
     this.addEventListeners();
+    this.updateName();
   }
 
   applyStyle() {

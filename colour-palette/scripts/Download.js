@@ -6,7 +6,6 @@ downloadBtnNodeList.forEach((btn) =>
 );
 
 function handleDownloadClick({ currentTarget }) {
-  console.log("clicked");
   const filetype = currentTarget.dataset.filetype;
   const fileData = {
     css: ":root {\n", // Add opening curly braces for the root selector

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Challenge | Functions and asynchronous JavaScript</title>
+  </head>
+  <body>
+    <h1>Open the console</h1>
+    <script>
+      const lightsArr = ["green", "amber", "red", "amber", "green", "finished"];
+
+      // lightsArr.forEach((str, index) => light(str, 1000 * index));
+
+      function light(string, callback) {
+        setTimeout(() => {
+          console.log(string);
+          callback(string, callback);
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>

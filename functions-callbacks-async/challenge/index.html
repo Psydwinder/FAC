@@ -9,8 +9,21 @@
     <h1>Open the console</h1>
     <script>
       const lightsArr = ["green", "amber", "red", "amber", "green", "finished"];
+      let nestedLights = "";
 
-      // lightsArr.forEach((str, index) => light(str, 1000 * index));
+      for (let i = 0; i < lightsArr.length; i++) {
+        if (i === 0) {
+          nestedLights += `light("green", () => light(`;
+          continue;
+        }
+        if (i === lightsArr.length - 1) {
+          nestedLights += `'finished', () => ''))))))`;
+          continue;
+        }
+
+        nestedLights += `"${lightsArr[i]}", () => light(`;
+      }
+      eval(nestedLights);
 
       function light(string, callback) {
         setTimeout(() => {

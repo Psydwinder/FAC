@@ -23,14 +23,25 @@
 
       // write your code here
 
-      function light(string) {
-        return wait(1000).then(() => console.log(string));
+      function light(string, delay = 1000) {
+        return wait(delay).then(() => console.log(string));
+      }
+      // Repetitive/Initial solution
+
+      // light("green")
+      //   .then(() => light("amber"))
+      //   .then(() => light("yellow"))
+      //   .then(() => light("finished"));
+
+      const lightsArr = ["green", "amber", "red", "amber", "green", "finished"];
+
+      async function logAllLights() {
+        for (colour of lightsArr) {
+          await light(colour, 2000);
+        }
       }
 
-      light("green")
-        .then(() => light("amber"))
-        .then(() => light("yellow"))
-        .then(() => light("finished"));
+      logAllLights();
     </script>
   </body>
 </html>

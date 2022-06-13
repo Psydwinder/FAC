@@ -23,25 +23,26 @@
 
       // write your code here
 
-      function light(string, delay = 1000) {
-        return wait(delay).then(() => console.log(string));
-      }
-      // Repetitive/Initial solution
+      // Initial solution
+      light("green")
+        .then(() => light("amber"))
+        .then(() => light("red"))
+        .then(() => light("amber"))
+        .then(() => light("green"))
+        .then(() => light("finished"));
 
-      // light("green")
-      //   .then(() => light("amber"))
-      //   .then(() => light("yellow"))
-      //   .then(() => light("finished"));
-
+      // async/await + IIFE
       const lightsArr = ["green", "amber", "red", "amber", "green", "finished"];
 
-      async function logAllLights() {
+      (async () => {
         for (colour of lightsArr) {
           await light(colour, 2000);
         }
-      }
+      })();
 
-      logAllLights();
+      function light(string, delay = 1000) {
+        return wait(delay).then(() => console.log(string));
+      }
     </script>
   </body>
 </html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Learn Testing</title>
+  </head>
+  <body>
+    <h1>Open the console</h1>
+
+    <script>
+      // the function we're testing
+      function square(x) {
+        return x * x;
+      }
+
+      function equal(expected, result, message) {
+        const hasPassedTest = expected === result;
+
+        hasPassedTest
+          ? console.info(
+              message ||
+                `Passed: Expected ${expected} to equal ${result}`
+            )
+          : console.error(
+              message ||
+                `Failed: Expected ${expected} to equal ${result}`
+            );
+
+        return hasPassedTest;
+      }
+
+      function notEqual(
+        expected,
+        result,
+        message
+      ) {
+        const hasNotPassedTest =
+          expected !== result;
+
+        hasNotPassedTest
+          ? console.info(
+              message ||
+                `Passed: Expected ${expected} to not equal ${result}`
+            )
+          : console.error(
+              message ||
+                `Failed: Expected ${expected} to not equal ${result}`
+            );
+
+        return hasNotPassedTest;
+      }
+
+      function test(name, testFunction) {
+        console.groupCollapsed(name);
+        testFunction();
+        console.groupEnd();
+      }
+
+      test("Square Number: 4", () =>
+        equal(16, square(4)));
+    </script>
+  </body>
+</html>

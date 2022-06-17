@@ -9,13 +9,15 @@
     <h1>Open the console</h1>
     <script>
       // write your code here
-      fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
-        .then((response) => response.json())
-        .then((data) => fetch(data.species.url))
+      function getData() {\
+        return fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
+        .then((pikaResponse) => pikaResponse.json())
+        .then((pikaData) => fetch(pikaData.species.url))
         .then((speciesResponse) => speciesResponse.json())
         .then((speciesData) => fetch(speciesData.shape.url))
         .then((shapeResponse) => shapeResponse.json())
         .then((shapeData) => console.log(shapeData));
+      }
     </script>
   </body>
 </html>
